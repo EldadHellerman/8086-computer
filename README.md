@@ -1,15 +1,15 @@
 # 8086
 
-New version of the 8086 computer (moved to repository "8086 computer_OLD"), mainly focusing on PCB design.
+New version of the 8086 computer (old one moved to repository "8086_OLD"), mainly focusing on PCB design.
 
-## Available Components
 I'm trying to recycle old components I salvaged and not buy anything new (excpet for the 8086 itself which I didn't have).
 
-These are the IC's I have lying around:
+<details>
+<summary>Tables of IC's I have lying around:</summary>
 
 ### Logic
 
-| Name          | Description                               | amount    |
+| IC Name       | Description                               | amount    |
 | ------------- | ----------------------------------------- | --------- |
 | 74AC373       | Octal latch with 3-STATE Outputs          | 20+       |
 | 74HC138D      | 3 to 8 line decoder; inverting            | 5         |
@@ -22,7 +22,7 @@ These are the IC's I have lying around:
 
 ### Memory
 
-| Name          | Description           | amount    |
+| IC Name       | Description           | amount    |
 | ------------- | --------------------- | --------- |
 | IS61C256AH    |	SRAM 32K x 8        | 5         |
 | CXK58257AM    |	SRAM 32K x 8        | 1         |
@@ -30,7 +30,46 @@ These are the IC's I have lying around:
 | E28F400B5     |	Flash 256K x 16     | 1         |
 | AM29F002      |	Flash 256K x 8      | 2         |
 
+</details>
 
+## Modules
+
+This computer is made out of modules, each responsible for a different thing. The modules will be stackable sharing a common bus.  
+The goal is to have all the modules use the same PCB design, saving on costs.
+
+The bus has the following signals:
+- AD[0-15], A[16-19]
+- SEG[2-7], A[0-2]
+- M/IO, RD, WR, BHA, ALE, READY
+- NMI, INTR, INTA
+- TEST
+- HOLD, HLDA
+- CLK, RST
+- GND, 5V, 3.3V
+
+### 8086 Module
+- The 8086 itself.
+- Memory: 128kB of SRAM, 512kB of flash.
+- Logic for address latching (including OR gate with bus ALE).
+- Logic for generating memory segment CS signals (SEG[0-7]).
+- LED access indicators for Flash, SRAM segment 1 and SRAM segment 2.
+- USB-C port for power.
+- Power LED.
+- Reset button.
+- On / off switch.
+
+### IO Module
+- RGB LCD socket.
+- Character LCD socket.
+- 8 Push Buttons with LEDs, inculding logic to latch data to LEDs and from buttons (two 74HC373).  
+The buttons have a latch button to latch their state, together with a jumper to constantly latch it.
+- 8 bit DIP switch with LEDs, inculding logic to latch data to LEDs and from switches (two 74HC373).
+- Two 7-segment displays.
+- More LEDs if there is space.
+
+### Microcontroller Module
+- Mircocontroller used to program the memory as well as more advanced operations.
+- USB-C port to connect to computer.
 
 
 ## Address Space
@@ -48,34 +87,36 @@ For convenience, I will think of each segment as being only the 4 highest order 
     
 For in / out instructions, only 16-bits addressing is allowed (first segment only).
 
-The 8086 boots to address 0xFFFF0, so there must be some flash there. That's why the flash is at the top of the memory map.
+The 8086 boots to address 0xFFFF0, so there must be some memory there. That's why the flash is at the top of the memory map.  
+Interrupt vector table is at 0x000 - 0x100. That's why the flash is at the top of the memory map
+
+<details>
+<summary>Tables of memory and IO maps:</summary>
 
 ### Memory map:
 
-| Addresses             | Size  | Description               |
-| --------------------- | ----- | ------------------------- |
-| 0x0_0000 - 0x2_0000   | 128kB | SRAM                      |
-| 0x6_0000 - 0x7_0000   | 32kB  | MMIO - Microcontroller    |
-| 0x7_0000 - 0x7_8000   | 32kB  | MMIO - RGB LCD - DATA     |
-| 0x7_8000 - 0x8_0000   | 32kB  | MMIO - RGB LCD  - COMMAND |
-| 0x8_0000 - 0xF_FFFF   | 512kB | Flash                     |
-
-### Segments map:
-
-| Segments   | Description              |
-| --------- | ------------------------- |
-| 0 - 1     | SRAM                      |
-| 2 - 5     | FREE                      |
-| 6         | MMIO - Microcontroller    |
-| 7         | MMIO - RGB LCD            |
-| 8 - 15    | Flash                     |
+| Addresses             | Segments  | Size  | Description                       |
+| --------------------- | --------- | ----- | --------------------------------- |
+| 0x0_0000 - 0x2_0000   | 0 - 1     | 128kB | SRAM                              |
+| 0x2_0000 - 0x5_0000   | 2 - 4     | 192kB | FREE                              |
+| 0x5_0000 - 0x6_0000   | 5         | 64kB  | MMIO - Microcontroller            |
+| 0x6_0000 - 0x6_8000   | 6         | 32kB  | MMIO - Character LCD - DATA       |
+| 0x6_8000 - 0x7_0000   | 6         | 32kB  | MMIO - Character LCD  - COMMAND   |
+| 0x7_0000 - 0x7_8000   | 7         | 32kB  | MMIO - RGB LCD - DATA             |
+| 0x7_8000 - 0x8_0000   | 7         | 32kB  | MMIO - RGB LCD  - COMMAND         |
+| 0x8_0000 - 0xF_FFFF   | 8 - 15    | 512kB | Flash                             |
 
 ### IO map:
 
-| Address   | Description           |
-| --------- | --------------------- |
-| 0x0000    | Buttons with LED 1    |
-| 0x0010    | LEDs 1                |
-| 0x0020    | 7-Segment 1           |
-| 0x0021    | 7-Segment 2           |
-  
+| Address   | Description               |
+| --------- | ------------------------- |
+| 0x0000    | Push buttons with LEDs    |
+| 0x0001    | DIP switch with LEDs      |
+| 0x0002    | 7-Segment #1              |
+| 0x0003    | 7-Segment #2              |
+| 0x0004    | FREE                      |
+| 0x0005    | FREE                      |
+| 0x0006    | FREE                      |
+| 0x0007    | FREE                      |
+
+</details>
