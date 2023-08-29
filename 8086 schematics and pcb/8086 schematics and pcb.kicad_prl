@@ -1,7 +1,7 @@
 {
   "board": {
     "active_layer": 0,
-    "active_layer_preset": "",
+    "active_layer_preset": "All Layers",
     "auto_track_width": true,
     "hidden_netclasses": [],
     "hidden_nets": [],
@@ -9,7 +9,7 @@
     "net_color_mode": 1,
     "opacity": {
       "images": 0.6,
-      "pads": 1.0,
+      "pads": 0.9800000190734863,
       "tracks": 1.0,
       "vias": 1.0,
       "zones": 0.6
@@ -83,6 +83,18 @@
           "pos_y": -8,
           "size_x": 1936,
           "size_y": 1066
+        }
+      },
+      {
+        "name": "8086 schematics and pcb.kicad_pcb",
+        "open": false,
+        "window": {
+          "display": 0,
+          "maximized": true,
+          "pos_x": -9,
+          "pos_y": -9,
+          "size_x": 1938,
+          "size_y": 1060
         }
       }
     ]

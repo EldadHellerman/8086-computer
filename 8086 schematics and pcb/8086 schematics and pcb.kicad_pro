@@ -326,6 +326,18 @@
     [
       "3749a875-289f-4484-aa3f-51b8984af853",
       ""
+    ],
+    [
+      "7893a125-fe4e-4682-afe9-a0192dafb817",
+      "8086 Module"
+    ],
+    [
+      "9d3d589e-5fca-440e-81d2-4d8d813c1607",
+      "IO Module"
+    ],
+    [
+      "424ba84c-5097-43d2-b6a3-f93a63e78a77",
+      "Microcontroller Module"
     ]
   ],
   "text_variables": {}
