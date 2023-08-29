@@ -1,0 +1,20 @@
+(kicad_sch (version 20230121) (generator eeschema)
+
+  (uuid 3749a875-289f-4484-aa3f-51b8984af853)
+
+  (paper "A4")
+
+  (title_block
+    (title "8086 PCB")
+    (date "2023.08.23")
+  )
+
+  (lib_symbols
+  )
+
+  (bus_alias "8086BUS" (members "V_{CC}" "GND" "ADDRESS_LATCHED[0..19]" "DATA[0..15]"))
+
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+)
