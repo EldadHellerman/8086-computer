@@ -108,15 +108,17 @@ Interrupt vector table is at 0x000 - 0x100. That's why the flash is at the top o
 
 ### IO map:
 
-| Address   | Description               |
-| --------- | ------------------------- |
-| 0x0000    | Push buttons with LEDs    |
-| 0x0001    | DIP switch with LEDs      |
-| 0x0002    | 7-Segment #1              |
-| 0x0003    | 7-Segment #2              |
-| 0x0004    | FREE                      |
-| 0x0005    | FREE                      |
-| 0x0006    | FREE                      |
-| 0x0007    | FREE                      |
+IO ports are 16-bit wide.
+
+| Number    | Address   | Description               |
+| --------- | --------- | ------------------------- |
+| 0         | 0x0000    | Push buttons with LEDs    |
+| 1         | 0x0002    | DIP switch with LEDs      |
+| 2         | 0x0004    | 7-Segment #1              |
+| 3         | 0x0006    | 7-Segment #2              |
+| 4         | 0x0008    | FREE                      |
+| 5         | 0x000A    | FREE                      |
+| 6         | 0x000C    | FREE                      |
+| 7         | 0x000E    | FREE                      |
 
 </details>
