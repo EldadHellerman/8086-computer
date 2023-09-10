@@ -244,7 +244,9 @@
   },
   "libraries": {
     "pinned_footprint_libs": [],
-    "pinned_symbol_libs": []
+    "pinned_symbol_libs": [
+      "8086PC"
+    ]
   },
   "meta": {
     "filename": "8086 schematics and pcb.kicad_pro",
@@ -280,7 +282,7 @@
         "microvia_drill": 0.1,
         "name": "Local to Module",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
-        "schematic_color": "rgb(221, 133, 0)",
+        "schematic_color": "rgb(255, 0, 0)",
         "track_width": 0.25,
         "via_diameter": 0.8,
         "via_drill": 0.4,
@@ -333,7 +335,15 @@
     "meta": {
       "version": 1
     },
-    "net_format_name": "",
+    "net_format_name": "KiCad",
+    "ngspice": {
+      "fix_include_paths": true,
+      "meta": {
+        "version": 0
+      },
+      "model_mode": 0,
+      "workbook_filename": ""
+    },
     "page_layout_descr_file": "",
     "plot_directory": "",
     "spice_current_sheet_as_root": false,
@@ -351,7 +361,11 @@
     ],
     [
       "7893a125-fe4e-4682-afe9-a0192dafb817",
-      "8086 Module"
+      "8086 Module - 1"
+    ],
+    [
+      "c96ee033-bd60-4c7a-8b2e-07eea5094368",
+      "8086 Module - 2"
     ],
     [
       "9d3d589e-5fca-440e-81d2-4d8d813c1607",
