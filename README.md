@@ -37,21 +37,13 @@ I'm trying to recycle old components I salvaged and not buy anything new (excpet
 This computer is made out of modules, each responsible for a different thing. The modules will be stackable sharing a common bus.  
 The goal is to have all the modules use the same PCB design, saving on costs.
 
-The bus has the following signals:
-- AD[0-15], A[16-19]
-- SEG[2-7], A[0-2]
-- M/IO, RD, WR, BHA, ALE, READY
-- NMI, INTR, INTA
-- TEST
-- HOLD, HLDA
-- CLK, RST
-- GND, 5V, 3.3V
-
 ### 8086 Module
 - The 8086 itself.
 - Memory: 128kB of SRAM, 512kB of flash.
 - Logic for address latching (including OR gate with bus ALE).
-- Logic for generating memory segment CS signals (SEG[0-7]).
+- Logic for generating memory segment CS signals for free segments - SEG[2-7].  
+The rest of the segments are occupied by the SRAM and flash.
+- Logic for generating IO device CS signals for first 8 16-bit devices - IO[0-7].
 - LED access indicators for Flash, SRAM segment 1 and SRAM segment 2.
 - USB-C port for power.
 - Power LED.
@@ -60,16 +52,19 @@ The bus has the following signals:
 
 ### IO Module
 - RGB LCD socket.
-- Character LCD socket.
-- 8 Push Buttons with LEDs, inculding logic to latch data to LEDs and from buttons (two 74HC373).  
-The buttons have a latch button to latch their state, together with a jumper to constantly latch it.
-- 8 bit DIP switch with LEDs, inculding logic to latch data to LEDs and from switches (two 74HC373).
+- Character LCD connector.
+- 32 Push Buttons.  
+They form a keyboard, with 'a'-'z', space, enter, backspace, CTRL, ALT, SHIFT.
+- 16 LEDs.
 - Two 7-segment displays.
-- More LEDs if there is space.
+- Logic to latch data to LEDs and from buttons.  
+The buttons have a latch jumper to constantly latch it, which can be removed for debugging.
+
 
 ### Microcontroller Module
 - Mircocontroller used to program the memory as well as more advanced operations.
 - USB-C port to connect to computer.
+- USB to UART convertor (SILABS CP2102).
 
 
 ## Address Space
@@ -110,15 +105,15 @@ Interrupt vector table is at 0x000 - 0x100. That's why the flash is at the top o
 
 IO ports are 16-bit wide.
 
-| Number    | Address   | Description               |
-| --------- | --------- | ------------------------- |
-| 0         | 0x0000    | Push buttons with LEDs    |
-| 1         | 0x0002    | DIP switch with LEDs      |
-| 2         | 0x0004    | 7-Segment #1              |
-| 3         | 0x0006    | 7-Segment #2              |
-| 4         | 0x0008    | FREE                      |
-| 5         | 0x000A    | FREE                      |
-| 6         | 0x000C    | FREE                      |
-| 7         | 0x000E    | FREE                      |
+| Number    | Address   | Read description | Write description       |
+| --------- | --------- | ---------------- | ----------------------- |
+| 0         | 0x0000    | 16 Push buttons. | 16 LED's.               |
+| 1         | 0x0002    | 16 Push buttons. | Two 7-Segment displays. |
+| 2         | 0x0004    | FREE             | FREE                    |
+| 3         | 0x0006    | FREE             | FREE                    |
+| 4         | 0x0008    | FREE             | FREE                    |
+| 5         | 0x000A    | FREE             | FREE                    |
+| 6         | 0x000C    | FREE             | FREE                    |
+| 7         | 0x000E    | FREE             | FREE                    |
 
 </details>
