@@ -1,6 +1,11 @@
 # 8086
 
-New version of the 8086 computer (old one moved to repository "8086_OLD"), mainly focusing on PCB design.
+A single board 8086 based computer with a full keyboard and RGB LCD screen.
+
+The board has an expansion port for future developments - perhapse an FPGA graphics card with HDMI output.
+
+It's a new version of my 8086 computer (the old one moved to repository "8086_OLD").
+This one focuses mainly on PCB design.
 
 I'm trying to recycle old components I salvaged and not buy anything new (excpet for the 8086 itself which I didn't have).
 
@@ -12,10 +17,10 @@ I'm trying to recycle old components I salvaged and not buy anything new (excpet
 | IC Name       | Description                               | amount    |
 | ------------- | ----------------------------------------- | --------- |
 | 74AC373       | Octal latch with 3-STATE Outputs          | 20+       |
-| 74HC138D      | 3 to 8 line decoder; inverting            | 5         |
+| 74HC138D      | 3 to 8 line decoder; inverting            | 6         |
 | 74HC132       | Quad 2-input NAND gate; Schmitt trigger   | 6         |
 | 74AC00        | Quad 2-input NAND gate                    | 2         |
-| 74HC02        | Quad 2-input NOR gate                     | 5         |
+| 74HC02        | Quad 2-input NOR gate                     | 6         |
 | 74ACT08       | Quad 2-input AND gate                     | 1         |
 | HEF40106      | Hex inverting Schmitt trigger             | 1         |
 | 74HC14        | Hex inverting Schmitt trigger             | 1         |
@@ -32,39 +37,40 @@ I'm trying to recycle old components I salvaged and not buy anything new (excpet
 
 </details>
 
-## Modules
+## Board details
 
-This computer is made out of modules, each responsible for a different thing. The modules will be stackable sharing a common bus.  
-The goal is to have all the modules use the same PCB design, saving on costs.
 
-### 8086 Module
+### General
 - The 8086 itself.
-- Memory: 128kB of SRAM, 512kB of flash.
+- 128kB SRAM + 512kB flash.
 - Logic for address latching (including OR gate with bus ALE).
-- Logic for generating memory segment CS signals for free segments - SEG[2-7].  
-The rest of the segments are occupied by the SRAM and flash.
+- Logic for generating memory segment CS signals.
 - Logic for generating IO device CS signals for first 8 16-bit devices - IO[0-7].
-- LED access indicators for Flash, SRAM segment 1 and SRAM segment 2.
-- USB-C port for power.
+- Expansion port allowing access to 8086 bus.
+- LED indicators for: latched adderss, memory access (Flash, SRAM 1, SRAM 2), read and write operations, IO access.
 - Power LED.
 - Reset button.
 - On / off switch.
+- USB-C port for power and communication with coprocessor.
 
-### IO Module
+
+### IO
 - RGB LCD socket.
 - Character LCD connector.
 - 32 Push Buttons.  
 They form a keyboard, with 'a'-'z', space, enter, backspace, CTRL, ALT, SHIFT.
 - 16 LEDs.
 - Two 7-segment displays.
-- Logic to latch data to LEDs and from buttons.  
-The buttons have a latch jumper to constantly latch it, which can be removed for debugging.
+- Logic to latch data to LEDs and from buttons.
 
 
-### Microcontroller Module
-- Mircocontroller used to program the memory as well as more advanced operations.
-- USB-C port to connect to computer.
+### Co-Processor
+- Mircocontroller used to control the 8086 (generating clock and reset signals), programming the memory and generating interrupts.
+- Maybe also act as peripherals (with or without interrupts): timers, UART, mouse (input from touch screen), SD card interface, etc...
+- Resistvive touch screen connector.
 - USB to UART convertor (SILABS CP2102).
+- USB-C port for power and to connect to computer.
+- UART connector (header pins), making CP2102 IC optional .
 
 
 ## Address Space
@@ -108,7 +114,7 @@ IO ports are 16-bit wide.
 | Number    | Address   | Read description | Write description       |
 | --------- | --------- | ---------------- | ----------------------- |
 | 0         | 0x0000    | 16 Push buttons. | 16 LED's.               |
-| 1         | 0x0002    | 16 Push buttons. | Two 7-Segment displays. |
+| 1         | 0x0002    | 16 Push buttons. | 16 LED's.               |
 | 2         | 0x0004    | FREE             | FREE                    |
 | 3         | 0x0006    | FREE             | FREE                    |
 | 4         | 0x0008    | FREE             | FREE                    |
