@@ -89,7 +89,7 @@ For convenience, I will think of each segment as being only the 4 highest order 
 For in / out instructions, only 16-bits addressing is allowed (first segment only).
 
 The 8086 boots to address 0xFFFF0, so there must be some memory there. That's why the flash is at the top of the memory map.  
-Interrupt vector table is at 0x000 - 0x100. That's why the flash is at the top of the memory map
+Interrupt vector table is at 0x000 - 0x100. That's why the SRAM is at the bottom of the memory map.
 
 <details>
 <summary>Tables of memory and IO maps:</summary>
@@ -99,27 +99,25 @@ Interrupt vector table is at 0x000 - 0x100. That's why the flash is at the top o
 | Addresses             | Segments  | Size  | Description                       |
 | --------------------- | --------- | ----- | --------------------------------- |
 | 0x0_0000 - 0x2_0000   | 0 - 1     | 128kB | SRAM                              |
-| 0x2_0000 - 0x5_0000   | 2 - 4     | 192kB | FREE                              |
-| 0x5_0000 - 0x6_0000   | 5         | 64kB  | MMIO - Microcontroller            |
-| 0x6_0000 - 0x6_8000   | 6         | 32kB  | MMIO - Character LCD - DATA       |
-| 0x6_8000 - 0x7_0000   | 6         | 32kB  | MMIO - Character LCD  - COMMAND   |
-| 0x7_0000 - 0x7_8000   | 7         | 32kB  | MMIO - RGB LCD - DATA             |
-| 0x7_8000 - 0x8_0000   | 7         | 32kB  | MMIO - RGB LCD  - COMMAND         |
+| 0x2_0000 - 0x6_0000   | 2 - 5     | 256kB | FREE                              |
+| 0x6_0000 - 0x7_0000   | 6         | 64 kB | MMIO - Microcontroller            |
+| 0x7_0000 - 0x7_8000   | 7         | 32 kB | MMIO - RGB LCD - DATA             |
+| 0x7_8000 - 0x8_0000   | 7         | 32 kB | MMIO - RGB LCD  - COMMAND         |
 | 0x8_0000 - 0xF_FFFF   | 8 - 15    | 512kB | Flash                             |
 
 ### IO map:
 
 IO ports are 16-bit wide.
 
-| Number    | Address   | Read description | Write description       |
-| --------- | --------- | ---------------- | ----------------------- |
-| 0         | 0x0000    | 16 Push buttons. | 16 LED's.               |
-| 1         | 0x0002    | 16 Push buttons. | 16 LED's.               |
-| 2         | 0x0004    | FREE             | FREE                    |
-| 3         | 0x0006    | FREE             | FREE                    |
-| 4         | 0x0008    | FREE             | FREE                    |
-| 5         | 0x000A    | FREE             | FREE                    |
-| 6         | 0x000C    | FREE             | FREE                    |
-| 7         | 0x000E    | FREE             | FREE                    |
+| Number    | Address   | Read description | Write description    |
+| --------- | --------- | ---------------- | -------------------- |
+| 0         | 0x0000    | 16 Push buttons. | 2 7-segment display. |
+| 1         | 0x0002    | 16 Push buttons. | 2 7-segment display. |
+| 2         | 0x0004    | FREE             | FREE                 |
+| 3         | 0x0006    | FREE             | FREE                 |
+| 4         | 0x0008    | FREE             | FREE                 |
+| 5         | 0x000A    | FREE             | FREE                 |
+| 6         | 0x000C    | FREE             | FREE                 |
+| 7         | 0x000E    | FREE             | FREE                 |
 
 </details>

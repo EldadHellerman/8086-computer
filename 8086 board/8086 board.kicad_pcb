@@ -10516,7 +10516,11 @@
     )
   )
 
-  (gr_rect (start 94 18.825) (end 167 70.825)
+  (gr_rect (start 117.475 80.55) (end 105.275 63.05)
+    (stroke (width 0.2) (type default)) (fill none) (layer "F.Cu") (tstamp 95e654ba-0e36-4863-83c9-b1fe0cdd7f9e))
+  (gr_rect (start 94.6 70.7125) (end 101.575 81.5875)
+    (stroke (width 0.2) (type default)) (fill none) (layer "F.Cu") (tstamp a5c3c865-34a3-44e4-ab4f-c68283b85743))
+  (gr_rect (start 93.975 17.775) (end 166.975 69.775)
     (stroke (width 0.2) (type default)) (fill none) (layer "F.Cu") (tstamp bc8f8719-b65d-479c-acfd-5465911bd951))
   (gr_rect (start 89.4 74.625) (end 168.8 79.825)
     (stroke (width 0.2) (type default)) (fill none) (layer "F.Cu") (tstamp f3a1d06f-d1f5-4a92-b310-ea8c5684ff93))

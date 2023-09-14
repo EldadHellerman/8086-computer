@@ -407,7 +407,7 @@
     ]
   },
   "meta": {
-    "filename": "8086 schematics and pcb.kicad_pro",
+    "filename": "8086 board.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -518,20 +518,16 @@
       ""
     ],
     [
-      "7893a125-fe4e-4682-afe9-a0192dafb817",
-      "8086 Module - 1"
-    ],
-    [
       "c96ee033-bd60-4c7a-8b2e-07eea5094368",
-      "8086 Module - 2"
+      "Memory"
     ],
     [
       "9d3d589e-5fca-440e-81d2-4d8d813c1607",
-      "IO Module"
+      "IO"
     ],
     [
       "424ba84c-5097-43d2-b6a3-f93a63e78a77",
-      "Microcontroller Module"
+      "Microcontroller"
     ]
   ],
   "text_variables": {}

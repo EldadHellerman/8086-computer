@@ -789,6 +789,49 @@
         )
       )
     )
+    (symbol "Regulator_Linear:AMS1117-3.3" (in_bom yes) (on_board yes)
+      (property "Reference" "U" (at -3.81 3.175 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Value" "AMS1117-3.3" (at 0 3.175 0)
+        (effects (font (size 1.27 1.27)) (justify left))
+      )
+      (property "Footprint" "Package_TO_SOT_SMD:SOT-223-3_TabPin2" (at 0 5.08 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "http://www.advanced-monolithic.com/pdf/ds1117.pdf" (at 2.54 -6.35 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "linear regulator ldo fixed positive" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "1A Low Dropout regulator, positive, 3.3V fixed output, SOT-223" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_fp_filters" "SOT?223*TabPin2*" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "AMS1117-3.3_0_1"
+        (rectangle (start -5.08 -5.08) (end 5.08 1.905)
+          (stroke (width 0.254) (type default))
+          (fill (type background))
+        )
+      )
+      (symbol "AMS1117-3.3_1_1"
+        (pin power_in line (at 0 -7.62 90) (length 2.54)
+          (name "GND" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin power_out line (at 7.62 0 180) (length 2.54)
+          (name "VO" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+        (pin power_in line (at -7.62 0 0) (length 2.54)
+          (name "VI" (effects (font (size 1.27 1.27))))
+          (number "3" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
     (symbol "Switch:SW_Push" (pin_numbers hide) (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
       (property "Reference" "SW" (at 1.27 2.54 0)
         (effects (font (size 1.27 1.27)) (justify left))
@@ -840,6 +883,58 @@
         (pin passive line (at 5.08 0 180) (length 2.54)
           (name "2" (effects (font (size 1.27 1.27))))
           (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+    (symbol "power:+3.3V" (power) (pin_names (offset 0)) (in_bom yes) (on_board yes)
+      (property "Reference" "#PWR" (at 0 -3.81 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Value" "+3.3V" (at 0 3.556 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "global power" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "Power symbol creates a global label with name \"+3.3V\"" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "+3.3V_0_1"
+        (polyline
+          (pts
+            (xy -0.762 1.27)
+            (xy 0 2.54)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy 0 0)
+            (xy 0 2.54)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy 0 2.54)
+            (xy 0.762 1.27)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+      )
+      (symbol "+3.3V_1_1"
+        (pin power_in line (at 0 0 90) (length 0) hide
+          (name "+3.3V" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
         )
       )
     )
@@ -1146,268 +1241,11 @@
   (no_connect (at 254 134.62) (uuid d282edf9-709e-44c1-a2a4-04fdd7e97b24))
   (no_connect (at 254 149.86) (uuid ea27db4b-b3af-42a8-8664-aa0fb9e51056))
 
-  (bus_entry (at 96.52 129.54) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 074d98c8-d3ee-49e5-9c86-ad396f638b1c)
-  )
-  (bus_entry (at 93.98 167.64) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 079fca91-5122-4a0c-9105-17e13b442f52)
-  )
-  (bus_entry (at 93.98 35.56) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 0d34075e-76d7-4517-aa0c-82a1f8fabeac)
-  )
-  (bus_entry (at 93.98 124.46) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 0e2125f4-8441-41b6-87c6-1cb6a2175ca2)
-  )
-  (bus_entry (at 96.52 48.26) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 0ff15742-217f-46af-b8dc-696b65180807)
-  )
-  (bus_entry (at 96.52 162.56) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 110ec4c5-2987-41fb-9995-428945852123)
-  )
-  (bus_entry (at 93.98 134.62) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 1a3b465a-cae9-488d-ba6a-21c79c0990c6)
-  )
-  (bus_entry (at 93.98 88.9) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 205242e1-0c3b-4277-a678-23e92204e564)
-  )
-  (bus_entry (at 96.52 73.66) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 21aaae89-f405-45c3-ac0e-f00f993583f1)
-  )
-  (bus_entry (at 96.52 132.08) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 27f4741a-105f-44e0-8547-d85ae7aeb6d4)
-  )
-  (bus_entry (at 96.52 40.64) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 2db35a6b-0285-4ab0-a533-15078b8c4d56)
-  )
-  (bus_entry (at 96.52 78.74) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 2f44f9bf-6deb-4e42-8b8c-7024bcbe30cb)
-  )
-  (bus_entry (at 93.98 48.26) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 372324fb-1a76-401e-b4b4-752c378ffe0f)
-  )
-  (bus_entry (at 96.52 127) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 378e1685-2890-4e87-86c8-225b19b26d5f)
-  )
-  (bus_entry (at 96.52 83.82) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 38d527a9-f5c8-4c89-9cc1-a248e1df534b)
-  )
-  (bus_entry (at 93.98 91.44) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 3b284448-e290-4232-99ca-f2b8217683b7)
-  )
-  (bus_entry (at 93.98 43.18) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 3b5fc54a-fcf2-40cf-9f1f-cb667cc586ce)
-  )
-  (bus_entry (at 96.52 38.1) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 3d47e5b4-a022-4542-86fe-cc75ab8d2d3b)
-  )
-  (bus_entry (at 93.98 78.74) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 4321f39e-a7af-4a3b-a4ca-007385ca7e04)
-  )
-  (bus_entry (at 96.52 81.28) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 48c277bd-b0a9-47c5-9944-800dd40f8e42)
-  )
-  (bus_entry (at 93.98 129.54) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 518c8f5d-2432-4714-82a0-3985d1d3af01)
-  )
-  (bus_entry (at 93.98 81.28) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 528b71b0-04c2-43cf-b3ae-4df9c0470ffe)
-  )
-  (bus_entry (at 96.52 172.72) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 5849b66a-d304-4327-9fb5-9eead4df2b16)
-  )
-  (bus_entry (at 96.52 35.56) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 5a90a440-c808-422e-8bf7-e694aadeb9ca)
-  )
-  (bus_entry (at 96.52 116.84) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 6042e955-2f3c-4c35-8de5-43340aa58a46)
-  )
-  (bus_entry (at 93.98 177.8) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 643938cd-b043-4f22-912c-05ec6d1bf15a)
-  )
-  (bus_entry (at 96.52 119.38) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 66ff9f80-15ae-40a1-af6c-4c8154247a32)
-  )
-  (bus_entry (at 96.52 88.9) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 679c2b08-dab0-411e-8cfe-3a9c18945eb8)
-  )
-  (bus_entry (at 96.52 45.72) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 70715492-ac6e-48c1-9890-5c1f5f63259c)
-  )
-  (bus_entry (at 96.52 170.18) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 73475dea-353e-46ff-b222-a91aa8c42221)
-  )
-  (bus_entry (at 93.98 33.02) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 746a282d-404d-4c85-a468-9d49dcfc6b1b)
-  )
-  (bus_entry (at 93.98 76.2) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 7704ed0c-d871-4194-9afa-8e307020fcde)
-  )
-  (bus_entry (at 93.98 119.38) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 78989365-128b-4abe-9c09-025cf44d00a1)
-  )
-  (bus_entry (at 93.98 45.72) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 7ef0aaf9-a5e4-4968-8245-69369dec6db6)
-  )
-  (bus_entry (at 96.52 160.02) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 8b03df49-c65a-42f5-ae8b-83cddac21bf7)
-  )
-  (bus_entry (at 96.52 30.48) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 8db57357-1322-466d-8513-88bfaa056b82)
-  )
-  (bus_entry (at 96.52 91.44) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 8f046a5f-2f27-4b07-932e-e24eee90ec0a)
-  )
-  (bus_entry (at 93.98 165.1) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 941e2ef2-f1e3-475e-9034-00a8543377c4)
-  )
-  (bus_entry (at 96.52 76.2) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 977b6030-4a8a-44c6-8664-826ed79bce4d)
-  )
-  (bus_entry (at 96.52 86.36) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 97968da8-07c3-410b-afb5-706ce5aeb3f4)
-  )
-  (bus_entry (at 93.98 86.36) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid 9f4f2da1-cfb8-4628-bc8b-64ebe0250e17)
-  )
-  (bus_entry (at 96.52 134.62) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid 9fac72ba-650f-4762-ac04-aae76a51b61c)
-  )
-  (bus_entry (at 93.98 170.18) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid a280213a-51ef-4a75-b27f-64c646af9f44)
-  )
-  (bus_entry (at 96.52 43.18) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid a870ec07-7083-4e6c-83df-e5a65cda6583)
-  )
-  (bus_entry (at 93.98 180.34) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid abfe5598-b436-4a57-bbf7-a71f976eb508)
-  )
-  (bus_entry (at 93.98 162.56) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid ae4ee2ee-719e-4b10-9053-f6754e7efbeb)
-  )
-  (bus_entry (at 96.52 33.02) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid b399bca7-f9a8-4b60-b881-728e48eb660c)
-  )
-  (bus_entry (at 93.98 50.8) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid b8cd2519-6eca-47f0-8439-6659cf38b51c)
-  )
-  (bus_entry (at 93.98 38.1) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid c146ec6c-b568-45eb-8c39-197877bbee48)
-  )
-  (bus_entry (at 93.98 172.72) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid c3cbf203-78e8-44a7-986c-3c0ca7cc760c)
-  )
-  (bus_entry (at 93.98 93.98) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid c61a77c9-ec84-4289-88a0-fa1643726a03)
-  )
-  (bus_entry (at 93.98 132.08) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid c6ec2fea-d3c0-4124-86e9-e4a352df8f66)
-  )
-  (bus_entry (at 96.52 121.92) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid cdab8a59-ead3-4857-8b95-9a3b7cfe5e68)
-  )
-  (bus_entry (at 96.52 124.46) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid cee6f8e2-00d6-4d1d-8430-fb2a5e50e9f5)
-  )
-  (bus_entry (at 96.52 177.8) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid d1ce9cca-d36f-43bb-a4a9-1dbd9a6dfaea)
-  )
-  (bus_entry (at 96.52 175.26) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid d23cc526-3343-49e2-85d0-0171cb97a214)
-  )
-  (bus_entry (at 93.98 83.82) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid d81a47f9-3f6c-41ab-a7fa-aaf5724b7a1f)
-  )
-  (bus_entry (at 96.52 165.1) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid da0b029b-f39a-4957-a017-8a50ba65f1bf)
-  )
-  (bus_entry (at 93.98 127) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid daafec07-76da-463d-8c71-0029d48f18e7)
-  )
-  (bus_entry (at 93.98 175.26) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid df85cca6-4cea-4397-b254-e72dfe0cc61f)
-  )
-  (bus_entry (at 93.98 121.92) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid dfe68956-0bc7-428d-982a-182106f37b53)
-  )
-  (bus_entry (at 93.98 40.64) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid ef618d2f-2854-467d-829d-ee909ac6b3f5)
-  )
-  (bus_entry (at 96.52 167.64) (size -2.54 2.54)
-    (stroke (width 0) (type default))
-    (uuid f89ad2b3-ad7c-4835-92f4-c59cb327de41)
-  )
-  (bus_entry (at 93.98 137.16) (size -2.54 -2.54)
-    (stroke (width 0) (type default))
-    (uuid f9b98ad3-4264-489b-b4d2-3f0876d6500f)
-  )
-
   (wire (pts (xy 165.1 48.26) (xy 165.1 50.8))
     (stroke (width 0) (type default))
     (uuid 0090cd4e-b08a-418c-86ca-677d365650c9)
   )
-  (wire (pts (xy 81.28 134.62) (xy 91.44 134.62))
+  (wire (pts (xy 81.28 134.62) (xy 88.9 134.62))
     (stroke (width 0) (type default))
     (uuid 01eda07b-a012-4e83-bd08-99d1200e58ea)
   )
@@ -1423,11 +1261,6 @@
     (stroke (width 0) (type default))
     (uuid 042a9650-63d2-431c-83d4-c9570f052200)
   )
-  (bus (pts (xy 93.98 86.36) (xy 93.98 88.9))
-    (stroke (width 0) (type default))
-    (uuid 046805b0-5daa-40fb-9235-2212e123f155)
-  )
-
   (wire (pts (xy 151.13 88.9) (xy 157.48 88.9))
     (stroke (width 0) (type default))
     (uuid 064a587d-b2cf-4985-9d53-3c98cf8f8a46)
@@ -1444,7 +1277,7 @@
     (stroke (width 0) (type default))
     (uuid 08611d2a-2a74-4fea-8271-0d4de037d313)
   )
-  (wire (pts (xy 106.68 121.92) (xy 96.52 121.92))
+  (wire (pts (xy 106.68 121.92) (xy 99.06 121.92))
     (stroke (width 0) (type default))
     (uuid 0b534c53-5013-4106-9a27-38fd862ea597)
   )
@@ -1468,28 +1301,18 @@
     (stroke (width 0) (type default))
     (uuid 0da252cc-14a4-4b98-b9a7-6548c941f02e)
   )
-  (wire (pts (xy 96.52 116.84) (xy 106.68 116.84))
+  (wire (pts (xy 99.06 116.84) (xy 106.68 116.84))
     (stroke (width 0) (type default))
     (uuid 0e2f646d-ba8a-4791-8708-c4b55ac1f1dd)
   )
-  (wire (pts (xy 81.28 81.28) (xy 91.44 81.28))
+  (wire (pts (xy 81.28 81.28) (xy 88.9 81.28))
     (stroke (width 0) (type default))
     (uuid 0ff0af28-2b0f-4b59-9e9b-b96c169b9f38)
   )
-  (bus (pts (xy 93.98 132.08) (xy 93.98 134.62))
-    (stroke (width 0) (type default))
-    (uuid 10b398cf-b85a-4907-99c4-14335ddc2143)
-  )
-
   (wire (pts (xy 53.34 88.9) (xy 60.96 88.9))
     (stroke (width 0) (type default))
     (uuid 10de4625-737c-4d29-809c-a1cc3685bac1)
   )
-  (bus (pts (xy 93.98 78.74) (xy 93.98 81.28))
-    (stroke (width 0) (type default))
-    (uuid 11157d3b-496d-4e24-a058-011f2526dac0)
-  )
-
   (wire (pts (xy 43.18 132.08) (xy 43.18 134.62))
     (stroke (width 0) (type default))
     (uuid 1117a04d-1596-43cb-95c9-bf32fefd9031)
@@ -1522,7 +1345,7 @@
     (stroke (width 0) (type default))
     (uuid 16d95add-e222-42f4-89e0-cd50fa4b2710)
   )
-  (wire (pts (xy 96.52 30.48) (xy 106.68 30.48))
+  (wire (pts (xy 99.06 30.48) (xy 106.68 30.48))
     (stroke (width 0) (type default))
     (uuid 193f5b19-34d2-4627-9f3d-79d528f5851d)
   )
@@ -1558,11 +1381,6 @@
     (stroke (width 0) (type default))
     (uuid 1e7fcc0e-3826-4040-8dc2-92dc7a22bd89)
   )
-  (bus (pts (xy 93.98 33.02) (xy 93.98 35.56))
-    (stroke (width 0) (type default))
-    (uuid 1ea95760-aae6-4bfc-a701-0728c2885ef3)
-  )
-
   (wire (pts (xy 43.18 88.9) (xy 43.18 91.44))
     (stroke (width 0) (type default))
     (uuid 1ebd67df-e5ff-4baa-8e9c-5e9eea81e5d5)
@@ -1578,6 +1396,10 @@
   (wire (pts (xy 53.34 99.06) (xy 60.96 99.06))
     (stroke (width 0) (type default))
     (uuid 22b218d5-7fe0-447f-a226-5c22eaad9d69)
+  )
+  (wire (pts (xy 198.12 25.4) (xy 200.66 25.4))
+    (stroke (width 0) (type default))
+    (uuid 23d14953-6a4c-449c-947a-95ee3a3be805)
   )
   (wire (pts (xy 53.34 170.18) (xy 60.96 170.18))
     (stroke (width 0) (type default))
@@ -1595,7 +1417,7 @@
     (stroke (width 0) (type default))
     (uuid 25aba94f-a2f9-478e-a9ff-358736d51abb)
   )
-  (wire (pts (xy 96.52 33.02) (xy 106.68 33.02))
+  (wire (pts (xy 99.06 33.02) (xy 106.68 33.02))
     (stroke (width 0) (type default))
     (uuid 266d5604-840f-4456-b813-a6ab40727f42)
   )
@@ -1615,7 +1437,7 @@
     (stroke (width 0) (type default))
     (uuid 2a8875a8-1995-4ad9-861a-61c6189a71ec)
   )
-  (wire (pts (xy 106.68 172.72) (xy 96.52 172.72))
+  (wire (pts (xy 106.68 172.72) (xy 99.06 172.72))
     (stroke (width 0) (type default))
     (uuid 2b0d225e-a231-440d-b2c0-bf10249a4ccf)
   )
@@ -1627,11 +1449,11 @@
     (stroke (width 0) (type default))
     (uuid 2b8b37f1-d9af-4032-b859-012b223aa754)
   )
-  (wire (pts (xy 81.28 83.82) (xy 91.44 83.82))
+  (wire (pts (xy 81.28 83.82) (xy 88.9 83.82))
     (stroke (width 0) (type default))
     (uuid 2b9a0e46-15de-4bb4-bdcf-583bdd59e012)
   )
-  (wire (pts (xy 81.28 177.8) (xy 91.44 177.8))
+  (wire (pts (xy 81.28 177.8) (xy 88.9 177.8))
     (stroke (width 0) (type default))
     (uuid 2bb85443-f6c3-4f85-8d77-0be00a4627cc)
   )
@@ -1651,7 +1473,7 @@
     (stroke (width 0) (type default))
     (uuid 2dbb630a-3d0b-408d-9918-c41b2b4603d3)
   )
-  (wire (pts (xy 81.28 40.64) (xy 91.44 40.64))
+  (wire (pts (xy 81.28 40.64) (xy 88.9 40.64))
     (stroke (width 0) (type default))
     (uuid 323f029f-f4c5-4fa8-b0a2-91c3b4124db6)
   )
@@ -1663,7 +1485,7 @@
     (stroke (width 0) (type default))
     (uuid 33405814-70a8-49fc-a202-5b82c5b4a6e9)
   )
-  (wire (pts (xy 106.68 129.54) (xy 96.52 129.54))
+  (wire (pts (xy 106.68 129.54) (xy 99.06 129.54))
     (stroke (width 0) (type default))
     (uuid 33cede8c-80e0-49a7-b764-05c052e1ecc0)
   )
@@ -1675,7 +1497,7 @@
     (stroke (width 0) (type default))
     (uuid 34711810-efa3-464b-98f8-a66f651401ca)
   )
-  (wire (pts (xy 81.28 48.26) (xy 91.44 48.26))
+  (wire (pts (xy 81.28 48.26) (xy 88.9 48.26))
     (stroke (width 0) (type default))
     (uuid 348fac85-f783-4f80-bead-4ce0134ce89b)
   )
@@ -1699,7 +1521,7 @@
     (stroke (width 0) (type default))
     (uuid 3a885606-6884-4fe1-aadc-4f1dfbbc703d)
   )
-  (wire (pts (xy 81.28 30.48) (xy 91.44 30.48))
+  (wire (pts (xy 81.28 30.48) (xy 88.9 30.48))
     (stroke (width 0) (type default))
     (uuid 3b62bd8a-1cf4-420a-8362-5f3f7d701003)
   )
@@ -1715,11 +1537,6 @@
     (stroke (width 0) (type default))
     (uuid 3c99dfdd-0cf6-4263-85b9-504d189a37fb)
   )
-  (bus (pts (xy 93.98 91.44) (xy 93.98 93.98))
-    (stroke (width 0) (type default))
-    (uuid 3d600dca-5c97-45ae-a53f-8da50efec392)
-  )
-
   (wire (pts (xy 146.05 172.72) (xy 157.48 172.72))
     (stroke (width 0) (type default))
     (uuid 3ea673fc-4efc-46cb-af49-dd360360b482)
@@ -1744,16 +1561,11 @@
     (stroke (width 0) (type default))
     (uuid 44dedc5a-6fbc-42ed-907a-8e65e68a692c)
   )
-  (wire (pts (xy 106.68 35.56) (xy 96.52 35.56))
+  (wire (pts (xy 106.68 35.56) (xy 99.06 35.56))
     (stroke (width 0) (type default))
     (uuid 453fd617-eb38-4311-993c-ef86f2c05335)
   )
-  (bus (pts (xy 93.98 17.78) (xy 73.66 17.78))
-    (stroke (width 0) (type default))
-    (uuid 4570f1d7-c6f0-4ffb-a1e3-65e766ca39a0)
-  )
-
-  (wire (pts (xy 81.28 33.02) (xy 91.44 33.02))
+  (wire (pts (xy 81.28 33.02) (xy 88.9 33.02))
     (stroke (width 0) (type default))
     (uuid 48c75d89-9d84-4b37-ae16-01bd92c545f2)
   )
@@ -1765,16 +1577,11 @@
     (stroke (width 0) (type default))
     (uuid 499d05cf-5c8a-4e5f-a798-a89f1ad6e5bd)
   )
-  (bus (pts (xy 93.98 127) (xy 93.98 129.54))
-    (stroke (width 0) (type default))
-    (uuid 49d945ed-a668-47a0-b107-6fe44a0d451b)
-  )
-
-  (wire (pts (xy 81.28 127) (xy 91.44 127))
+  (wire (pts (xy 81.28 127) (xy 88.9 127))
     (stroke (width 0) (type default))
     (uuid 4b149977-725f-4896-bfff-d8c830c388e0)
   )
-  (wire (pts (xy 106.68 177.8) (xy 96.52 177.8))
+  (wire (pts (xy 106.68 177.8) (xy 99.06 177.8))
     (stroke (width 0) (type default))
     (uuid 4b8bfe68-68e7-442a-94b2-d527e3fbb291)
   )
@@ -1786,15 +1593,14 @@
     (stroke (width 0) (type default))
     (uuid 4caf3113-b491-4914-8881-fa77b0ab210e)
   )
-  (wire (pts (xy 106.68 134.62) (xy 96.52 134.62))
+  (wire (pts (xy 106.68 134.62) (xy 99.06 134.62))
     (stroke (width 0) (type default))
     (uuid 4e7cfa60-fa58-4363-8ed9-4c5ea9d19b98)
   )
-  (bus (pts (xy 93.98 129.54) (xy 93.98 132.08))
+  (wire (pts (xy 220.98 25.4) (xy 215.9 25.4))
     (stroke (width 0) (type default))
-    (uuid 4e9222ef-4e47-459e-a3ee-9b95307ff5dc)
+    (uuid 4f990040-4a3a-4629-809e-c0bb27b6d5a8)
   )
-
   (wire (pts (xy 43.18 24.13) (xy 43.18 30.48))
     (stroke (width 0) (type default))
     (uuid 4ff7f970-f60e-4498-8165-4f54ebb1f34a)
@@ -1803,11 +1609,11 @@
     (stroke (width 0) (type default))
     (uuid 501254ce-0b4b-4e1b-9d41-266484f48d64)
   )
-  (wire (pts (xy 81.28 119.38) (xy 91.44 119.38))
+  (wire (pts (xy 81.28 119.38) (xy 88.9 119.38))
     (stroke (width 0) (type default))
     (uuid 5149d679-3b0e-4cbe-98d9-75796432aec7)
   )
-  (wire (pts (xy 81.28 165.1) (xy 91.44 165.1))
+  (wire (pts (xy 81.28 165.1) (xy 88.9 165.1))
     (stroke (width 0) (type default))
     (uuid 53dc165d-8abb-4108-a536-8b635116f288)
   )
@@ -1823,11 +1629,11 @@
     (stroke (width 0) (type default))
     (uuid 562c1227-7342-4faf-9d19-774b6ef58e3d)
   )
-  (wire (pts (xy 106.68 48.26) (xy 96.52 48.26))
+  (wire (pts (xy 106.68 48.26) (xy 99.06 48.26))
     (stroke (width 0) (type default))
     (uuid 563bb43c-dfd1-4f1f-a694-394c429cfd4d)
   )
-  (wire (pts (xy 96.52 167.64) (xy 106.68 167.64))
+  (wire (pts (xy 99.06 167.64) (xy 106.68 167.64))
     (stroke (width 0) (type default))
     (uuid 56ae9d33-f56c-4b13-b9ab-e8df4ab5eb6a)
   )
@@ -1835,11 +1641,11 @@
     (stroke (width 0) (type default))
     (uuid 56fe9ad5-fd67-4ae4-896b-892fa13bd623)
   )
-  (wire (pts (xy 96.52 170.18) (xy 106.68 170.18))
+  (wire (pts (xy 99.06 170.18) (xy 106.68 170.18))
     (stroke (width 0) (type default))
     (uuid 58f7ca43-e7a4-4b58-a8d8-e57d071f8f97)
   )
-  (wire (pts (xy 81.28 162.56) (xy 91.44 162.56))
+  (wire (pts (xy 81.28 162.56) (xy 88.9 162.56))
     (stroke (width 0) (type default))
     (uuid 5b66dd8f-5e6b-4522-8ac9-06118bbf0958)
   )
@@ -1847,12 +1653,7 @@
     (stroke (width 0) (type default))
     (uuid 5b91679c-3ef7-4582-9c8c-c1e1f4914204)
   )
-  (bus (pts (xy 93.98 137.16) (xy 93.98 162.56))
-    (stroke (width 0) (type default))
-    (uuid 5ddfd4d8-06bc-4d87-bbe2-49ac43a16cae)
-  )
-
-  (wire (pts (xy 96.52 83.82) (xy 106.68 83.82))
+  (wire (pts (xy 99.06 83.82) (xy 106.68 83.82))
     (stroke (width 0) (type default))
     (uuid 5ede9bb5-e639-4136-8d5c-6ae7c6713847)
   )
@@ -1864,15 +1665,10 @@
     (stroke (width 0) (type default))
     (uuid 5f467837-5a44-4077-9667-ae1de750bcf3)
   )
-  (wire (pts (xy 81.28 129.54) (xy 91.44 129.54))
+  (wire (pts (xy 81.28 129.54) (xy 88.9 129.54))
     (stroke (width 0) (type default))
     (uuid 5fcea53a-aace-42f1-a76a-fee29a4037a2)
   )
-  (bus (pts (xy 93.98 121.92) (xy 93.98 124.46))
-    (stroke (width 0) (type default))
-    (uuid 60820051-244e-44bd-b758-4a32483ae7c5)
-  )
-
   (wire (pts (xy 151.13 175.26) (xy 157.48 175.26))
     (stroke (width 0) (type default))
     (uuid 610f73b3-1e3b-4d97-90fa-6eb6a96c6916)
@@ -1889,11 +1685,6 @@
     (stroke (width 0) (type default))
     (uuid 619cd7a3-bda3-492c-957c-223860f90217)
   )
-  (bus (pts (xy 93.98 81.28) (xy 93.98 83.82))
-    (stroke (width 0) (type default))
-    (uuid 622a9785-b083-4a71-b330-06a1634f03fb)
-  )
-
   (wire (pts (xy 127 167.64) (xy 149.86 167.64))
     (stroke (width 0) (type default))
     (uuid 62f851d3-6e41-4519-a7c6-e2e05ac8077a)
@@ -1926,20 +1717,15 @@
     (stroke (width 0) (type default))
     (uuid 66bfe262-8244-4609-8402-a8bb2023283b)
   )
-  (wire (pts (xy 81.28 160.02) (xy 91.44 160.02))
+  (wire (pts (xy 81.28 160.02) (xy 88.9 160.02))
     (stroke (width 0) (type default))
     (uuid 68182152-dafc-48b9-8e29-fd23b3cf05fa)
   )
-  (bus (pts (xy 93.98 165.1) (xy 93.98 167.64))
-    (stroke (width 0) (type default))
-    (uuid 688b58c0-70ce-437d-aae7-602fdd4b0856)
-  )
-
-  (wire (pts (xy 81.28 38.1) (xy 91.44 38.1))
+  (wire (pts (xy 81.28 38.1) (xy 88.9 38.1))
     (stroke (width 0) (type default))
     (uuid 69ca2b15-fdcd-4f54-b239-b7942c18c7c0)
   )
-  (wire (pts (xy 106.68 132.08) (xy 96.52 132.08))
+  (wire (pts (xy 106.68 132.08) (xy 99.06 132.08))
     (stroke (width 0) (type default))
     (uuid 6a1dc769-85ce-4fc6-b3a1-64f9daa1aaf9)
   )
@@ -1955,11 +1741,11 @@
     (stroke (width 0) (type default))
     (uuid 6ba55776-f97f-40fb-8b7f-54cf7f60c344)
   )
-  (wire (pts (xy 81.28 121.92) (xy 91.44 121.92))
+  (wire (pts (xy 81.28 121.92) (xy 88.9 121.92))
     (stroke (width 0) (type default))
     (uuid 6c3d7430-64f6-46d9-b681-42cd0660a325)
   )
-  (wire (pts (xy 106.68 165.1) (xy 96.52 165.1))
+  (wire (pts (xy 106.68 165.1) (xy 99.06 165.1))
     (stroke (width 0) (type default))
     (uuid 6cbfc4db-65f9-4b48-9109-d818bec509e3)
   )
@@ -1975,7 +1761,7 @@
     (stroke (width 0) (type default))
     (uuid 6ee420ca-ebe2-4458-8045-115ef96eb710)
   )
-  (wire (pts (xy 81.28 124.46) (xy 91.44 124.46))
+  (wire (pts (xy 81.28 124.46) (xy 88.9 124.46))
     (stroke (width 0) (type default))
     (uuid 6fd45c46-b1d8-4f5d-938f-71a5b39d7974)
   )
@@ -1999,11 +1785,6 @@
     (stroke (width 0) (type default))
     (uuid 713319be-9652-4612-935a-65775544c581)
   )
-  (bus (pts (xy 93.98 93.98) (xy 93.98 119.38))
-    (stroke (width 0) (type default))
-    (uuid 71fd0b1a-66c8-4c3b-9d80-9894268a6f1c)
-  )
-
   (wire (pts (xy 43.18 86.36) (xy 43.18 88.9))
     (stroke (width 0) (type default))
     (uuid 730a8034-2c87-49fe-a8f5-29d079bb4fa8)
@@ -2032,7 +1813,7 @@
     (stroke (width 0) (type default))
     (uuid 780f71e1-25b6-4fe6-b8dc-f59e3d81db69)
   )
-  (wire (pts (xy 96.52 40.64) (xy 106.68 40.64))
+  (wire (pts (xy 99.06 40.64) (xy 106.68 40.64))
     (stroke (width 0) (type default))
     (uuid 79e81283-4d47-40a7-89a0-a07d72f0d37b)
   )
@@ -2048,11 +1829,11 @@
     (stroke (width 0) (type default))
     (uuid 7ce49c89-753c-4013-b437-8805798f51b1)
   )
-  (wire (pts (xy 81.28 73.66) (xy 91.44 73.66))
+  (wire (pts (xy 81.28 73.66) (xy 88.9 73.66))
     (stroke (width 0) (type default))
     (uuid 7dcc4e51-adb6-4de6-996b-ad9081493f81)
   )
-  (wire (pts (xy 96.52 81.28) (xy 106.68 81.28))
+  (wire (pts (xy 99.06 81.28) (xy 106.68 81.28))
     (stroke (width 0) (type default))
     (uuid 7eac9b55-46f0-4ea5-be24-b8b8b235d03d)
   )
@@ -2084,7 +1865,7 @@
     (stroke (width 0) (type default))
     (uuid 81c40d37-403b-43a6-b7e3-e6efd75c5e9d)
   )
-  (wire (pts (xy 81.28 175.26) (xy 91.44 175.26))
+  (wire (pts (xy 81.28 175.26) (xy 88.9 175.26))
     (stroke (width 0) (type default))
     (uuid 8413964c-884f-4957-a5c6-59c67236970a)
   )
@@ -2092,7 +1873,7 @@
     (stroke (width 0) (type default))
     (uuid 84dc4dd6-e470-4358-876c-fc045ea807af)
   )
-  (wire (pts (xy 81.28 91.44) (xy 91.44 91.44))
+  (wire (pts (xy 81.28 91.44) (xy 88.9 91.44))
     (stroke (width 0) (type default))
     (uuid 85a1ba94-0dab-4a74-bc26-85edaeb475d5)
   )
@@ -2112,12 +1893,7 @@
     (stroke (width 0) (type default))
     (uuid 8b34d19d-3676-4606-8374-fd2f242f9647)
   )
-  (bus (pts (xy 93.98 162.56) (xy 93.98 165.1))
-    (stroke (width 0) (type default))
-    (uuid 8d635a82-be34-478d-b5f1-223b67f37acb)
-  )
-
-  (wire (pts (xy 106.68 91.44) (xy 96.52 91.44))
+  (wire (pts (xy 106.68 91.44) (xy 99.06 91.44))
     (stroke (width 0) (type default))
     (uuid 8e176b0a-68b6-4529-b036-807d82000753)
   )
@@ -2141,16 +1917,11 @@
     (stroke (width 0) (type default))
     (uuid 91c37d8a-d0bb-48ad-9427-19859acdf945)
   )
-  (bus (pts (xy 93.98 76.2) (xy 93.98 78.74))
-    (stroke (width 0) (type default))
-    (uuid 940685c0-01b1-4b16-bebd-297630667560)
-  )
-
   (wire (pts (xy 43.18 165.1) (xy 43.18 167.64))
     (stroke (width 0) (type default))
     (uuid 94f8bdd6-66c5-418a-8569-ed72e30c2783)
   )
-  (wire (pts (xy 81.28 172.72) (xy 91.44 172.72))
+  (wire (pts (xy 81.28 172.72) (xy 88.9 172.72))
     (stroke (width 0) (type default))
     (uuid 97065da3-570d-4876-99c1-a702dbe71610)
   )
@@ -2158,11 +1929,6 @@
     (stroke (width 0) (type default))
     (uuid 97d081db-6148-43d2-a9c5-25336e209d87)
   )
-  (bus (pts (xy 93.98 45.72) (xy 93.98 48.26))
-    (stroke (width 0) (type default))
-    (uuid 97ea5fd1-dad4-4b6d-b52f-195eb51dac83)
-  )
-
   (wire (pts (xy 146.05 76.2) (xy 157.48 76.2))
     (stroke (width 0) (type default))
     (uuid 9a05f8fb-e5de-4f65-a20f-97daef6cb864)
@@ -2171,19 +1937,14 @@
     (stroke (width 0) (type default))
     (uuid 9ab65310-da34-475e-aa22-15e52963aaad)
   )
-  (wire (pts (xy 106.68 86.36) (xy 96.52 86.36))
+  (wire (pts (xy 106.68 86.36) (xy 99.06 86.36))
     (stroke (width 0) (type default))
     (uuid 9add6239-1678-4519-affd-3eb13a2e0816)
   )
-  (wire (pts (xy 81.28 167.64) (xy 91.44 167.64))
+  (wire (pts (xy 81.28 167.64) (xy 88.9 167.64))
     (stroke (width 0) (type default))
     (uuid 9ae1b45e-9f72-4478-b5a2-eabf556cedcb)
   )
-  (bus (pts (xy 93.98 43.18) (xy 93.98 45.72))
-    (stroke (width 0) (type default))
-    (uuid 9c15a0a6-7a5f-467d-9109-de7c244d569e)
-  )
-
   (wire (pts (xy 165.1 132.08) (xy 165.1 134.62))
     (stroke (width 0) (type default))
     (uuid 9ec450fa-ec4b-47fc-a0eb-2b16a012417f)
@@ -2192,7 +1953,7 @@
     (stroke (width 0) (type default))
     (uuid 9edcaccf-0538-4d8e-98e2-9e91b9525da5)
   )
-  (wire (pts (xy 81.28 76.2) (xy 91.44 76.2))
+  (wire (pts (xy 81.28 76.2) (xy 88.9 76.2))
     (stroke (width 0) (type default))
     (uuid 9f4a225b-30bb-49d9-a5e3-06df803ae807)
   )
@@ -2212,7 +1973,7 @@
     (stroke (width 0) (type default))
     (uuid a3af10a5-650b-4df9-9d94-961d6d18fc7f)
   )
-  (wire (pts (xy 81.28 88.9) (xy 91.44 88.9))
+  (wire (pts (xy 81.28 88.9) (xy 88.9 88.9))
     (stroke (width 0) (type default))
     (uuid a42a1a99-5dd0-4a8d-8621-c2cbd1c33356)
   )
@@ -2224,7 +1985,7 @@
     (stroke (width 0) (type default))
     (uuid a5bb81c8-6817-4708-950d-0a26c2d8eaf6)
   )
-  (wire (pts (xy 106.68 45.72) (xy 96.52 45.72))
+  (wire (pts (xy 106.68 45.72) (xy 99.06 45.72))
     (stroke (width 0) (type default))
     (uuid a5f39ca3-2af7-4f8d-8252-c4dd96156399)
   )
@@ -2232,16 +1993,11 @@
     (stroke (width 0) (type default))
     (uuid a7c03cca-714c-4a25-b231-505719908641)
   )
-  (bus (pts (xy 93.98 40.64) (xy 93.98 43.18))
-    (stroke (width 0) (type default))
-    (uuid a95b28eb-541f-4d1a-9369-b2ddd785294f)
-  )
-
   (wire (pts (xy 43.18 68.58) (xy 43.18 73.66))
     (stroke (width 0) (type default))
     (uuid aa534e6f-0f2a-4e4e-99e1-cd96b1119841)
   )
-  (wire (pts (xy 81.28 45.72) (xy 91.44 45.72))
+  (wire (pts (xy 81.28 45.72) (xy 88.9 45.72))
     (stroke (width 0) (type default))
     (uuid ab5c2ae1-7daa-4b6e-8052-e490b4c199f4)
   )
@@ -2249,7 +2005,7 @@
     (stroke (width 0) (type default))
     (uuid ad0c5c4e-3935-42e1-a3b0-d8e8f1b6fda8)
   )
-  (wire (pts (xy 106.68 175.26) (xy 96.52 175.26))
+  (wire (pts (xy 106.68 175.26) (xy 99.06 175.26))
     (stroke (width 0) (type default))
     (uuid ad2d162e-0efc-4037-8615-de2303c40c11)
   )
@@ -2257,16 +2013,11 @@
     (stroke (width 0) (type default))
     (uuid ae8f5cb8-4bbd-43ca-af78-5f36b6d84471)
   )
-  (bus (pts (xy 93.98 175.26) (xy 93.98 177.8))
-    (stroke (width 0) (type default))
-    (uuid b05f6ddc-ca34-4645-8189-ede14599b701)
-  )
-
   (wire (pts (xy 53.34 177.8) (xy 60.96 177.8))
     (stroke (width 0) (type default))
     (uuid b1ff072d-e241-4a42-86d3-19083488bfcb)
   )
-  (wire (pts (xy 81.28 116.84) (xy 91.44 116.84))
+  (wire (pts (xy 81.28 116.84) (xy 88.9 116.84))
     (stroke (width 0) (type default))
     (uuid b2e9720f-c07e-4bd3-b416-f34363c93629)
   )
@@ -2274,24 +2025,14 @@
     (stroke (width 0) (type default))
     (uuid b379eb33-404d-47d3-a2f2-a7a85e01ac00)
   )
-  (wire (pts (xy 96.52 162.56) (xy 106.68 162.56))
+  (wire (pts (xy 99.06 162.56) (xy 106.68 162.56))
     (stroke (width 0) (type default))
     (uuid b4767935-34da-4d08-8776-4f949869f359)
   )
-  (bus (pts (xy 93.98 50.8) (xy 93.98 76.2))
-    (stroke (width 0) (type default))
-    (uuid b4afbd0e-0ed4-4d22-9a26-573ea8c354eb)
-  )
-
   (wire (pts (xy 226.06 114.3) (xy 236.22 114.3))
     (stroke (width 0) (type default))
     (uuid b693da30-8351-4fc3-891b-bb92a261504d)
   )
-  (bus (pts (xy 93.98 119.38) (xy 93.98 121.92))
-    (stroke (width 0) (type default))
-    (uuid b73ad5a8-a0b5-4926-b060-5b2a4821e009)
-  )
-
   (wire (pts (xy 53.34 129.54) (xy 60.96 129.54))
     (stroke (width 0) (type default))
     (uuid b7828a74-87cb-4352-88b0-1cb5af22db85)
@@ -2312,11 +2053,11 @@
     (stroke (width 0) (type default))
     (uuid b94fe2d2-d11b-462f-8bef-0090dccd2582)
   )
-  (wire (pts (xy 96.52 160.02) (xy 106.68 160.02))
+  (wire (pts (xy 99.06 160.02) (xy 106.68 160.02))
     (stroke (width 0) (type default))
     (uuid ba2ade06-2b8e-4675-a732-cae8c6b95adf)
   )
-  (wire (pts (xy 96.52 76.2) (xy 106.68 76.2))
+  (wire (pts (xy 99.06 76.2) (xy 106.68 76.2))
     (stroke (width 0) (type default))
     (uuid ba9a90f9-a35b-4482-a7a7-74074d44a187)
   )
@@ -2332,7 +2073,7 @@
     (stroke (width 0) (type default))
     (uuid bcdea824-50b6-4d15-a861-6b664afa507c)
   )
-  (wire (pts (xy 96.52 38.1) (xy 106.68 38.1))
+  (wire (pts (xy 99.06 38.1) (xy 106.68 38.1))
     (stroke (width 0) (type default))
     (uuid c059cfb2-0f72-4e01-8722-c444818ecb09)
   )
@@ -2340,11 +2081,6 @@
     (stroke (width 0) (type default))
     (uuid c316ef2d-3b46-401b-931b-2e7d71aaa687)
   )
-  (bus (pts (xy 93.98 172.72) (xy 93.98 175.26))
-    (stroke (width 0) (type default))
-    (uuid c38a4e53-5ee0-4855-a160-0d0373bc6151)
-  )
-
   (wire (pts (xy 151.13 132.08) (xy 157.48 132.08))
     (stroke (width 0) (type default))
     (uuid c467e0eb-9d04-4d9c-b6ba-277389b366a2)
@@ -2353,11 +2089,6 @@
     (stroke (width 0) (type default))
     (uuid c709c6e1-43c1-4699-aa0f-76938bc920c6)
   )
-  (bus (pts (xy 93.98 88.9) (xy 93.98 91.44))
-    (stroke (width 0) (type default))
-    (uuid c70fb801-eef9-4bcb-bbf9-d76f7564e670)
-  )
-
   (wire (pts (xy 53.34 45.72) (xy 60.96 45.72))
     (stroke (width 0) (type default))
     (uuid c7b10909-9258-43cd-8dec-82e44935d30c)
@@ -2374,11 +2105,6 @@
     (stroke (width 0) (type default))
     (uuid cb27c25e-1b59-4997-8d85-c03b0d5f4c66)
   )
-  (bus (pts (xy 93.98 134.62) (xy 93.98 137.16))
-    (stroke (width 0) (type default))
-    (uuid cc84063b-42d5-406f-956e-c530a5a03a49)
-  )
-
   (wire (pts (xy 53.34 175.26) (xy 60.96 175.26))
     (stroke (width 0) (type default))
     (uuid cdcf8a26-480a-46c3-81f9-8436458998ff)
@@ -2403,7 +2129,7 @@
     (stroke (width 0) (type default))
     (uuid d55d97a3-ccba-4be3-96a7-5a04ac91e9e9)
   )
-  (wire (pts (xy 106.68 43.18) (xy 96.52 43.18))
+  (wire (pts (xy 106.68 43.18) (xy 99.06 43.18))
     (stroke (width 0) (type default))
     (uuid d59b9c6b-4533-4a7c-babe-f017fb16fbeb)
   )
@@ -2415,11 +2141,6 @@
     (stroke (width 0) (type default))
     (uuid d7670c40-e881-4463-9d29-5c61cc00d1ce)
   )
-  (bus (pts (xy 93.98 170.18) (xy 93.98 172.72))
-    (stroke (width 0) (type default))
-    (uuid d78d78c5-0681-4716-878d-26c1fbb17fbe)
-  )
-
   (wire (pts (xy 53.34 86.36) (xy 60.96 86.36))
     (stroke (width 0) (type default))
     (uuid d795897f-8aef-42ce-9c2a-75b850259d83)
@@ -2444,11 +2165,6 @@
     (stroke (width 0) (type default))
     (uuid db373615-2bc5-4cec-9ea6-7a409ff49b08)
   )
-  (bus (pts (xy 93.98 177.8) (xy 93.98 180.34))
-    (stroke (width 0) (type default))
-    (uuid dbbeef5b-f19f-41cb-85b1-83d892f7221a)
-  )
-
   (wire (pts (xy 25.4 50.8) (xy 25.4 53.34))
     (stroke (width 0) (type default))
     (uuid dd1b334b-8c33-4b51-9ce4-a2a8a571c9b6)
@@ -2461,15 +2177,6 @@
     (stroke (width 0) (type default))
     (uuid de072d93-e2fe-4ab7-9580-6ca6e4cb1595)
   )
-  (bus (pts (xy 93.98 17.78) (xy 93.98 33.02))
-    (stroke (width 0) (type default))
-    (uuid df48f9fb-98e8-445e-b2b1-bf2b483f1407)
-  )
-  (bus (pts (xy 93.98 35.56) (xy 93.98 38.1))
-    (stroke (width 0) (type default))
-    (uuid e06e126c-8e56-485f-8ea0-6e858df0c086)
-  )
-
   (wire (pts (xy 43.18 76.2) (xy 43.18 78.74))
     (stroke (width 0) (type default))
     (uuid e1cdedc6-2d7e-40f4-9faa-725096cc5e17)
@@ -2478,7 +2185,7 @@
     (stroke (width 0) (type default))
     (uuid e2010c89-8b9e-46e2-ad06-0cbc2b0c387c)
   )
-  (wire (pts (xy 81.28 35.56) (xy 91.44 35.56))
+  (wire (pts (xy 81.28 35.56) (xy 88.9 35.56))
     (stroke (width 0) (type default))
     (uuid e35b27b3-b0c2-4fcb-af94-df578fa1cd1d)
   )
@@ -2498,7 +2205,7 @@
     (stroke (width 0) (type default))
     (uuid e54cd76d-9422-49c6-b09d-5f929da732aa)
   )
-  (wire (pts (xy 81.28 78.74) (xy 91.44 78.74))
+  (wire (pts (xy 81.28 78.74) (xy 88.9 78.74))
     (stroke (width 0) (type default))
     (uuid e67d9bf8-6e97-4711-ba2a-600c25af15d9)
   )
@@ -2510,32 +2217,27 @@
     (stroke (width 0) (type default))
     (uuid e78a4212-2250-4bb6-9ac7-056fa1e3f3d1)
   )
-  (wire (pts (xy 96.52 119.38) (xy 106.68 119.38))
+  (wire (pts (xy 99.06 119.38) (xy 106.68 119.38))
     (stroke (width 0) (type default))
     (uuid e7c315cf-352d-41a4-b0e8-1867dc25dd28)
   )
-  (wire (pts (xy 81.28 43.18) (xy 91.44 43.18))
+  (wire (pts (xy 81.28 43.18) (xy 88.9 43.18))
     (stroke (width 0) (type default))
     (uuid e8fa6776-7db8-4c83-b1b0-b85aa34d3bb1)
   )
-  (wire (pts (xy 81.28 132.08) (xy 91.44 132.08))
+  (wire (pts (xy 81.28 132.08) (xy 88.9 132.08))
     (stroke (width 0) (type default))
     (uuid e9c03e9e-655e-455f-bcb0-b98a25a8f96b)
   )
-  (bus (pts (xy 93.98 124.46) (xy 93.98 127))
-    (stroke (width 0) (type default))
-    (uuid e9f6b98b-defd-4b3a-a91f-e92e07e0e5b1)
-  )
-
-  (wire (pts (xy 106.68 78.74) (xy 96.52 78.74))
+  (wire (pts (xy 106.68 78.74) (xy 99.06 78.74))
     (stroke (width 0) (type default))
     (uuid ea08a4c4-6ef3-4e02-89c3-a4e550acbd10)
   )
-  (wire (pts (xy 81.28 170.18) (xy 91.44 170.18))
+  (wire (pts (xy 81.28 170.18) (xy 88.9 170.18))
     (stroke (width 0) (type default))
     (uuid ec3142aa-f0c8-4182-9294-1b14288d3638)
   )
-  (wire (pts (xy 96.52 127) (xy 106.68 127))
+  (wire (pts (xy 99.06 127) (xy 106.68 127))
     (stroke (width 0) (type default))
     (uuid ecada103-d3f4-44c7-bd47-a614338b5d6e)
   )
@@ -2543,33 +2245,23 @@
     (stroke (width 0) (type default))
     (uuid ecd36401-0ca9-4f9e-a416-18cb34d66bbf)
   )
-  (bus (pts (xy 93.98 48.26) (xy 93.98 50.8))
-    (stroke (width 0) (type default))
-    (uuid ed2c5f6e-fe9d-46b7-9e96-d8a524caddf9)
-  )
-
   (wire (pts (xy 106.68 60.96) (xy 116.84 60.96))
     (stroke (width 0) (type default))
     (uuid ee8d2cf5-f47e-4eea-9b0b-b48e695d0426)
   )
-  (wire (pts (xy 81.28 86.36) (xy 91.44 86.36))
+  (wire (pts (xy 81.28 86.36) (xy 88.9 86.36))
     (stroke (width 0) (type default))
     (uuid f09afe14-5679-4ea3-b0e4-11b5561b30a1)
   )
-  (wire (pts (xy 106.68 88.9) (xy 96.52 88.9))
+  (wire (pts (xy 106.68 88.9) (xy 99.06 88.9))
     (stroke (width 0) (type default))
     (uuid f1430a51-4c66-467a-b517-a719c2f7e2a9)
   )
-  (bus (pts (xy 93.98 83.82) (xy 93.98 86.36))
-    (stroke (width 0) (type default))
-    (uuid f22f3ade-2d3c-4996-81c5-b7a8da5b60ca)
-  )
-
-  (wire (pts (xy 96.52 73.66) (xy 106.68 73.66))
+  (wire (pts (xy 99.06 73.66) (xy 106.68 73.66))
     (stroke (width 0) (type default))
     (uuid f3062f6e-1690-4102-bbcf-2b45eb323d84)
   )
-  (wire (pts (xy 96.52 124.46) (xy 106.68 124.46))
+  (wire (pts (xy 99.06 124.46) (xy 106.68 124.46))
     (stroke (width 0) (type default))
     (uuid f3dbadcd-0a5d-4be6-94aa-f2ad3506f46e)
   )
@@ -2577,11 +2269,6 @@
     (stroke (width 0) (type default))
     (uuid f7b92bfc-ec94-475c-aa81-62daeb437f04)
   )
-  (bus (pts (xy 93.98 38.1) (xy 93.98 40.64))
-    (stroke (width 0) (type default))
-    (uuid f82c04ff-6fbf-4209-8407-2f9e13247812)
-  )
-
   (wire (pts (xy 43.18 81.28) (xy 43.18 83.82))
     (stroke (width 0) (type default))
     (uuid f922d75d-b40b-45dc-b1df-50afe76fd0dd)
@@ -2606,11 +2293,6 @@
     (stroke (width 0) (type default))
     (uuid fc1c1e93-ed3a-4eb2-9aa3-40a0a8b8fd94)
   )
-  (bus (pts (xy 93.98 167.64) (xy 93.98 170.18))
-    (stroke (width 0) (type default))
-    (uuid fcef8541-e83f-4204-ae6c-d3c275d56c8b)
-  )
-
   (wire (pts (xy 146.05 43.18) (xy 157.48 43.18))
     (stroke (width 0) (type default))
     (uuid fdbe0398-c367-439a-ab73-88ba47d23e9f)
@@ -2962,14 +2644,6 @@
     (uuid fc50fa38-984f-402f-9a11-187b46765e6f)
   )
 
-  (global_label "{8086BUS}" (shape bidirectional) (at 73.66 17.78 180) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify right))
-    (uuid 3733e168-8b0d-4b18-b3b4-c5002f4a7a69)
-    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 59.3015 17.78 0)
-      (effects (font (size 1.27 1.27)) (justify right) hide)
-    )
-  )
-
   (symbol (lib_id "8086PC:74AC373") (at 71.12 86.36 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 001659ca-c21e-490d-87ef-0dfab9e38ec9)
@@ -3006,7 +2680,7 @@
     (pin "8" (uuid 7ca104a3-1ad7-4339-9ee4-8696e2d20376))
     (pin "9" (uuid fcade903-d4cf-43a7-9fc1-caae538245af))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U32") (unit 1)
         )
@@ -3032,7 +2706,7 @@
     (pin "1" (uuid 81c1174c-dce9-4e4d-a615-84cfba3ac757))
     (pin "2" (uuid fc9be9c0-df6b-4868-885d-a773c6cf4187))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW16") (unit 1)
         )
@@ -3058,7 +2732,7 @@
     (pin "1" (uuid f255b3e8-895d-4858-964c-bbe199cdfb39))
     (pin "2" (uuid 88770480-eb2c-4a5b-9678-4a7b994639bd))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW24") (unit 1)
         )
@@ -3096,7 +2770,7 @@
     (pin "14" (uuid da5e92a5-4090-43f4-bf23-fdf9cedbfe03))
     (pin "7" (uuid cde8e03f-c1c3-4f9e-8327-4135646574b1))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U31") (unit 2)
         )
@@ -3122,7 +2796,7 @@
     (pin "1" (uuid bd0ad31f-8b2f-476b-8504-e22f5aacba0c))
     (pin "2" (uuid 8e0e2f3d-14ec-41fe-a3fc-20ecc3ef232b))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW15") (unit 1)
         )
@@ -3148,7 +2822,7 @@
     (pin "1" (uuid a2c41b23-eb3a-48ac-8ca4-1c368c21bfe1))
     (pin "2" (uuid e26fc14f-9982-4e27-9137-97ffd609e79a))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW17") (unit 1)
         )
@@ -3174,7 +2848,7 @@
     (pin "1" (uuid 973dfacb-ecc5-410d-91dd-74e1ff5ef855))
     (pin "2" (uuid e9682297-8a75-4f90-b5f8-7a4aabda1d86))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D5") (unit 1)
         )
@@ -3200,7 +2874,7 @@
     (pin "1" (uuid 643d273c-337f-4622-a9df-f8d84de2821b))
     (pin "2" (uuid 13de6392-d751-4429-a6bf-15f98fd95f66))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R22") (unit 1)
         )
@@ -3226,7 +2900,7 @@
     (pin "1" (uuid 5f548488-b012-437b-9491-80f4687c48a9))
     (pin "2" (uuid e44bca75-ea74-40a8-ba1d-301ea2efc1f0))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D23") (unit 1)
         )
@@ -3251,7 +2925,7 @@
     )
     (pin "1" (uuid f3116efd-b1c6-4a4c-9999-0460954c39e6))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR074") (unit 1)
         )
@@ -3277,7 +2951,7 @@
     (pin "1" (uuid ffcf2e2e-f7ec-454e-9d5c-e99f36f0333d))
     (pin "2" (uuid 2f6464d1-be83-4f27-81c0-3bd9e5795d26))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW10") (unit 1)
         )
@@ -3303,7 +2977,7 @@
     (pin "1" (uuid 53a133fb-48b7-41e5-bfa1-dd50546466fa))
     (pin "2" (uuid 6894c766-9bba-4296-9f5a-93c097c1564c))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D4") (unit 1)
         )
@@ -3329,7 +3003,7 @@
     (pin "1" (uuid 5ccca74b-131d-46ad-910f-c048c1eb0640))
     (pin "2" (uuid 35ba9c0e-9575-441d-9c68-3f08b5a76ffa))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D31") (unit 1)
         )
@@ -3355,9 +3029,37 @@
     (pin "1" (uuid aac61d42-2f5a-4f6a-8a44-405f7251c767))
     (pin "2" (uuid a8f4916b-2ddb-4f79-b233-281b10c3d97e))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW25") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 208.28 33.02 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 0f91c260-b417-4c27-9967-88e0abc0bf86)
+    (property "Reference" "#PWR040" (at 208.28 39.37 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 208.28 38.1 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 208.28 33.02 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 208.28 33.02 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 828a5833-b74c-45a8-9803-4c00f5dd9f95))
+    (instances
+      (project "8086 board"
+        (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
+          (reference "#PWR041") (unit 1)
+        )
+        (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
+          (reference "#PWR041") (unit 1)
         )
       )
     )
@@ -3381,7 +3083,7 @@
     (pin "1" (uuid 3ae3e177-aa9c-4025-95fe-e9f1ebf3a439))
     (pin "2" (uuid cffca7c2-6153-4dd9-b7bf-b9bb355eff3d))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R14") (unit 1)
         )
@@ -3407,7 +3109,7 @@
     (pin "1" (uuid 0d91c23e-d445-48fa-baaf-a14866bb2927))
     (pin "2" (uuid 8d0a2920-27c3-4762-9318-8c1b9434e4b2))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R28") (unit 1)
         )
@@ -3433,7 +3135,7 @@
     (pin "1" (uuid 438a6ca8-3392-48ee-b186-b824f995ba1e))
     (pin "2" (uuid e79e694c-f7b6-42eb-bcea-c1e3978bc938))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D3") (unit 1)
         )
@@ -3459,7 +3161,7 @@
     (pin "1" (uuid 83ab3276-9ea4-41c1-8fe0-daea41b8caea))
     (pin "2" (uuid 98401591-37d8-4960-b2ce-42d998a44887))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R20") (unit 1)
         )
@@ -3497,7 +3199,7 @@
     (pin "14" (uuid 76888d12-b60e-455d-9b64-c2c80f32368e))
     (pin "7" (uuid 5431a704-68f5-4dbc-a176-7d9260edc554))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U30") (unit 3)
         )
@@ -3523,7 +3225,7 @@
     (pin "1" (uuid 373e796b-78af-45df-9900-20ce2775f5c2))
     (pin "2" (uuid 0ec70b7f-ab84-4941-90e5-0423aeee5ffa))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW27") (unit 1)
         )
@@ -3549,7 +3251,7 @@
     (pin "1" (uuid 0523375f-0825-4f8d-888e-bdfafee7c469))
     (pin "2" (uuid 836ccfa4-091d-4b83-a2e3-ea581c4c0897))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D27") (unit 1)
         )
@@ -3574,7 +3276,7 @@
     )
     (pin "1" (uuid e5780054-a1ee-4f1a-959c-26fa33945f00))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR080") (unit 1)
         )
@@ -3618,7 +3320,7 @@
     (pin "8" (uuid 2067ada8-917d-4bf2-bdea-879da903af34))
     (pin "9" (uuid ecea88d1-46d9-460d-8baf-1a46b3cb3fbb))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U35") (unit 1)
         )
@@ -3656,7 +3358,7 @@
     (pin "14" (uuid ac5b3d67-96c6-406f-b0ce-028a08b5e499))
     (pin "7" (uuid 85b44c5b-28c1-4c5e-896e-76eaec8800fe))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U30") (unit 5)
         )
@@ -3694,7 +3396,7 @@
     (pin "14" (uuid 0fe7ddf9-4635-4946-84cc-75c5f7b6674b))
     (pin "7" (uuid a3a587cb-e2df-417c-8616-ba3a3cb0c195))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U31") (unit 4)
         )
@@ -3720,7 +3422,7 @@
     (pin "1" (uuid 78938cd7-ec08-408f-a8ce-d21303a0afff))
     (pin "2" (uuid 0c52c7c9-bf69-4af4-a582-e40ef37479a2))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D19") (unit 1)
         )
@@ -3746,7 +3448,7 @@
     (pin "1" (uuid 4aba3bc3-1540-40cd-a957-bb1bf7d911d4))
     (pin "2" (uuid bb550b2e-b6aa-41ad-9cf2-5996e6272b97))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW5") (unit 1)
         )
@@ -3784,7 +3486,7 @@
     (pin "14" (uuid 049825b7-4a67-47cb-b753-55a942f011c6))
     (pin "7" (uuid 706daab8-cc20-40e4-8cd7-41b31126132c))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U30") (unit 4)
         )
@@ -3809,7 +3511,7 @@
     )
     (pin "1" (uuid 9657725d-12d5-453c-bf54-de0c693220a3))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR062") (unit 1)
         )
@@ -3835,7 +3537,7 @@
     (pin "1" (uuid bb80818c-2735-49e9-83ad-5bc31d8b0943))
     (pin "2" (uuid 3dccfb1c-dbbe-43de-aac6-4f64af065d45))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW2") (unit 1)
         )
@@ -3861,7 +3563,7 @@
     (pin "1" (uuid 251b6ba4-8941-48aa-b50f-76b36da4f8fe))
     (pin "2" (uuid 1d902487-e041-40b0-97b5-f0b42cbbea5d))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R21") (unit 1)
         )
@@ -3886,7 +3588,7 @@
     )
     (pin "1" (uuid 5c717e2a-642a-43c4-9bfe-021e4b802d95))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR068") (unit 1)
         )
@@ -3912,7 +3614,7 @@
     (pin "1" (uuid f2292dc6-9072-411b-be3a-9fa43c6834d5))
     (pin "2" (uuid 96e9b5e3-ddac-4b28-9fa6-f1fcc56757e8))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D9") (unit 1)
         )
@@ -3937,7 +3639,7 @@
     )
     (pin "1" (uuid 0f9f96df-ddd6-4b72-8662-5bb182a4c6e4))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR090") (unit 1)
         )
@@ -3963,7 +3665,7 @@
     (pin "1" (uuid 8890581c-c95c-40dd-ab7a-dc9fda2c78fe))
     (pin "2" (uuid e1727e76-0442-4f6a-b1f4-6dc7506a3245))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D20") (unit 1)
         )
@@ -3989,7 +3691,7 @@
     (pin "1" (uuid cf93cee3-7134-4fa4-ab98-bce6cbcba9ac))
     (pin "2" (uuid c7ec3c06-a557-4178-a3da-58409ec14490))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW31") (unit 1)
         )
@@ -4014,7 +3716,7 @@
     )
     (pin "1" (uuid 88ee103a-7985-4005-9bf2-cd593f5d2831))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR069") (unit 1)
         )
@@ -4039,7 +3741,7 @@
     )
     (pin "1" (uuid 2be0be67-b60a-440a-a311-8d2026d9f309))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR089") (unit 1)
         )
@@ -4065,9 +3767,37 @@
     (pin "1" (uuid 78182e35-6dae-4578-a17c-5a6fd5f132b9))
     (pin "2" (uuid c83a54e5-678e-4526-ab94-64a8d571e637))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D7") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:+5V") (at 198.12 25.4 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 39a40326-e96a-4bc8-82e3-2b30cba2ed4a)
+    (property "Reference" "#PWR041" (at 198.12 29.21 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "+5V" (at 198.12 21.59 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 198.12 25.4 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 198.12 25.4 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 62330597-fcf6-48b0-b05d-a73c862a7ee0))
+    (instances
+      (project "8086 board"
+        (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
+          (reference "#PWR040") (unit 1)
+        )
+        (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
+          (reference "#PWR040") (unit 1)
         )
       )
     )
@@ -4091,7 +3821,7 @@
     (pin "1" (uuid 42c3a212-76d2-4a13-ac55-9f9f75ee6c3b))
     (pin "2" (uuid 71cec2ea-e980-4543-a81f-365b6644e426))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "JP4") (unit 1)
         )
@@ -4117,7 +3847,7 @@
     (pin "1" (uuid 031767f4-ac8b-4806-86ea-c32b28fbb928))
     (pin "2" (uuid cad013e7-7c19-4da9-9da6-1e9bc30dab93))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R12") (unit 1)
         )
@@ -4143,7 +3873,7 @@
     (pin "1" (uuid f383da62-b9cc-4a52-844e-0815241c3811))
     (pin "2" (uuid 217b7785-0303-4c4e-8553-74ef124aef59))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R18") (unit 1)
         )
@@ -4169,7 +3899,7 @@
     (pin "1" (uuid 58aa39ad-a71b-40ba-b77a-72110bf937bd))
     (pin "2" (uuid 711cbb33-88e0-485e-a8ca-cb144ba1f719))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R5") (unit 1)
         )
@@ -4195,9 +3925,39 @@
     (pin "1" (uuid acc40214-3334-4407-b9d2-6319537409dc))
     (pin "2" (uuid e745bc39-fd0e-4825-8a4d-a0bc7dd287ad))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R17") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Regulator_Linear:AMS1117-3.3") (at 208.28 25.4 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 433256bd-d88a-4678-8387-85b0c1c2e557)
+    (property "Reference" "U15" (at 208.28 19.05 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "AMS1117-3.3" (at 208.28 21.59 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-223-3_TabPin2" (at 208.28 20.32 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "http://www.advanced-monolithic.com/pdf/ds1117.pdf" (at 210.82 31.75 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 80c42dc3-2238-483c-ae1c-c03fc1f160f2))
+    (pin "2" (uuid 17e71bf8-6a04-4466-9e15-6b7f2bae874c))
+    (pin "3" (uuid 64cc7c52-2ead-4881-a176-bc1fef8dee00))
+    (instances
+      (project "8086 board"
+        (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
+          (reference "U15") (unit 1)
+        )
+        (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
+          (reference "U15") (unit 1)
         )
       )
     )
@@ -4220,7 +3980,7 @@
     )
     (pin "1" (uuid 0c027379-b0a6-4a83-9a95-e3783d34851b))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR077") (unit 1)
         )
@@ -4246,7 +4006,7 @@
     (pin "1" (uuid 57931ec0-83da-43d7-b01a-2a7310ca9bca))
     (pin "2" (uuid 801e1140-320f-4ed1-9463-acd436946815))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R35") (unit 1)
         )
@@ -4272,7 +4032,7 @@
     (pin "1" (uuid 3dd0c0ce-5d9c-46ac-b213-16b3f3357c8b))
     (pin "2" (uuid bcaaf659-ed11-414c-bcf1-408b6b18e3c8))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R26") (unit 1)
         )
@@ -4298,7 +4058,7 @@
     (pin "1" (uuid ce014fc8-b199-45f5-aac0-99a83b646842))
     (pin "2" (uuid 4af0e792-bf3f-47c1-a299-d91de56cb273))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R15") (unit 1)
         )
@@ -4324,7 +4084,7 @@
     (pin "1" (uuid 0c19e204-efa6-4f71-8ae2-6c452881ce40))
     (pin "2" (uuid 4f38ce2b-034c-4293-a6b7-87db3ea29349))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R27") (unit 1)
         )
@@ -4350,7 +4110,7 @@
     (pin "1" (uuid 498f4200-b142-414e-ad78-290940b63848))
     (pin "2" (uuid 56f02ecc-46fd-4ff2-80ce-af421b7a14ff))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R23") (unit 1)
         )
@@ -4376,7 +4136,7 @@
     (pin "1" (uuid e2320f03-0629-4e71-ae49-68220abda653))
     (pin "2" (uuid 376aaa6b-cbeb-4d52-939a-aecc59783364))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW14") (unit 1)
         )
@@ -4402,7 +4162,7 @@
     (pin "1" (uuid d666badf-1289-46da-9159-6fa97b0ac69a))
     (pin "2" (uuid afc0a919-6b10-4d10-8075-b7d4dd5b4af9))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D16") (unit 1)
         )
@@ -4440,7 +4200,7 @@
     (pin "14" (uuid 9aa0ee21-99ea-42db-8003-6f834208292b))
     (pin "7" (uuid a3f36606-7cc8-4580-a135-de61da0b9df0))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U31") (unit 5)
         )
@@ -4466,7 +4226,7 @@
     (pin "1" (uuid 01e0a295-819e-4c0a-8c30-6437883021a5))
     (pin "2" (uuid 9eb647f6-e51b-48ca-b32c-61befe5d1709))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D15") (unit 1)
         )
@@ -4491,7 +4251,7 @@
     )
     (pin "1" (uuid ba2e260b-351d-4be7-b90b-e0cfd2734b63))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR067") (unit 1)
         )
@@ -4516,7 +4276,7 @@
     )
     (pin "1" (uuid 31c2111d-1340-4084-8bd7-746950143ace))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR073") (unit 1)
         )
@@ -4542,7 +4302,7 @@
     (pin "1" (uuid 5e64fd08-67b2-4575-ac88-7e1d8dc1e7e7))
     (pin "2" (uuid 1a7f9818-409d-4d8f-b136-75c1b91df83e))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R8") (unit 1)
         )
@@ -4568,7 +4328,7 @@
     (pin "1" (uuid 76f02380-394e-404a-9d6a-be88a14599f4))
     (pin "2" (uuid 706bb5f3-677f-47dd-bb19-5d82082fa06c))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D30") (unit 1)
         )
@@ -4593,7 +4353,7 @@
     )
     (pin "1" (uuid e8638a77-21a9-479f-bf45-c9fd4d094a19))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR083") (unit 1)
         )
@@ -4618,7 +4378,7 @@
     )
     (pin "1" (uuid 49093987-dc0a-4a2b-bc73-fb974555b7f7))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR064") (unit 1)
         )
@@ -4644,7 +4404,7 @@
     (pin "1" (uuid b0759e61-88db-4a27-9143-eb71788956b3))
     (pin "2" (uuid d90ecf15-f493-4f5e-bdf9-d783732d9785))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW6") (unit 1)
         )
@@ -4669,7 +4429,7 @@
     )
     (pin "1" (uuid 351ce083-2f32-47ec-a183-429dc53eaf6c))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR084") (unit 1)
         )
@@ -4695,7 +4455,7 @@
     (pin "1" (uuid 3f85e803-ee0b-4ab8-b817-48e313aafdde))
     (pin "2" (uuid 59ce7640-dd38-4990-a51a-03fc0d72eb22))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R36") (unit 1)
         )
@@ -4721,7 +4481,7 @@
     (pin "1" (uuid 18bb29a5-c04f-468f-83e7-e02f3dc4e78d))
     (pin "2" (uuid d9ff5bfc-e63e-4c90-a10a-b91d7b0f9d7e))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW20") (unit 1)
         )
@@ -4746,7 +4506,7 @@
     )
     (pin "1" (uuid b4a3f2f1-799c-48bc-a8f5-b948fc3dc9ad))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR072") (unit 1)
         )
@@ -4772,7 +4532,7 @@
     (pin "1" (uuid 04ec2605-85eb-4a2c-bcd4-764c26282c88))
     (pin "2" (uuid 2c7dd681-1f93-4eac-845d-2ad36e462074))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW7") (unit 1)
         )
@@ -4798,7 +4558,7 @@
     (pin "1" (uuid 67474a1c-a0ce-42fd-96a4-5d85ea634eee))
     (pin "2" (uuid 9590c813-f66b-4814-a486-fdc10f81a932))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R6") (unit 1)
         )
@@ -4824,7 +4584,7 @@
     (pin "1" (uuid 6d9904b3-cc8c-4037-872c-2052cbc3e720))
     (pin "2" (uuid c2598e87-ccc3-4afc-9275-4fbf4ea8f165))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D26") (unit 1)
         )
@@ -4850,7 +4610,7 @@
     (pin "1" (uuid d8cb5785-c0e5-4cad-9846-416fee0ae210))
     (pin "2" (uuid e795a855-b97e-4bdf-b098-f11abcd930f2))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R13") (unit 1)
         )
@@ -4876,7 +4636,7 @@
     (pin "1" (uuid fa3f90b6-262c-4ae0-81a1-942e5f008eef))
     (pin "2" (uuid 899d69a1-32df-48f5-9c71-cf6e8f41307e))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R37") (unit 1)
         )
@@ -4920,7 +4680,7 @@
     (pin "8" (uuid 0a10b96c-29c7-4289-979c-11795712c18a))
     (pin "9" (uuid 75fff8a5-35ad-42b8-84cf-557e3288876c))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U34") (unit 1)
         )
@@ -4946,7 +4706,7 @@
     (pin "1" (uuid 144b33ef-20bf-4497-b718-24c19effbe25))
     (pin "2" (uuid 03c0c413-cbc8-4e08-808a-48a980e1ed4a))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R10") (unit 1)
         )
@@ -4971,7 +4731,7 @@
     )
     (pin "1" (uuid 11a41eb5-c54e-4563-b466-54a972e0cd36))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR091") (unit 1)
         )
@@ -4997,7 +4757,7 @@
     (pin "1" (uuid 249f1be6-c348-4015-bbb9-747c6a2e2a12))
     (pin "2" (uuid 9d05a574-31d4-4581-b33b-ef24dac1bf1a))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW23") (unit 1)
         )
@@ -5023,7 +4783,7 @@
     (pin "1" (uuid 3aac72e4-11e6-43bb-a64a-e4c16d04ca31))
     (pin "2" (uuid fa9a3fda-a162-49b8-85cc-ae9f0468aab7))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D11") (unit 1)
         )
@@ -5048,7 +4808,7 @@
     )
     (pin "1" (uuid 7016ecb3-863a-498f-83c2-cb978420f1f5))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR076") (unit 1)
         )
@@ -5073,7 +4833,7 @@
     )
     (pin "1" (uuid 316dfbb9-e6d1-4acb-894a-f532758faaa3))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR078") (unit 1)
         )
@@ -5098,7 +4858,7 @@
     )
     (pin "1" (uuid 9b3eaf29-5f2a-4fa9-abb4-20f048ca4c7b))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR087") (unit 1)
         )
@@ -5123,7 +4883,7 @@
     )
     (pin "1" (uuid d489c915-fbe0-4aed-951c-d20de1b2839b))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR079") (unit 1)
         )
@@ -5149,7 +4909,7 @@
     (pin "1" (uuid 5765ecdf-b17c-49ec-807f-b73becc0582a))
     (pin "2" (uuid b88d2bb8-34f9-4b7f-bc67-b9131919d0ed))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R9") (unit 1)
         )
@@ -5175,7 +4935,7 @@
     (pin "1" (uuid 1ad379db-0a5e-4fee-bbd9-ad18cf25e49d))
     (pin "2" (uuid 03c10985-3483-4ecf-8005-46ceb760d2a1))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D25") (unit 1)
         )
@@ -5201,7 +4961,7 @@
     (pin "1" (uuid 0912bf4a-eb20-4fdb-a765-2cf6bd592f81))
     (pin "2" (uuid 9ef19bb5-cf85-4ccc-a330-fd466dc29f43))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R11") (unit 1)
         )
@@ -5227,7 +4987,7 @@
     (pin "1" (uuid 2c24f2a6-9472-426f-94ab-e2ccbec2e480))
     (pin "2" (uuid ae7f51e3-fe14-487f-bd9e-6728ffdce505))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D13") (unit 1)
         )
@@ -5253,7 +5013,7 @@
     (pin "1" (uuid 6e07b466-1b82-4879-a8dc-2dadfb7ee1df))
     (pin "2" (uuid f115d2c7-dd8b-4205-8101-c8a5e62aa82f))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW13") (unit 1)
         )
@@ -5297,7 +5057,7 @@
     (pin "8" (uuid 09382bdd-fc78-42fe-afd5-a5a427a2eac5))
     (pin "9" (uuid 39860729-fa5c-461a-b43a-20ca25ed4cff))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U28") (unit 1)
         )
@@ -5323,7 +5083,7 @@
     (pin "1" (uuid 8b1d9549-a223-4af9-bee0-4f5b201e7a1d))
     (pin "2" (uuid d9121efb-f3fa-48b6-92ab-73245093111c))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R34") (unit 1)
         )
@@ -5348,7 +5108,7 @@
     )
     (pin "1" (uuid 7b6f6c68-4add-4f27-bc71-8f4a25cc6d19))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR081") (unit 1)
         )
@@ -5373,7 +5133,7 @@
     )
     (pin "1" (uuid 307e3c5b-2500-4911-8e1a-6c408c4ac8cc))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR075") (unit 1)
         )
@@ -5399,7 +5159,7 @@
     (pin "1" (uuid 54d38933-52e3-4754-81f2-9742d7be12b7))
     (pin "2" (uuid 783e50cf-458c-46da-ae08-94670c037101))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D17") (unit 1)
         )
@@ -5425,7 +5185,7 @@
     (pin "1" (uuid 7e5a3727-3523-4352-96fc-19ba3bc384a5))
     (pin "2" (uuid 15200644-89db-4837-8cf7-86c744fce95c))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW28") (unit 1)
         )
@@ -5451,7 +5211,7 @@
     (pin "1" (uuid 01142d64-ac0a-4cd1-8eb5-a17c6de3dad5))
     (pin "2" (uuid ca04c30e-529e-460c-8370-569c78d2314a))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW9") (unit 1)
         )
@@ -5477,7 +5237,7 @@
     (pin "1" (uuid e5ac6374-c73e-41eb-8f7f-31d7795754fd))
     (pin "2" (uuid b79ed518-4db2-4f51-9b0d-2d23ef0bad61))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R32") (unit 1)
         )
@@ -5503,7 +5263,7 @@
     (pin "1" (uuid bc9424f7-2567-41ae-956e-b95e2085ac95))
     (pin "2" (uuid bb49f748-0a08-40c9-9b71-37a99a158ebc))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D22") (unit 1)
         )
@@ -5529,7 +5289,7 @@
     (pin "1" (uuid c9530b22-4a3d-4e9f-8cc8-bde0e38ee1bd))
     (pin "2" (uuid 7d2b0799-81b0-47f9-b412-970494ab1bed))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW18") (unit 1)
         )
@@ -5555,7 +5315,7 @@
     (pin "1" (uuid 73e595e5-c9fb-4839-93ff-70813160ea57))
     (pin "2" (uuid c72ae276-75e5-4918-8b63-27d7d8fa7a07))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D28") (unit 1)
         )
@@ -5581,7 +5341,7 @@
     (pin "1" (uuid 85868072-3e48-4d5e-99db-204454d11a2e))
     (pin "2" (uuid 4539aaa0-2f0a-4199-95b6-98aed78ca7ba))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW3") (unit 1)
         )
@@ -5607,7 +5367,7 @@
     (pin "1" (uuid ed18332d-64fd-448a-82cf-f17e41ee3e2c))
     (pin "2" (uuid 3e100fdc-28ee-43f8-bc93-ce225d65037b))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R19") (unit 1)
         )
@@ -5633,7 +5393,7 @@
     (pin "1" (uuid 5a9b1892-62f4-4a09-8f96-30785a28c84f))
     (pin "2" (uuid 70e7eedb-b7c2-40e4-93ef-121c394132f9))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R31") (unit 1)
         )
@@ -5658,7 +5418,7 @@
     )
     (pin "1" (uuid 4cdb29bd-7f93-4a81-8e5c-bd175d462f81))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR071") (unit 1)
         )
@@ -5684,7 +5444,7 @@
     (pin "1" (uuid 13073ed8-be79-489f-8e84-ca918a255a30))
     (pin "2" (uuid 5707673f-b59b-4b2a-8df6-88230ecc4335))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D12") (unit 1)
         )
@@ -5710,7 +5470,7 @@
     (pin "1" (uuid 266ea272-4348-4807-a93e-fc5df9e3beb6))
     (pin "2" (uuid 7b64bb6b-8c10-4d2b-999c-9e46f0ec1de0))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D32") (unit 1)
         )
@@ -5736,7 +5496,7 @@
     (pin "1" (uuid 67243bc8-a8d0-447d-8e21-edea07047b4e))
     (pin "2" (uuid 53ceb5f0-a169-4718-9c8a-87b6f7b7f280))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R25") (unit 1)
         )
@@ -5761,7 +5521,7 @@
     )
     (pin "1" (uuid a23822e2-525d-44e4-a44f-1744d5aa1936))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR088") (unit 1)
         )
@@ -5787,7 +5547,7 @@
     (pin "1" (uuid ac439ab9-bfb1-4858-b128-794330096c27))
     (pin "2" (uuid 0487305d-2740-43a7-aab5-8e46feb6b68f))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D2") (unit 1)
         )
@@ -5813,7 +5573,7 @@
     (pin "1" (uuid d5252242-191e-4075-9bce-aa28dcdb674c))
     (pin "2" (uuid 41fc1a88-cfd3-442c-a23e-d4790b0ec1ca))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R24") (unit 1)
         )
@@ -5839,9 +5599,37 @@
     (pin "1" (uuid 2114764f-38f4-4a36-9e0d-d8e53b2f500b))
     (pin "2" (uuid cf9d7be2-8641-4d56-a651-e195dadd82ce))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW32") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:+3.3V") (at 220.98 25.4 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid bf0ff90d-daec-463c-a733-ac203b35e3cf)
+    (property "Reference" "#PWR042" (at 220.98 29.21 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "+3.3V" (at 220.98 21.59 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 220.98 25.4 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 220.98 25.4 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 4e12f670-74d3-4372-9276-0f727863c56b))
+    (instances
+      (project "8086 board"
+        (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
+          (reference "#PWR042") (unit 1)
+        )
+        (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
+          (reference "#PWR042") (unit 1)
         )
       )
     )
@@ -5865,7 +5653,7 @@
     (pin "1" (uuid 5e58ef7c-cd7f-48fe-a825-b8923e822e1e))
     (pin "2" (uuid abb905d1-8be7-4bab-a9bb-cef5bc4e3d57))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R33") (unit 1)
         )
@@ -5903,7 +5691,7 @@
     (pin "14" (uuid 77b2ca99-c626-49a2-a0bb-e620f6b27246))
     (pin "7" (uuid 94b5e5d5-a6f0-45e8-8e62-e981cf763313))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U31") (unit 1)
         )
@@ -5941,7 +5729,7 @@
     (pin "14" (uuid c8520bb1-a1f3-40c6-8296-07708c50a8a7))
     (pin "7" (uuid 359c49ef-038c-4835-bda2-60c6f45793f4))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U30") (unit 1)
         )
@@ -5966,7 +5754,7 @@
     )
     (pin "1" (uuid 03de1f31-06aa-4069-8058-eda51fce2411))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR063") (unit 1)
         )
@@ -5992,7 +5780,7 @@
     (pin "1" (uuid 8f9186cf-090f-4e40-9ba4-c918b6adff0c))
     (pin "2" (uuid 0c06cfb0-0fae-4e9e-ac43-e80b95b390ff))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW21") (unit 1)
         )
@@ -6018,7 +5806,7 @@
     (pin "1" (uuid f45b31fb-aba5-4a0e-88ef-cfb77089367c))
     (pin "2" (uuid 3c4f2e0e-d608-4c92-b82d-e90f99a28290))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW12") (unit 1)
         )
@@ -6044,7 +5832,7 @@
     (pin "1" (uuid 8f337d41-1819-4cf9-bd88-189787c5a597))
     (pin "2" (uuid bf3d8275-dc21-4f99-a3e1-85766fe5dc6f))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW4") (unit 1)
         )
@@ -6088,7 +5876,7 @@
     (pin "8" (uuid 2dee9723-e3c2-41d8-bd9c-998db444504a))
     (pin "9" (uuid 6f99aa7d-1cb2-45b0-b399-0d98fdbd5e6a))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U33") (unit 1)
         )
@@ -6114,7 +5902,7 @@
     (pin "1" (uuid 07fd63b1-5bc2-4066-b646-66dbb534191b))
     (pin "2" (uuid 00915d12-7e6e-44d1-aaa0-acb587a9a657))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D6") (unit 1)
         )
@@ -6152,7 +5940,7 @@
     (pin "14" (uuid 2fa9082f-1ed6-4e94-a1d7-18da584954c9))
     (pin "7" (uuid 96da5158-54a7-4dfd-9ebf-3732cf36723c))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U31") (unit 3)
         )
@@ -6178,7 +5966,7 @@
     (pin "1" (uuid 46da3f18-2b6f-4510-8f90-a412f8c6c4b2))
     (pin "2" (uuid 23661c82-4756-4a11-9e43-c65935c04531))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D14") (unit 1)
         )
@@ -6204,7 +5992,7 @@
     (pin "1" (uuid f745f321-4b8a-4d31-8688-aec66e00531f))
     (pin "2" (uuid 556fed67-0b42-4cfb-9102-bd67781bc3e7))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R30") (unit 1)
         )
@@ -6230,7 +6018,7 @@
     (pin "1" (uuid 07795257-694e-4da6-b881-a39bf35d248d))
     (pin "2" (uuid 6edcfc53-3820-4ee4-9b85-59a355ca98be))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW26") (unit 1)
         )
@@ -6255,7 +6043,7 @@
     )
     (pin "1" (uuid 13537210-0f43-4b75-ace7-136c0238a38a))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR085") (unit 1)
         )
@@ -6281,7 +6069,7 @@
     (pin "1" (uuid 9b34ffea-c453-41bb-b3ae-6e7f27f9d778))
     (pin "2" (uuid 64611a55-0be3-4097-b76a-045db0636d35))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW8") (unit 1)
         )
@@ -6307,7 +6095,7 @@
     (pin "1" (uuid b3d57b05-fd37-4896-994f-ef3b5f95ff27))
     (pin "2" (uuid 55b1168a-6c72-4728-a805-d4320a3deaf8))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D18") (unit 1)
         )
@@ -6333,7 +6121,7 @@
     (pin "1" (uuid 082662b4-4c70-46a4-a64a-d9d6d8e52a3b))
     (pin "2" (uuid 695f59d4-bf86-4247-9b80-d1b3e9de09d4))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW30") (unit 1)
         )
@@ -6358,7 +6146,7 @@
     )
     (pin "1" (uuid 2472cbec-37d9-4b09-bd8b-4998c4830197))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR066") (unit 1)
         )
@@ -6384,7 +6172,7 @@
     (pin "1" (uuid e556fc0e-53b4-4e87-8074-e618d82dc04e))
     (pin "2" (uuid 19a8f6ed-2a4d-40de-8ce8-a5ec4f6ba018))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW19") (unit 1)
         )
@@ -6409,7 +6197,7 @@
     )
     (pin "1" (uuid 5606763c-36f5-445b-98c1-1cac42cf7b86))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR082") (unit 1)
         )
@@ -6435,7 +6223,7 @@
     (pin "1" (uuid f859e7b8-cf0f-43f4-bf26-2a495167dbc6))
     (pin "2" (uuid 6f1da0da-f2c3-4e9f-a532-5e6d2316ade1))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D21") (unit 1)
         )
@@ -6461,7 +6249,7 @@
     (pin "1" (uuid 1ff56256-2891-419d-8cea-64126badba62))
     (pin "2" (uuid 942b398a-cc04-4415-9a9d-aef2d7e516c9))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R16") (unit 1)
         )
@@ -6487,7 +6275,7 @@
     (pin "1" (uuid 97ed163d-389f-4ba9-be88-b4c960af9686))
     (pin "2" (uuid 9502fe72-79cc-4811-aa4e-a00e685a8d1d))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R7") (unit 1)
         )
@@ -6513,7 +6301,7 @@
     (pin "1" (uuid 70e0fa11-0445-4b9a-ad8b-6ef4df944092))
     (pin "2" (uuid f1ab724f-6a9f-4689-a520-e1a5fd4800eb))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D24") (unit 1)
         )
@@ -6538,7 +6326,7 @@
     )
     (pin "1" (uuid 2d62f5d0-9a0c-47e8-a66c-c30c3022a5c0))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR086") (unit 1)
         )
@@ -6564,7 +6352,7 @@
     (pin "1" (uuid 66e0fa7e-4cfb-4e96-962e-466e1947b63c))
     (pin "2" (uuid 95a11c17-bf4b-4d5e-be9f-912430abba6a))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW22") (unit 1)
         )
@@ -6590,7 +6378,7 @@
     (pin "1" (uuid ae5b33f8-49ea-46e5-b614-91937d02ef7f))
     (pin "2" (uuid 957b6df5-2114-42ee-bf4d-af5062f51101))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW11") (unit 1)
         )
@@ -6616,7 +6404,7 @@
     (pin "1" (uuid 247a834a-096f-4e76-8cd4-50fdf12c3cb3))
     (pin "2" (uuid d7c44742-670b-41ea-b6b3-b8ad59eaff74))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "R29") (unit 1)
         )
@@ -6660,7 +6448,7 @@
     (pin "8" (uuid cb6131f9-1cc5-4e1a-a43c-3a6bb981c665))
     (pin "9" (uuid ed1ff042-df0e-41f0-a7be-065d679eab0d))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U36") (unit 1)
         )
@@ -6686,7 +6474,7 @@
     (pin "1" (uuid 457afafd-6964-44a0-b02e-45c24afd79b3))
     (pin "2" (uuid 3f0fb402-21cb-4467-8c83-81402c7543f5))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D10") (unit 1)
         )
@@ -6712,7 +6500,7 @@
     (pin "1" (uuid 675ad812-6785-4916-a240-9d33ce5a610c))
     (pin "2" (uuid 5620dd2b-0232-45a2-97f6-34d42098561e))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW29") (unit 1)
         )
@@ -6738,7 +6526,7 @@
     (pin "1" (uuid c6229258-af32-467a-99de-d54988f910e0))
     (pin "2" (uuid 6232ad43-4cb6-41dc-bc1e-f662308bba32))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D1") (unit 1)
         )
@@ -6763,7 +6551,7 @@
     )
     (pin "1" (uuid 7b231407-1db2-42d4-a78e-22d6f7aa0792))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR065") (unit 1)
         )
@@ -6789,7 +6577,7 @@
     (pin "1" (uuid 959e5853-42f1-4341-855f-0a1bc5fe0d85))
     (pin "2" (uuid 1315e240-8372-46cb-a6c5-82bc7bc861fc))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D8") (unit 1)
         )
@@ -6815,7 +6603,7 @@
     (pin "1" (uuid cad7d2b8-9dee-41dc-948a-5c55f3c2da7d))
     (pin "2" (uuid 4036ab92-9b09-45ec-94c1-569beda27f5c))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "SW1") (unit 1)
         )
@@ -6841,7 +6629,7 @@
     (pin "1" (uuid 16f44c24-7a97-4242-a97d-e577c8b22b6a))
     (pin "2" (uuid 74179aad-7cf0-4e52-ad8a-25f751a61d34))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "D29") (unit 1)
         )
@@ -6879,7 +6667,7 @@
     (pin "14" (uuid a426ecff-d203-415d-9bdd-19428705d1e9))
     (pin "7" (uuid 43e9b493-10b8-4595-b07c-26d5b46b9221))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U30") (unit 2)
         )
@@ -6923,7 +6711,7 @@
     (pin "8" (uuid cb11953d-6653-4d79-968c-b7c5e3699533))
     (pin "9" (uuid ce63c19a-a8c1-4407-967d-5e46ce0883e8))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U37") (unit 1)
         )
@@ -6948,7 +6736,7 @@
     )
     (pin "1" (uuid 13b4bfdd-d6ac-458b-ad5a-37543b7315d0))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "#PWR070") (unit 1)
         )
@@ -6992,7 +6780,7 @@
     (pin "8" (uuid bc8a100a-261b-470b-bf78-09e29b1632b4))
     (pin "9" (uuid 22ace2f1-66ff-4bee-9bc7-79a66b73ea04))
     (instances
-      (project "8086 schematics and pcb"
+      (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/9d3d589e-5fca-440e-81d2-4d8d813c1607"
           (reference "U16") (unit 1)
         )
