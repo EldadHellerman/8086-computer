@@ -47,7 +47,7 @@ I'm trying to recycle old components I salvaged and not buy anything new (excpet
 - Logic for generating memory segment CS signals.
 - Logic for generating IO device CS signals for first 8 16-bit devices - IO[0-7].
 - Expansion port allowing access to 8086 bus.
-- LED indicators for: latched adderss, memory access (Flash, SRAM 1, SRAM 2), read and write operations, IO access.
+- LED indicators for: latched adderss, memory access (SRAM 1 and SRAM 2, Flash is A19).
 - Power LED.
 - Reset button.
 - On / off switch.
