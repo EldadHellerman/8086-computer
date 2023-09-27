@@ -21,7 +21,7 @@ I'm trying to recycle old components I salvaged and not buy anything new (excpet
 | 74HC132       | Quad 2-input NAND gate; Schmitt trigger   | 6         |
 | 74AC00        | Quad 2-input NAND gate                    | 2         |
 | 74HC02        | Quad 2-input NOR gate                     | 6         |
-| 74ACT08       | Quad 2-input AND gate                     | 1         |
+| 74ACT08       | Quad 2-input AND gate                     | 2         |
 | HEF40106      | Hex inverting Schmitt trigger             | 1         |
 | 74HC14        | Hex inverting Schmitt trigger             | 1         |
 
