@@ -1,8 +1,9 @@
 #include "isa.h"
 
+// Registers:
+
 /* {name, binary} */
-reg registers[] = {
-    // 16-bit (word) registers:
+reg registers_word[] = {
     {"AX", 0},
     {"CX", 1},
     {"DX", 2},
@@ -10,9 +11,11 @@ reg registers[] = {
     {"SP", 4},
     {"BP", 5},
     {"SI", 6},
-    {"DI", 7},
-    
-    // 8-bit (byte) registers:
+    {"DI", 7}
+};
+uint8_t registers_word_length = sizeof(registers_word) / sizeof(reg);
+
+reg registers_byte[] = {
     {"AL", 0},
     {"CL", 1},
     {"DL", 2},
@@ -21,17 +24,20 @@ reg registers[] = {
     {"CH", 5},
     {"DH", 6},
     {"BH", 7},
+};
+uint8_t registers_byte_length = sizeof(registers_byte) / sizeof(reg);
 
-    // Segment registers:
+reg registers_segment[] = {
     {"ES", 0},
     {"CS", 1},
     {"SS", 2},
     {"DS", 3},
 };
+uint8_t registers_segment_length = sizeof(registers_segment) / sizeof(reg);
 
-uint16_t number_of_registers = sizeof(registers) / sizeof(reg);
 
-//116 strings
+
+// Instructions:
 
 instruction instructions[] = {
     // Data Transfer:

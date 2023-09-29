@@ -4,10 +4,11 @@
 #include "string.h"
 
 int main(int argv, char **argc){
-    printf("hello! there are %d intrcutions, and %d registers\n",
-        number_of_instructions, number_of_registers);
+    printf("Arguments:\n");
+    for(int i=0; i < argv; i++) printf("\t#%d - '%s'\n", i+1, argc[i]);
 
-    
+    printf("hello! there are %d intrcutions\n",
+        number_of_instructions);
     // copy instruction to inst_sorted and then sort them in place by mnemonic:
     instruction inst_sorted[number_of_instructions];
     for(int i = 0; i < number_of_instructions; i++) inst_sorted[i] = instructions[i];
