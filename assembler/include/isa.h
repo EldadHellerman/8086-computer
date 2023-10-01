@@ -219,8 +219,8 @@ extern uint8_t registers_segment_length;
 #define IF_IMPLICIT_AX_SRC              (1 << IF_IMPLICIT_BIT)
 #define IF_IMPLICIT_AX_DST              (2 << IF_IMPLICIT_BIT)
 #define IF_IMPLICIT_AX_BOTH             (3 << IF_IMPLICIT_BIT)
-#define IF_IMPLICIT_DX_SRC              (4 << IF_IMPLICIT_BIT)
-#define IF_IMPLICIT_DX_DST              (5 << IF_IMPLICIT_BIT)
+#define IF_IMPLICIT_AX_DST_DX_SRC       (4 << IF_IMPLICIT_BIT)
+#define IF_IMPLICIT_AX_SRC_DX_DST       (5 << IF_IMPLICIT_BIT)
 #define IF_IMPLICIT_0x03                (6 << IF_IMPLICIT_BIT)
 
 /**

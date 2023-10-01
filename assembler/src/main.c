@@ -122,8 +122,8 @@ void print_instruction(instruction_t instruction){
             if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_SRC) printf("AX_SRC, ");
             if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_DST) printf("AX_DST, ");
             if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_BOTH) printf("AX, ");
-            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_DX_SRC) printf("DX_SRC, ");
-            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_DX_DST) printf("DX_DST, ");
+            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_SRC_DX_DST) printf("AX_SRC_DX_SRC, ");
+            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_DST_DX_SRC) printf("AX_DST_DX_SRC, ");
             if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_0x03) printf("0x03, ");
             printf(")");
         }
@@ -165,7 +165,7 @@ int main(int argv, char **argc){
     sort_array_in_place(instructions, instructions_length, sizeof(instruction_t), compare_instructions);
     
     printf("there are %d intrcutions\n", instructions_length);
-    // print_all_instructions();
+    print_all_instructions();
     print_memory_usage();
     return EXIT_SUCCESS;
 }

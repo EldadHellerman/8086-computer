@@ -57,14 +57,14 @@ instruction_t instructions[] = {
          {IF_FLAG_SREG, 0b00000111, 0}}},
     {"XCHG", 2, (if_t *)&(if_t[])
         {{IF_FLAG_W | IF_BYTES_MOD_RM | IF_FLAG_REG, 0b10000110, 0},
-         {IF_FLAG_REG | IF_IMPLICIT_AX_SRC | IF_IMPLICIT_AX_DST, 0b10010000, 0}}},
+         {IF_FLAG_REG | IF_IMPLICIT_AX_BOTH, 0b10010000, 0}}},
     {"NOP", 1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b10011001, 0}}},
     {"IN", 2, (if_t *)&(if_t[])
         {{IF_FLAG_W | IF_IMPLICIT_AX_DST | IF_FLAG_DATA8, 0b11100100, 0},
-         {IF_FLAG_W | IF_IMPLICIT_AX_DST | IF_IMPLICIT_DX_SRC, 0b11101100, 0}}},
+         {IF_FLAG_W | IF_IMPLICIT_AX_DST_DX_SRC, 0b11101100, 0}}},
     {"OUT", 2, (if_t *)&(if_t[])
         {{IF_FLAG_W | IF_IMPLICIT_AX_SRC | IF_FLAG_DATA8, 0b11100110, 0},
-         {IF_FLAG_W | IF_IMPLICIT_AX_SRC | IF_IMPLICIT_DX_DST, 0b11101110, 0}}},
+         {IF_FLAG_W | IF_IMPLICIT_AX_SRC_DX_DST, 0b11101110, 0}}},
     {"XLAT",    1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b11010111, 0}}},
     {"LEA",     1, (if_t *)&(if_t[]){{IF_BYTES_MOD_RM | IF_FLAG_REG, 0b10001101, 0}}},
     {"LDS",     1, (if_t *)&(if_t[]){{IF_BYTES_MOD_RM | IF_FLAG_REG, 0b11000101, 0}}},
@@ -128,7 +128,7 @@ instruction_t instructions[] = {
     {"TEST", 3, (if_t *)&(if_t[])
         {{IF_FLAG_W | IF_BYTES_MOD_RM | IF_FLAG_REG, 0b10000100, 0},
          {IF_FLAG_W | IF_BYTES_MOD_RM | IF_FLAG_DATA, 0b11110110, 0b00000000},
-         {IF_FLAG_W | IF_IMPLICIT_AX_DST | IF_IMPLICIT_AX_SRC | IF_FLAG_DATA, 0b10101000, 0}}},
+         {IF_FLAG_W | IF_IMPLICIT_AX_BOTH | IF_FLAG_DATA, 0b10101000, 0}}},
     {"OR", 3, (if_t *)&(if_t[])
         {{IF_DSV_D | IF_FLAG_W | IF_BYTES_MOD_RM | IF_FLAG_REG, 0b00001000, 0},
          {IF_FLAG_W | IF_BYTES_MOD_RM | IF_FLAG_DATA, 0b10000000, 0b00001000},
