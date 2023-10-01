@@ -266,12 +266,4 @@ typedef struct{
 extern instruction_t instructions[];
 extern uint16_t instructions_length;
 
-typedef struct{
-    const char synonym[MAX_MNEMONIC_LENGTH + 1];
-    const char mnemonic[MAX_MNEMONIC_LENGTH + 1];
-} instruction_synonym_t;
-
-extern instruction_synonym_t instructions_synonyms[];
-extern uint16_t instructions_synonyms_length;
-
 #endif /* ISA_H */

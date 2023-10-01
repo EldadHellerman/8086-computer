@@ -114,6 +114,7 @@ instruction_t instructions[] = {
     {"CWD",     1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b10011001, 0}}},
     {"NOT",     1, (if_t *)&(if_t[]){{IF_FLAG_W | IF_BYTES_MOD_RM, 0b11110110, 0b00010000}}},
     {"SHL",     1, (if_t *)&(if_t[]){{IF_DSV_V | IF_FLAG_W | IF_BYTES_MOD_RM, 0b11010000, 0b00100000}}},
+    {"SAL",     1, (if_t *)&(if_t[]){{IF_DSV_V | IF_FLAG_W | IF_BYTES_MOD_RM, 0b11010000, 0b00100000}}}, // synonym
     {"SHR",     1, (if_t *)&(if_t[]){{IF_DSV_V | IF_FLAG_W | IF_BYTES_MOD_RM, 0b11010000, 0b00101000}}},
     {"SAR",     1, (if_t *)&(if_t[]){{IF_DSV_V | IF_FLAG_W | IF_BYTES_MOD_RM, 0b11010000, 0b00111000}}},
     {"ROL",     1, (if_t *)&(if_t[]){{IF_DSV_V | IF_FLAG_W | IF_BYTES_MOD_RM, 0b11010000, 0b00000000}}},
@@ -137,7 +138,10 @@ instruction_t instructions[] = {
          {IF_FLAG_W | IF_BYTES_MOD_RM | IF_FLAG_DATA, 0b10000000, 0b00110000},
          {IF_FLAG_W | IF_IMPLICIT_AX_DST | IF_FLAG_DATA, 0b00110100, 0}}},
     {"REP",     1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b11110011, 0}}},
+    {"REPE",    1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b11110011, 0}}}, // synonym
+    {"REPZ",    1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b11110011, 0}}}, // synonym
     {"REPNE",   1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b11110010, 0}}},
+    {"REPNZ",   1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b11110010, 0}}}, // synonym
     {"MOVSB",   1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b10100100, 0}}},
     {"MOVSW",   1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b10100101, 0}}},
     {"CMPSB",   1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b10100110, 0}}},
@@ -167,24 +171,40 @@ instruction_t instructions[] = {
         {{IF_BYTES_ONE, 0b10001011, 0},
          {IF_BYTES_ONE | IF_FLAG_DATA, 0b11001010, 0}}},
     {"JE",      1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110100, 0}}},
+    {"JZ",      1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110100, 0}}}, // synonym
     {"JL",      1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111100, 0}}},
+    {"JNGE",    1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111100, 0}}}, // synonym
     {"JLE",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111110, 0}}},
+    {"JNG",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111110, 0}}}, // synonym
     {"JB",      1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110010, 0}}},
+    {"JNAE",    1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110010, 0}}}, // synonym
+    {"JC",      1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110010, 0}}}, // synonym
     {"JBE",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110110, 0}}},
+    {"JNA",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110110, 0}}}, // synonym
     {"JP",      1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111010, 0}}},
+    {"JPE",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111010, 0}}}, // synonym
     {"JO",      1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110000, 0}}},
     {"JS",      1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111000, 0}}},
     {"JNE",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110101, 0}}},
+    {"JNZ",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110101, 0}}}, // synonym
     {"JNL",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111101, 0}}},
+    {"JGE",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111101, 0}}}, // synonym
     {"JNLE",    1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111111, 0}}},
+    {"JG",      1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111111, 0}}}, // synonym
     {"JNB",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110011, 0}}},
+    {"JAE",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110011, 0}}}, // synonym
+    {"JNC",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110011, 0}}}, // synonym
     {"JNBE",    1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110111, 0}}},
+    {"JA",      1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110111, 0}}}, // synonym
     {"JNP",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111011, 0}}},
+    {"JPO",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111011, 0}}}, // synonym
     {"JNO",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01110001, 0}}},
     {"JNS",     1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b01111001, 0}}},
     {"LOOP",    1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b11100001, 0}}},
     {"LOOPZ",   1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b11100001, 0}}},
+    {"LOOPE",   1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b11100001, 0}}}, // synonym
     {"LOOPNZ",  1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b11100000, 0}}},
+    {"LOOPNE",  1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b11100000, 0}}}, // synonym
     {"JCXZ",    1, (if_t *)&(if_t[]){{IF_FLAG_DISP8, 0b11100011, 0}}},
     {"INT",     2, (if_t *)&(if_t[])
         {{IF_FLAG_DATA8, 0b11001101, 0},
@@ -205,28 +225,4 @@ instruction_t instructions[] = {
 };
 uint16_t instructions_length = sizeof(instructions) / sizeof(instruction_t);
 
-
-instruction_synonym_t instructions_synonyms[] = {
-    {"SAL", "SHL"},
-    {"REPE", "REP"},
-    {"REPZ", "REP"},
-    {"REPNZ", "REPNE"},
-    {"JZ", "JE"},
-    {"JNGE", "JL"},
-    {"JNG", "JLE"},
-    {"JNAE", "JB"},
-    {"JC", "JB"},
-    {"JNA", "JBE"},
-    {"JPE", "JP"},
-    {"JNZ", "JNE"},
-    {"JGE", "JNL"},
-    {"JG", "JNLE"},
-    {"JAE", "JNB"},
-    {"JNC", "JNB"},
-    {"JA", "JNBE"},
-    {"JPO", "JNP"},
-    {"LOOPE", "LOOPZ"},
-    {"LOOPNE", "LOOPNZ"},
-};
-uint16_t instructions_synonyms_length = sizeof(instructions_synonyms) / sizeof(instruction_synonym_t);
 

@@ -2,13 +2,16 @@
 #include "stdbool.h"
 
 /* TODO:
-    - have instructions and synonyms data sorted in source file so it is stored sorted in read only memory.
-    - also, thing of a good data structure for them and implement it.
+    - have instructions data sorted in source file so it is stored sorted in read only memory.
+    - also, think of a good data structure for them and implement it.
         (maybe one for assembly and for for dissasembly will be better).
     - maybe space can be saved by divinding instructions array to types:
         one_byte_instructions - ~30 instructions with one byte only.
-        disp_instructions - ~20 all jump on comdition. then it will also save space to store synonym instructions and remove them from synonms array
+        disp_instructions - ~20 all jump on comdition.
         complex_instructions - all instructions left, ~50.
+    after doing that and checking: with all instructions as complex instructions, data size is ~2400 bytes.
+        with the above seperation between instruction types, data size is ~1600 bytes.
+    I will leave this as a step when optimizing for the 8086 itself to run the assembler.
 */
 
 void sort_array_in_place(void *array, size_t array_length, size_t element_size, bool (*compare_function)(void *e1, void *e2)){
@@ -133,12 +136,27 @@ void print_all_instructions(){
     for(int i = 0; i < instructions_length; i++) print_instruction(instructions[i]);
 }
 
-void print_all_synonyms(){
-    for(int i = 0; i < instructions_synonyms_length; i++){
-        instruction_synonym_t syn = instructions_synonyms[i];
-        printf("%s -> %s\n", syn.synonym, syn.mnemonic);
-    }
+void print_memory_usage(){
+    int number_of_formats = 0;
+    for(int i = 0; i < instructions_length; i++) number_of_formats += instructions[i].formats_length;
+    int mem_instructions = (int)sizeof(instruction_t) * instructions_length;
+    int mem_formats = (int)sizeof(if_t) * number_of_formats;
+    printf("memory use: instrcutions: %d, formats: %d\n",
+        mem_instructions, mem_formats);
+    printf("total memory use: %d\n", mem_instructions + mem_formats);
 }
+
+/*void print_memory_usage_small(){
+    int number_of_formats = 0;
+    for(int i = 0; i < instructions_length; i++) number_of_formats += instructions[i].formats_length;
+    int mem_instructions = (int)sizeof(instruction_t) * instructions_length;
+    int mem_formats = (int)sizeof(if_t) * number_of_formats;
+    int mem_simple_instructions = (int)sizeof(ifob_t) * instructions_byte_length;
+    int mem_disp_instructions = (int)sizeof( ifob_t) * instructions_disp_length;
+    printf("memory use: instrcutions: %d, simple instructions: %d, disp instructions: %d, formats: %d\n",
+        mem_instructions, mem_simple_instructions, mem_disp_instructions, mem_formats);
+    printf("total memory use: %d\n", mem_instructions + mem_simple_instructions + mem_disp_instructions + mem_formats); 
+}*/
 
 int main(int argv, char **argc){
     printf("Arguments:\n");
@@ -146,17 +164,8 @@ int main(int argv, char **argc){
 
     sort_array_in_place(instructions, instructions_length, sizeof(instruction_t), compare_instructions);
     
+    printf("there are %d intrcutions\n", instructions_length);
     // print_all_instructions();
-    // print_all_synonyms();
-
-    printf("there are %d intrcutions and %d synonyms\n", instructions_length, instructions_synonyms_length);
-    int number_of_formats = 0;
-    for(int i = 0; i < instructions_length; i++) number_of_formats += instructions[i].formats_length;
-    int mem_instructions = (int)sizeof(instruction_t) * instructions_length;
-    int mem_formats = (int)sizeof(if_t) * number_of_formats;
-    int mem_synonyms = (int)sizeof(instruction_synonym_t) * instructions_synonyms_length;
-    printf("memory use: instrcutions: %d, formats: %d synonyms %d\n",
-        mem_instructions, mem_formats, mem_synonyms);
-    printf("total memory use: %d\n", mem_instructions + mem_formats + mem_synonyms);
+    print_memory_usage();
     return EXIT_SUCCESS;
 }
