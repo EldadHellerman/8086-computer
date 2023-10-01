@@ -3,7 +3,7 @@
 // Registers:
 
 /* {name, binary} */
-reg registers_word[] = {
+reg_t registers_word[] = {
     {"AX", 0},
     {"CX", 1},
     {"DX", 2},
@@ -13,9 +13,9 @@ reg registers_word[] = {
     {"SI", 6},
     {"DI", 7}
 };
-uint8_t registers_word_length = sizeof(registers_word) / sizeof(reg);
+uint8_t registers_word_length = sizeof(registers_word) / sizeof(reg_t);
 
-reg registers_byte[] = {
+reg_t registers_byte[] = {
     {"AL", 0},
     {"CL", 1},
     {"DL", 2},
@@ -25,38 +25,56 @@ reg registers_byte[] = {
     {"DH", 6},
     {"BH", 7},
 };
-uint8_t registers_byte_length = sizeof(registers_byte) / sizeof(reg);
+uint8_t registers_byte_length = sizeof(registers_byte) / sizeof(reg_t);
 
-reg registers_segment[] = {
+reg_t registers_segment[] = {
     {"ES", 0},
     {"CS", 1},
     {"SS", 2},
     {"DS", 3},
 };
-uint8_t registers_segment_length = sizeof(registers_segment) / sizeof(reg);
+uint8_t registers_segment_length = sizeof(registers_segment) / sizeof(reg_t);
 
 
 
 // Instructions:
 
-instruction instructions[] = {
+instruction_t instructions[] = {
     // Data Transfer:
-    {"MOV", },    // Move
-    {"PUSH", },   // Push
-    {"POP", },    // Pop
-    {"XCHG", },   // Exchange
-    {"NOP", },    // Nop - same as XCHG AX
-    {"IN", },     // Input
-    {"OUT", },    // Output
-    {"XLAT", },   // Translate byte
-    {"LEA", },    // Load effective address
-    {"LDS", },    // Load to DS
-    {"LES", },    // Load to ES
-    {"LAHF", },   // Load AH with flags
-    {"SAHF", },   // Store AH with flags
-    {"PUSHF", },  // Push flags
-    {"POPF", },   // Pop flags
-    
+    {"MOV", 6, (if_t *)&(if_t[])
+        {{IF_FLAG_D | IF_FLAG_W | IF_FLAG_MOD_RM | IF_FLAG_REG, 0b10001000, 0},
+         {IF_FLAG_W | IF_FLAG_MOD_RM | IF_FLAG_DATA, 0b11000110, 0},
+         {IF_FLAG_W | IF_FLAG_REG | IF_FLAG_DATA, 0b10110000, 0},
+         {IF_FLAG_W | IF_FLAG_AX_DST | IF_FLAG_ADDR16, 0b10100000, 0},
+         {IF_FLAG_W | IF_FLAG_AX_SRC | IF_FLAG_ADDR16, 0b10100010, 0},
+         {IF_FLAG_D | IF_FLAG_MOD_RM | IF_FLAG_REG, 0b10001100, 0}}},
+    {"PUSH", 3, (if_t *)&(if_t[])
+        {{IF_FLAG_MOD_RM, 0b11111111, 0b0011000},
+         {IF_FLAG_REG, 0b01010000, 0},
+         {IF_FLAG_SREG, 0b00000110, 0}}},
+    {"POP", 3, (if_t *)&(if_t[])
+        {{IF_FLAG_MOD_RM, 0b10001111, 0},
+         {IF_FLAG_REG, 0b01011000, 0},
+         {IF_FLAG_SREG, 0b00000111, 0}}},
+    {"XCHG", 2, (if_t *)&(if_t[])
+        {{IF_FLAG_W | IF_FLAG_MOD_RM | IF_FLAG_REG, 0b10000110, 0},
+         {IF_FLAG_REG | IF_FLAG_AX_SRC | IF_FLAG_AX_DST, 0b10010000, 0}}},
+    {"NOP", 1, (if_t *)&(if_t[]){{IF_FLAG_MOD_RM, 0b10011001, 0}}},
+    {"IN", 2, (if_t *)&(if_t[])
+        {{IF_FLAG_W | IF_FLAG_AX_DST | IF_FLAG_DATA8, 0b11100100, 0},
+         {IF_FLAG_W | IF_FLAG_AX_DST | IF_FLAG_DX, 0b11101100, 0}}},
+    {"OUT", 2, (if_t *)&(if_t[])
+        {{IF_FLAG_W | IF_FLAG_AX_SRC | IF_FLAG_DATA8, 0b11100110, 0},
+         {IF_FLAG_W | IF_FLAG_AX_SRC | IF_FLAG_DX, 0b11101110, 0}}},
+    {"XLAT", 1, (if_t *)&(if_t[]){{0, 0b11010111, 0}}},
+    {"LEA", 1, (if_t *)&(if_t[]){{IF_FLAG_MOD_RM | IF_FLAG_REG, 0b10001101, 0}}},
+    {"LDS", 1, (if_t *)&(if_t[]){{IF_FLAG_MOD_RM | IF_FLAG_REG, 0b11000101, 0}}},
+    {"LES", 1, (if_t *)&(if_t[]){{IF_FLAG_MOD_RM | IF_FLAG_REG, 0b11000100, 0}}},
+    {"LAHF", 1, (if_t *)&(if_t[]){{0, 0b10011111, 0}}},
+    {"SAHF", 1, (if_t *)&(if_t[]){{0, 0b10011110, 0}}},
+    {"PUSHF", 1, (if_t *)&(if_t[]){{0, 0b10011100, 0}}},
+    {"POPF", 1, (if_t *)&(if_t[]){{0, 0b10011101, 0}}},
+    /*
     // Arithmetic:
     {"ADD", },
     {"ADC", },
@@ -82,7 +100,6 @@ instruction instructions[] = {
     // Logic:
     {"NOT", },
     {"SHL", },
-    {"SAL", }, // same as SHL
     {"SHR", },
     {"SAR", },
     {"ROL", },
@@ -96,10 +113,7 @@ instruction instructions[] = {
 
     // String manipulation:
     {"REP", },
-    {"REPE", }, //same as REP
-    {"REPZ", }, //same as REP
     {"REPNE", },
-    {"REPNZ", }, //same as REPNE
     {"MOVSB", },
     {"MOVSW", },
     {"CMPSB", },
@@ -117,43 +131,27 @@ instruction instructions[] = {
     {"RET", }, // return near
     {"RETF", }, // return far
     {"JE", },
-    {"JZ", }, // same as JE
     {"JL", },
-    {"JNGE", }, // same as JL
     {"JLE", },
-    {"JNG", }, // same as JLE
     {"JB", },
-    {"JNAE", }, // same as JB
-    {"JC", }, // same as JB
     {"JBE", },
-    {"JNA", }, // same as JBE
     {"JP", },
-    {"JPE", }, // same as JP
     {"JO", },
     {"JS", },
     {"JNE", },
-    {"JNZ", }, // same as JNE
     {"JNL", },
-    {"JGE", }, // same as JNL
     {"JNLE", },
-    {"JG", }, // same as JNLE
     {"JNB", },
-    {"JAE", }, // same as JNB
-    {"JNC", }, // same as JNB
     {"JNBE", },
-    {"JA", }, // same as JNBE
     {"JNP", },
-    {"JPO", }, // same as JNP
     {"JNO", },
     {"JNS", },
     
     {"LOOP", },
     {"LOOPZ", },
-    {"LOOPE", }, // same as LOOPZ
     {"LOOPNZ", },
-    {"LOOPNE", }, // same as LOOPNZ
     {"JCXZ", },
-    
+
     {"INT", },
     {"INTO", },
     {"IRET", },
@@ -169,7 +167,32 @@ instruction instructions[] = {
     {"HLT", },
     {"WAIT", },
     {"ESC", },
-    {"LOCK", },
+    {"LOCK", },*/
 };
-uint16_t number_of_instructions = sizeof(instructions) / sizeof(instruction);
+uint16_t instructions_length = sizeof(instructions) / sizeof(instruction_t);
+
+
+instruction_synonym_t instructions_synonyms[] = {
+    {"SAL", "SHL"},
+    {"REPE", "REP"},
+    {"REPZ", "REP"},
+    {"REPNZ", "REPNE"},
+    {"JZ", "JE"},
+    {"JNGE", "JL"},
+    {"JNG", "JLE"},
+    {"JNAE", "JB"},
+    {"JC", "JB"},
+    {"JNA", "JBE"},
+    {"JPE", "JP"},
+    {"JNZ", "JNE"},
+    {"JGE", "JNL"},
+    {"JG", "JNLE"},
+    {"JAE", "JNB"},
+    {"JNC", "JNB"},
+    {"JA", "JNBE"},
+    {"JPO", "JNP"},
+    {"LOOPE", "LOOPZ"},
+    {"LOOPNE", "LOOPNZ"},
+};
+uint16_t instructions_synonyms_length = sizeof(instructions_synonyms) / sizeof(instruction_synonym_t);
 
