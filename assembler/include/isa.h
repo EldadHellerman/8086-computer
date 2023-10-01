@@ -69,45 +69,49 @@ extern uint8_t registers_segment_length;
  * XXX_MASK is the mask for the field.
  */
 
-/** Instruction format 'w' field.
+/** 
+ * Instruction format 'w' field.
  * w = 0: Instruction operates on byte data.
  * w = 1: Instruction operates on word data.
+ * 
+ * Instruction format 'd' field.
+ * d = 0: From register specified in 'reg' field ('reg' is source).
+ * d = 1: To register specified in 'reg' field ('reg' is destination).
+ * 
+ * Instruction format 's' field.
+ * s = 0: Do not sign extend - 16-bit immediate is given.
+ * s = 1: Sign extend 8-bit immediate to 16 bits.
+ * 
+ * Instruction format 'v' field.
+ * v = 0: Shift/rotate count is one.
+ * v = 1: Shift/rotate count specified in CL register.
  */
 #define IF_FLAG_W                       (1 <<  0)
+#define IF_DSV_BIT                      1
+#define IF_DSV_MASK                     (0b11 <<  IF_DSV_BIT)
+
+#define IF_DSV_NONE                     (0 << IF_DSV_BIT) 
+#define IF_DSV_D                        (1 << IF_DSV_BIT)
+#define IF_DSV_S                        (2 << IF_DSV_BIT)
+#define IF_DSV_V                        (3 << IF_DSV_BIT)
+
 //TODO make this better:
 #define IF_FB_W_WITH_REG_BIT            3
 #define IF_FB_W_WITHOUT_REG_BIT         0
 #define IF_FB_W_WITH_REG_MASK           (1 <<  IF_FB_W_WITH_REG_BIT)
 #define IF_FB_W_WITHOUT_REG_MASK        (1 <<  IF_FB_W_WITHOUT_REG_BIT)
-
-/** Instruction format 'd' field.
- * d = 0: From register specified in 'reg' field ('reg' is source).
- * d = 1: To register specified in 'reg' field ('reg' is destination).
- */
-#define IF_FLAG_D                       (1 <<  1)
 #define IF_FB_D_BIT                     1
 #define IF_FB_D_MASK                    (1 << IF_FB_D_BIT)
-
-/** Instruction format 's' field.
- * s = 0: Do not sign extend - 16-bit immediate is given.
- * s = 1: Sign extend 8-bit immediate to 16 bits.
- */
-#define IF_FLAG_S                       (1 <<  2)
 #define IF_FB_S_BIT                     1
 #define IF_FB_S_MASK                    (1 << IF_FB_S_BIT)
-
-/** Instruction format 'v' field.
- * v = 0: Shift/rotate count is one.
- * v = 1: Shift/rotate count specified in CL register.
- */
-#define IF_FLAG_V                       (1 <<  3)
 #define IF_FB_V_BIT                     1
 #define IF_FB_V_MASK                    (1 << IF_FB_V_BIT)
+
 
 /** Instruction format 'reg' field.
  * reg is the register number.
  */
-#define IF_FLAG_REG                     (1 <<  4)
+#define IF_FLAG_REG                     (1 <<  3)
 #define IF_FB_REG_BIT                   0
 #define IF_FB_REG_MASK                  (0b111 << IF_FB_REG_BIT)
 #define IF_SB_REG_BIT                   3
@@ -116,7 +120,7 @@ extern uint8_t registers_segment_length;
 /** Instruction format 'sreg' field.
  * sreg is the segment register number.
  */
-#define IF_FLAG_SREG                    (1 <<  5)
+#define IF_FLAG_SREG                    (1 <<  4)
 #define IF_FB_SREG_BIT                  3
 #define IF_FB_SREG_MASK                 (0b11 << IF_FB_SREG_BIT)
 #define IF_SB_SREG_BIT                   3
@@ -125,17 +129,24 @@ extern uint8_t registers_segment_length;
 /** Instruction format 'esc' field - called 'xxx'/'yyy' field in 8086's docs.
  * These are a 6-bit user given constant.
  */
-#define IF_FLAG_ESC                     (1 <<  6)
+#define IF_FLAG_ESC                     (1 <<  5)
 #define IF_FB_ESC_BIT                   0
 #define IF_FB_ESC_MASK                  (0b111 <<  IF_FB_ESC_BIT)
 #define IF_SB_ESC_BIT                   3
 #define IF_SB_ESC_MASK                  (0b111 <<  IF_FB_ESC_BIT)
 
 
+
+#define IF_BYTES_BIT                    6
+#define IF_BYTES_MASK                   (0b11 << IF_BYTES_BIT)
+
+#define IF_BYTES_ONE                    (0 << IF_BYTES_BIT)
+#define IF_BYTES_TWO                    (1 << IF_BYTES_BIT)
 /** Instruction format 'mod r/m' field.
  * These set the addressing mode.
  */
-#define IF_FLAG_MOD_RM                  (1 <<  7)
+#define IF_BYTES_MOD_RM                 (2 << IF_BYTES_BIT)
+
 #define IF_SB_MOD_BIT                   6
 #define IF_SB_MOD_MASK                  (0b11 <<  IF_SB_MOD_BIT)
 #define IF_SB_RM_BIT                    0
@@ -200,9 +211,17 @@ extern uint8_t registers_segment_length;
 #define IF_FLAG_SEG16                   (1 << 10)
 #define IF_FLAG_DISP8                   (1 << 11)
 #define IF_FLAG_DATA8                   (1 << 12)
-#define IF_FLAG_AX_SRC                  (1 << 13)
-#define IF_FLAG_AX_DST                  (1 << 14)
-#define IF_FLAG_DX                      (1 << 15)
+
+#define IF_IMPLICIT_BIT                 13
+#define IF_IMPLICIT_MASK                (0b111 << IF_IMPLICIT_BIT)
+
+#define IF_IMPLICIT_NONE                (0 << IF_IMPLICIT_BIT)
+#define IF_IMPLICIT_AX_SRC              (1 << IF_IMPLICIT_BIT)
+#define IF_IMPLICIT_AX_DST              (2 << IF_IMPLICIT_BIT)
+#define IF_IMPLICIT_AX_BOTH             (3 << IF_IMPLICIT_BIT)
+#define IF_IMPLICIT_DX_SRC              (4 << IF_IMPLICIT_BIT)
+#define IF_IMPLICIT_DX_DST              (5 << IF_IMPLICIT_BIT)
+#define IF_IMPLICIT_0x03                (6 << IF_IMPLICIT_BIT)
 
 /**
  * @struct if_t
