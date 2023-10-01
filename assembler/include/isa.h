@@ -199,18 +199,23 @@ extern uint8_t registers_segment_length;
 #define IF_RM_MEMORY_BX_DISP8           7
 #define IF_RM_MEMORY_BX_DISP16          7
 
-/** Instruction format data bytes.
+
+#define IF_SUFFIX_BIT                   8
+#define IF_SUFFIX_MASK                  (0b111 << IF_SUFFIX_BIT)
+
+#define IF_SUFFIX_NONE                  (0 << IF_SUFFIX_BIT)
+/** Instruction format data with variable width.
  * Data width is:
  * if 's' and 'w' in FB: s=0: 16-bit, s=1: 8-bit.
  * if only 'w' in FB: w=0: 8-bit, w=1: 16-bit.
- * else: 16-bit
  */
-#define IF_FLAG_DATA                    (1 <<  8)
-#define IF_FLAG_ADDR16                  (1 <<  9)
-#define IF_FLAG_DISP16                  (1 << 10)
-#define IF_FLAG_SEG16                   (1 << 10)
-#define IF_FLAG_DISP8                   (1 << 11)
-#define IF_FLAG_DATA8                   (1 << 12)
+#define IF_SUFFIX_DATA_VW               (1 << IF_SUFFIX_BIT)
+#define IF_SUFFIX_ADDR16                (2 << IF_SUFFIX_BIT)
+#define IF_SUFFIX_DISP16                (3 << IF_SUFFIX_BIT)
+#define IF_SUFFIX_OFFSET16_SEG16        (4 << IF_SUFFIX_BIT)
+#define IF_SUFFIX_DISP8                 (5 << IF_SUFFIX_BIT)
+#define IF_SUFFIX_DATA8                 (6 << IF_SUFFIX_BIT)
+#define IF_SUFFIX_DATA16                (7 << IF_SUFFIX_BIT)
 
 #define IF_IMPLICIT_BIT                 13
 #define IF_IMPLICIT_MASK                (0b111 << IF_IMPLICIT_BIT)

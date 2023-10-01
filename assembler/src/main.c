@@ -101,22 +101,18 @@ void print_instruction(instruction_t instruction){
         
         printf(" ");
         // depending on addressing mode, optional (disp-low, disp-high) comes here
-        if(f.flags & IF_FLAG_ADDR16) printf("addr-low, addr-high");
-        if(f.flags & IF_FLAG_SEG16) printf("seg-low, seg-high");
-        if(f.flags & IF_FLAG_DISP16) printf("disp-low, disp-high");
-        if(f.flags & IF_FLAG_DATA){
-            if(f.flags & IF_FLAG_W){
-                if(f.flags & IF_DSV_S){
-                    printf("data-low, data-high if sw=01");
-                }else{
-                    printf("data-low, data-high if w=1");
-                }
-            }else{
-                printf("data-low, data-high");
+        if(f.flags & IF_SUFFIX_MASK){
+            if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_ADDR16) printf("addr-low, addr-high");
+            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_OFFSET16_SEG16) printf("offset-low, offset-high, seg-low, seg-high");
+            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DISP16) printf("disp-low, disp-high");
+            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DATA8) printf("data8, ");
+            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DATA16) printf("data-low, data-high, ");
+            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DISP8) printf("disp");
+            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DATA_VW){
+                if(f.flags & IF_DSV_S) printf("data-low, data-high if sw=01");
+                else printf("data-low, data-high if w=1");
             }
         }
-        if(f.flags & IF_FLAG_DATA8) printf("data8, ");
-        if(f.flags & IF_FLAG_DISP8) printf("disp");
         if(f.flags & IF_IMPLICIT_MASK){
             printf(" (");
             if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_SRC) printf("AX_SRC, ");
