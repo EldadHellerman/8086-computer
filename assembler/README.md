@@ -80,7 +80,7 @@ mov ax, [ES : 0x04] // Segment override is inside the square brackets.
 
 #define const 5
 
-#define macro(x) mov ax, 5
+#define macro1(x)   mov ax, 5
 #define macro2(a,b) (bp + si + a*8 + b)
 
 #macro macro3
