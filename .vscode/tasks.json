@@ -1,0 +1,32 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "make assembler",
+            "command": "C:/Program Files/w64devkit/bin/make.exe",
+            "args": ["build"],
+            "options": {
+                "cwd": "${workspaceFolder}/assembler"
+            },
+            "problemMatcher": ["$gcc"],
+            
+        },
+        {
+            "type": "shell",
+            "label": "make assembler (debug)",
+            "command": "C:/Program Files/w64devkit/bin/make.exe",
+            "args": ["debug"],
+            "options": {
+                "cwd": "${workspaceFolder}/assembler"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        }
+    ],
+    "version": "2.0.0"
+}
