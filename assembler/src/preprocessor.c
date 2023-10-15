@@ -2,7 +2,6 @@
 #include "stdio.h"
 #include "string.h"
 
-int main(int argv, char **argc){
+void preprocessor(void){
     printf("hello!\n");
-    return EXIT_SUCCESS;
 }
