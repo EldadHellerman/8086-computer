@@ -1,5 +1,5 @@
 #ifndef ISA_H
-#define  ISA_H
+#define ISA_H
 
 #include <inttypes.h>
 #include <stdbool.h>
@@ -10,34 +10,22 @@
  * Bit order in word and byte: (MSB) 15 14 13 12 11 10 9 8    7 6 5 4 3 2 1 0 (LSB).
  */
 
-
 // Registers:
 
-/** @struct reg_t
- *  @brief 8086 hardware register
- *  @param name Register name
- *  @param binary Register binary representation
- */
-typedef struct{
-    /** Register name */
-    const char *name;
-    /** Register binary representation */
-    uint8_t binary;
-} reg_t;
-
 /** 8-bit registers array */
-extern reg_t registers_byte[];
-extern uint8_t registers_byte_length;
+extern const char *strings_registers_byte[];
+extern uint8_t strings_registers_byte_length;
 /** 16-bit registers array */
-extern reg_t registers_word[];
-extern uint8_t registers_word_length;
+extern const char *strings_registers_word[];
+extern uint8_t strings_registers_word_length;
 /** segment registers array */
-extern reg_t registers_segment[];
-extern uint8_t registers_segment_length;
+extern const char *strings_registers_segment[];
+extern uint8_t strings_registers_segment_length;
 
 
 
-// Flags:
+// 8086 Flags register:
+/*
 #define FLAGS_OVERFLOW_BIT              11
 #define FLAGS_DIRECTION_BIT             10
 #define FLAGS_INTERRUPT_ENABLE_BIT      9
@@ -57,7 +45,7 @@ extern uint8_t registers_segment_length;
 #define FLAGS_AUXILIARY_CARRY_MASK      (1 << FLAGS_AUXILIARY_CARRY_BIT)
 #define FLAGS_PARITY_MASK               (1 << FLAGS_PARITY_BIT)
 #define FLAGS_CARRY_MASK                (1 << FLAGS_CARRY_BIT)
-
+*/
 
 
 // Instructions formats:
@@ -259,8 +247,9 @@ typedef struct{
 #define MAX_MNEMONIC_LENGTH             6
 
 /** @struct instruction_t
- * @param mnemonic Instruction mnemonic.
- * @param format Instruction binary format.
+ * @param mnemonic Instruction mnemonic. Constant length of (MAX_MNEMONIC_LENGTH + 1).
+ * @param formats_length Length of formats array.
+ * @param formats Instruction formats array.
  */
 typedef struct{
     const char mnemonic[MAX_MNEMONIC_LENGTH + 1];

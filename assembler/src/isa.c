@@ -2,40 +2,17 @@
 
 // Registers:
 
-/* {name, binary} */
-reg_t registers_word[] = {
-    {"AX", 0},
-    {"CX", 1},
-    {"DX", 2},
-    {"BX", 3},
-    {"SP", 4},
-    {"BP", 5},
-    {"SI", 6},
-    {"DI", 7}
-};
-uint8_t registers_word_length = sizeof(registers_word) / sizeof(reg_t);
+/** Register index in array is its binary representation */
+const char *strings_registers_word[] = { "AX", "CX", "DX", "BX", "SP", "BP", "SI", "DI"};
+uint8_t strings_registers_word_length = sizeof(strings_registers_word) / sizeof(char*);
 
-reg_t registers_byte[] = {
-    {"AL", 0},
-    {"CL", 1},
-    {"DL", 2},
-    {"BL", 3},
-    {"AH", 4},
-    {"CH", 5},
-    {"DH", 6},
-    {"BH", 7},
-};
-uint8_t registers_byte_length = sizeof(registers_byte) / sizeof(reg_t);
+/** Register index in array is its binary representation */
+const char *strings_registers_byte[] = { "AL", "CL", "DL", "BL", "AH", "CH", "DH", "BH"};
+uint8_t strings_registers_byte_length = sizeof(strings_registers_byte) / sizeof(char*);
 
-reg_t registers_segment[] = {
-    {"ES", 0},
-    {"CS", 1},
-    {"SS", 2},
-    {"DS", 3},
-};
-uint8_t registers_segment_length = sizeof(registers_segment) / sizeof(reg_t);
-
-
+/** Register index in array is its binary representation */
+const char *strings_registers_segment[] = {"ES", "CS", "SS", "DS"};
+uint8_t strings_registers_segment_length = sizeof(strings_registers_segment) / sizeof(char*);
 
 // Instructions:
 
@@ -48,11 +25,11 @@ instruction_t instructions[] = {
          {IF_FLAG_W | IF_BYTES_MOD_RM | IF_SUFFIX_DATA_VW, 0b11000110, 0},
          {IF_DSV_D | IF_BYTES_MOD_RM | IF_FLAG_SREG, 0b10001100, 0}}},
     {"PUSH", 3, (if_t *)&(if_t[])
-        {{IF_FLAG_REG, 0b01010000, 0},
+        {{IF_FLAG_REG, 0b01010000, 0}, // word register
          {IF_FLAG_SREG, 0b00000110, 0},
          {IF_BYTES_MOD_RM, 0b11111111, 0b00110000}}},
     {"POP", 3, (if_t *)&(if_t[])
-        {{IF_FLAG_REG, 0b01011000, 0},
+        {{IF_FLAG_REG, 0b01011000, 0},  // word register
          {IF_FLAG_SREG, 0b00000111, 0},
          {IF_BYTES_MOD_RM, 0b10001111, 0}}},
     {"XCHG", 2, (if_t *)&(if_t[])
@@ -82,7 +59,7 @@ instruction_t instructions[] = {
          {IF_FLAG_W | IF_IMPLICIT_AX_DST | IF_SUFFIX_DATA_VW, 0b00010100, 0},
          {IF_DSV_S | IF_FLAG_W | IF_BYTES_MOD_RM | IF_SUFFIX_DATA_VW, 0b10000000, 0b00010000}}},
     {"INC", 2, (if_t *)&(if_t[])
-        {{IF_FLAG_REG, 0b01000000, 0},
+        {{IF_FLAG_REG, 0b01000000, 0},  // word register
          {IF_FLAG_W | IF_BYTES_MOD_RM, 0b11111110, 0}}},
     {"AAA", 1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b00110111, 0}}},
     {"DAA", 1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b00100111, 0}}},
@@ -95,7 +72,7 @@ instruction_t instructions[] = {
          {IF_FLAG_W | IF_IMPLICIT_AX_DST | IF_SUFFIX_DATA_VW, 0b00011100, 0},
          {IF_DSV_S | IF_FLAG_W | IF_BYTES_MOD_RM | IF_SUFFIX_DATA_VW, 0b10000000, 0b00011000}}},
     {"DEC", 2, (if_t *)&(if_t[])
-        {{IF_FLAG_REG, 0b01001000, 0},
+        {{IF_FLAG_REG, 0b01001000, 0},  // word register
          {IF_FLAG_W | IF_BYTES_MOD_RM, 0b11111110, 0b00001000}}},
     {"NEG", 1, (if_t *)&(if_t[]){{IF_FLAG_W | IF_BYTES_MOD_RM, 0b11110110, 0b00011000}}},
     {"CMP", 3, (if_t *)&(if_t[])
@@ -222,8 +199,7 @@ instruction_t instructions[] = {
     {"HLT",     1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b11110100, 0}}},
     {"WAIT",    1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b10011011, 0}}},
     {"ESC",     1, (if_t *)&(if_t[]){{IF_FLAG_ESC | IF_BYTES_MOD_RM, 0b11011000, 0}}},
-    {"LOCK",    1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b11110000, 0}}}
+    {"LOCK",    1, (if_t *)&(if_t[]){{IF_BYTES_ONE, 0b11110000, 0}}},
+    // {"_SOP",    1, (if_t *)&(if_t[]){{IF_BYTES_ONE | IF_FLAG_SREG, 0b001000110, 0}}} // Segment override prefix
 };
 uint16_t instructions_length = sizeof(instructions) / sizeof(instruction_t);
-
-
