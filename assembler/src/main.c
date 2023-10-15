@@ -1,4 +1,8 @@
 #include "assembler.h"
+#include "tokenizer.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "string.h"
 #include "stdbool.h"
 
 /* TODO:
@@ -12,6 +16,12 @@
     after doing that and checking: with all instructions as complex instructions, data size is ~2400 bytes.
         with the above seperation between instruction types, data size is ~1600 bytes.
     I will leave this as a step when optimizing for the 8086 itself to run the assembler.
+
+    what to do with: "push 0x12"? should it be "push word 0x12" or "pushw 0x12"?
+    
+    label tables can be store as array of chars, with each label having
+    start index in table (until '\0'), and then it can even be sorted efficiently, and stored
+    in a relativly compact form.
 */
 
 void sort_array_in_place(void *array, size_t array_length, size_t element_size, bool (*compare_function)(void *e1, void *e2)){
@@ -129,7 +139,10 @@ void print_instruction(instruction_t instruction){
 }
 
 void print_all_instructions(){
-    for(int i = 0; i < instructions_length; i++) print_instruction(instructions[i]);
+    for(int i = 0; i < instructions_length; i++){
+        printf("%d - ", i);
+        print_instruction(instructions[i]);
+    }
 }
 
 void print_memory_usage(){
@@ -155,13 +168,14 @@ void print_memory_usage(){
 }*/
 
 int main(int argv, char **argc){
-    printf("Arguments:\n");
+    printf("Arguments: \n");
     for(int i=0; i < argv; i++) printf("\t#%d - '%s'\n", i+1, argc[i]);
 
     sort_array_in_place(instructions, instructions_length, sizeof(instruction_t), compare_instructions);
     
     printf("there are %d intrcutions\n", instructions_length);
-    print_all_instructions();
-    print_memory_usage();
+    // print_all_instructions();
+    // print_memory_usage();
+    
     return EXIT_SUCCESS;
 }

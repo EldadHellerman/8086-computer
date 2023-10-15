@@ -1,5 +1,8 @@
 #include "assembler.h"
 #include "tokenizer.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "string.h"
 
 /*
 TODO:
