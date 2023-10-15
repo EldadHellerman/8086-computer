@@ -1,7 +1,7 @@
 // preprocessor
 
 #ifndef _PROG_2_H
-#def _PROG_2_H
+#define _PROG_2_H
 #include "RGB_LCD.asm"
 #define num     5
 
@@ -16,5 +16,9 @@
     call rgblcd_draw_rect
     add sp, 8
 #endmacro
+
+#if 4 < 5
+mov ax, 5
+#endif
 
 #endif

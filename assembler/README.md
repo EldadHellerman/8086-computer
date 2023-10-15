@@ -75,7 +75,7 @@ mov ax, [ES : 0x04] // Segment override is inside the square brackets.
 ```
 #include "file"
 #ifndef GUARD
-#def GUARD
+#define GUARD
 #endif
 
 #define const 5
@@ -87,6 +87,10 @@ mov ax, [ES : 0x04] // Segment override is inside the square brackets.
     mov ax, 0
     ret
 #endmacro
+
+#if 4 < 5
+mov ax, 5
+#endif
 ```
 
 Comments:
