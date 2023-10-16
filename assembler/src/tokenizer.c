@@ -2,12 +2,11 @@
 #include "isa.h"
 #include "assembler.h"
 #include "string.h"
-#include "stdio.h"
+#include "print.h"
 #include "stdbool.h"
 
 /**
  * TODO
- *  - char doesn't support excape characters like '\0'
  *  - float is not detected correctly (plus or minus allowed after 'e')
  * 
  */
@@ -323,11 +322,18 @@ token get_token(const char *data, unsigned int data_length){
         return result;
     }
     // try to match char constant:
-    if(data_length > 2 &&  data[0] == '\'' && data[2] == '\''){
-        result.type = CONSTANT_CHAR;
-        result.number_of_characters = 3;
-        result.index = data[1];
-        return result;
+    if(data[0] == '\''){
+       if(data_length > 2 && data[1] != '\\' && data[2] == '\''){ // regular char
+            result.type = CONSTANT_CHAR;
+            result.number_of_characters = 3;
+            result.index = data[1];
+            return result;
+        }else if(data_length > 3 && data[1] == '\\' && data[3] == '\''){ // escaped char
+            result.type = CONSTANT_CHAR_ESCAPED;
+            result.number_of_characters = 4;
+            result.index = data[2];
+            return result;
+        }
     }
     // try to match string constant:
     if(data[0] == '"'){
@@ -392,7 +398,7 @@ const char* strings_token_types[] = {
     [CONSTANT_INTEGER_HEX] = "hex",
     [CONSTANT_INTEGER_OCTAL] = "octal",
     [CONSTANT_FLOAT] = "float",
-    [CONSTANT_CHAR] = "char",
+    // [CONSTANT_CHAR] = "char",
     [CONSTANT_STRING] = "string",
     [CONSTANT_STRING_INVALID] = "INVALID string",
     [LABEL] = "label",
@@ -410,12 +416,14 @@ const char* strings_token_types[] = {
 };
 
 void print_token(token t){
-    if(t.type == MNEMONIC) printf("'%s'", instructions[t.index].mnemonic);
-    else if(t.type == DIRECTIVE) printf("%s", strings_directives[t.index]);
-    else if(t.type == REGISTER_BYTE) printf("%s", strings_registers_byte[t.index]);
-    else if(t.type == REGISTER_WORD) printf("%s", strings_registers_word[t.index]);
-    else if(t.type == REGISTER_SEGMENT) printf("%s", strings_registers_segment[t.index]);
-    else if(t.type == OTHER) printf("OTHER");
-    else printf("'%s'", strings_token_types[t.type]);
+    if(t.type == MNEMONIC) print("'%s'", instructions[t.index].mnemonic);
+    else if(t.type == DIRECTIVE) print("%s", strings_directives[t.index]);
+    else if(t.type == REGISTER_BYTE) print("%s", strings_registers_byte[t.index]);
+    else if(t.type == REGISTER_WORD) print("%s", strings_registers_word[t.index]);
+    else if(t.type == REGISTER_SEGMENT) print("%s", strings_registers_segment[t.index]);
+    else if(t.type == OTHER) print("OTHER");
+    else if(t.type == CONSTANT_CHAR) print("char(%c)", t.index);
+    else if(t.type == CONSTANT_CHAR_ESCAPED) print("char(\\%c)", t.index);
+    else print("'%s'", strings_token_types[t.type]);
     
 }

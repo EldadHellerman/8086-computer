@@ -1,7 +1,6 @@
 #include "preprocessor.h"
-
+#include "print.h"
 #include "stdlib.h"
-#include "stdio.h"
 
 // Preprocessor directives:
 
@@ -22,5 +21,5 @@ uint8_t strings_preprocessor_directives_length = sizeof(strings_preprocessor_dir
 
 
 void preprocessor(void){
-    printf("hello!\n");
+    print("hello!\n");
 }

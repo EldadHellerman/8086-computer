@@ -1,9 +1,10 @@
 #include "assembler.h"
 #include "tokenizer.h"
 #include "stdlib.h"
-#include "stdio.h"
 #include "string.h"
 #include "stdbool.h"
+
+#include "print.h"
 
 /* TODO:
     - have instructions data sorted in source file so it is stored sorted in read only memory.
@@ -17,11 +18,14 @@
         with the above seperation between instruction types, data size is ~1600 bytes.
     I will leave this as a step when optimizing for the 8086 itself to run the assembler.
 
-    what to do with: "push 0x12"? should it be "push word 0x12" or "pushw 0x12"?
+    -what to do with: "push 0x12"? should it be "push word 0x12" or "pushw 0x12"?
     
     label tables can be store as array of chars, with each label having
     start index in table (until '\0'), and then it can even be sorted efficiently, and stored
     in a relativly compact form.
+
+    - have a few spaces appended to file buffer, that way there is now need to account for last characters in file,
+        using all thoes if(data_length > 2) checks (being careful with the space token itself).
 */
 
 void sort_array_in_place(void *array, size_t array_length, size_t element_size, bool (*compare_function)(void *e1, void *e2)){
@@ -46,14 +50,14 @@ bool compare_instructions(void *first_instruction, void *second_instruction){
 }
 
 void print_bit(uint8_t data, uint8_t bit){
-    printf("%c", (data & (1 << bit)) ? '1' : '0');
+    print("%c", (data & (1 << bit)) ? '1' : '0');
 }
 
 void print_instruction(instruction_t instruction){
-    printf("%s:\n", instruction.mnemonic);
+    print("%s:\n", instruction.mnemonic);
     for(uint8_t i = 0; i < instruction.formats_length; i++){
         if_t f = instruction.formats[i];
-        printf("\t#%d - ", i+1);
+        print("\t#%d - ", i+1);
         char output[9] = {[8] = '\0'}; // char output of byte
         for(uint8_t i = 0; i < 8; i++) output[i] = (f.first_byte & (1 << i)) ? '1' : '0';
         if((f.flags & IF_FLAG_REG) && !(f.flags & IF_BYTES_MOD_RM)){
@@ -81,10 +85,10 @@ void print_instruction(instruction_t instruction){
             output[IF_FB_ESC_BIT + 1] =  'x';
             output[IF_FB_ESC_BIT] =  'x';
         }
-        for(int8_t i = 7; i >= 0; i--) printf("%c", output[i]);
+        for(int8_t i = 7; i >= 0; i--) print("%c", output[i]);
         if((f.flags & IF_BYTES_MASK) == IF_BYTES_TWO){
             for(uint8_t i = 0; i < 8; i++) output[i] = (f.second_byte & (1 << i)) ? '1' : '0';
-            printf(" "); for(int8_t i = 7; i >= 0; i--) printf("%c", output[i]);
+            print(" "); for(int8_t i = 7; i >= 0; i--) print("%c", output[i]);
         }else if((f.flags & IF_BYTES_MASK) == IF_BYTES_MOD_RM){
             for(uint8_t i = 0; i < 8; i++) output[i] = (f.second_byte & (1 << i)) ? '1' : '0';
             output[7] = 'M';
@@ -106,41 +110,41 @@ void print_instruction(instruction_t instruction){
                 output[IF_SB_SREG_BIT + 1] =  'S';
                output[IF_SB_SREG_BIT] =  'R';
             }
-            printf(" "); for(int8_t i = 7; i >= 0; i--) printf("%c", output[i]);
+            print(" "); for(int8_t i = 7; i >= 0; i--) print("%c", output[i]);
         }
         
-        printf(" ");
+        print(" ");
         // depending on addressing mode, optional (disp-low, disp-high) comes here
         if(f.flags & IF_SUFFIX_MASK){
-            if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_ADDR16) printf("addr-low, addr-high");
-            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_OFFSET16_SEG16) printf("offset-low, offset-high, seg-low, seg-high");
-            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DISP16) printf("disp-low, disp-high");
-            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DATA8) printf("data8, ");
-            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DATA16) printf("data-low, data-high, ");
-            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DISP8) printf("disp");
+            if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_ADDR16) print("addr-low, addr-high");
+            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_OFFSET16_SEG16) print("offset-low, offset-high, seg-low, seg-high");
+            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DISP16) print("disp-low, disp-high");
+            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DATA8) print("data8, ");
+            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DATA16) print("data-low, data-high, ");
+            else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DISP8) print("disp");
             else if((f.flags & IF_SUFFIX_MASK) == IF_SUFFIX_DATA_VW){
-                if(f.flags & IF_DSV_S) printf("data-low, data-high if sw=01");
-                else printf("data-low, data-high if w=1");
+                if(f.flags & IF_DSV_S) print("data-low, data-high if sw=01");
+                else print("data-low, data-high if w=1");
             }
         }
         if(f.flags & IF_IMPLICIT_MASK){
-            printf(" (");
-            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_SRC) printf("AX_SRC, ");
-            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_DST) printf("AX_DST, ");
-            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_BOTH) printf("AX, ");
-            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_SRC_DX_DST) printf("AX_SRC_DX_SRC, ");
-            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_DST_DX_SRC) printf("AX_DST_DX_SRC, ");
-            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_0x03) printf("0x03, ");
-            printf(")");
+            print(" (");
+            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_SRC) print("AX_SRC, ");
+            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_DST) print("AX_DST, ");
+            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_BOTH) print("AX, ");
+            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_SRC_DX_DST) print("AX_SRC_DX_SRC, ");
+            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_AX_DST_DX_SRC) print("AX_DST_DX_SRC, ");
+            if((f.flags & IF_IMPLICIT_MASK) == IF_IMPLICIT_0x03) print("0x03, ");
+            print(")");
         }
-        printf("\n");
+        print("\n");
     }
 
 }
 
 void print_all_instructions(){
     for(int i = 0; i < instructions_length; i++){
-        printf("%d - ", i);
+        print("%d - ", i);
         print_instruction(instructions[i]);
     }
 }
@@ -150,9 +154,8 @@ void print_memory_usage(){
     for(int i = 0; i < instructions_length; i++) number_of_formats += instructions[i].formats_length;
     int mem_instructions = (int)sizeof(instruction_t) * instructions_length;
     int mem_formats = (int)sizeof(if_t) * number_of_formats;
-    printf("memory use: instrcutions: %d, formats: %d\n",
-        mem_instructions, mem_formats);
-    printf("total memory use: %d\n", mem_instructions + mem_formats);
+    log("memory use: instrcutions: %d, formats: %d\n", mem_instructions, mem_formats);
+    log("total memory use: %d\n", mem_instructions + mem_formats);
 }
 
 /*void print_memory_usage_small(){
@@ -162,20 +165,19 @@ void print_memory_usage(){
     int mem_formats = (int)sizeof(if_t) * number_of_formats;
     int mem_simple_instructions = (int)sizeof(ifob_t) * instructions_byte_length;
     int mem_disp_instructions = (int)sizeof( ifob_t) * instructions_disp_length;
-    printf("memory use: instrcutions: %d, simple instructions: %d, disp instructions: %d, formats: %d\n",
+    log("memory use: instrcutions: %d, simple instructions: %d, disp instructions: %d, formats: %d\n",
         mem_instructions, mem_simple_instructions, mem_disp_instructions, mem_formats);
-    printf("total memory use: %d\n", mem_instructions + mem_simple_instructions + mem_disp_instructions + mem_formats); 
+    log("total memory use: %d\n", mem_instructions + mem_simple_instructions + mem_disp_instructions + mem_formats); 
 }*/
 
 int main(int argv, char **argc){
-    printf("Arguments: \n");
-    for(int i=0; i < argv; i++) printf("\t#%d - '%s'\n", i+1, argc[i]);
+    log("Arguments: \n");
+    for(int i=0; i < argv; i++) print("\t#%d - '%s'\n", i+1, argc[i]);
 
     sort_array_in_place(instructions, instructions_length, sizeof(instruction_t), compare_instructions);
     
-    printf("there are %d intrcutions\n", instructions_length);
+    print("there are %d intrcutions\n", instructions_length);
     // print_all_instructions();
     // print_memory_usage();
-    
     return EXIT_SUCCESS;
 }

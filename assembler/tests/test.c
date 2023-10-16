@@ -1,7 +1,7 @@
 #include "assembler.h"
 #include "tokenizer.h"
 #include "stdlib.h"
-#include "stdio.h"
+#include "print.h"
 #include "string.h"
 
 /*
@@ -24,7 +24,7 @@ enum state state = ASSEMBLY;
 
 bool test_assembler_basic(){
     bool result = true;
-    printf("testing basic assembly commands from file.\n");
+    log("testing basic assembly commands from file.\n");
     FILE* fp;
     char buffer_line_assebly[BUFFER_SIZE];
     char buffer_line_binary[BUFFER_SIZE];
@@ -38,14 +38,14 @@ bool test_assembler_basic(){
         size_t buffer_line_assembly_size = strlen(buffer_line_assebly);
         if(buffer_line_assembly_size == 1) continue; // empty line. skip to next one.
         if(!fgets(buffer_line_binary, BUFFER_SIZE, fp)){
-            fprintf(stderr, "There is an assembly line without a matching binary line.\n");
+            error("There is an assembly line without a matching binary line.\n");
             exit(EXIT_FAILURE);
         }
         size_t buffer_line_binary_size = strlen(buffer_line_binary);
 
         buffer_line_assebly[buffer_line_assembly_size- 1] = 0; // remove trailing '\n'
         buffer_line_binary[buffer_line_binary_size - 1] = 0; // remove trailing '\n'
-        printf("'%s'   ->   ", buffer_line_assebly);
+        print("'%s'   ->   ", buffer_line_assebly);
         
         buffer_binary_size = 0;
         hex_end = &buffer_line_binary[0];
@@ -57,12 +57,12 @@ bool test_assembler_basic(){
             buffer_binary_size++;
         }
         for(int i = 0; i < buffer_binary_size; i++){
-            printf("%02X, ", buffer_binary[i]);
+            print("%02X, ", buffer_binary[i]);
         }
-        printf("\n");
+        print("\n");
         if(0){
             result = false;
-            printf("Expecting: but got: ...\n");
+            error("Expecting: but got: ...\n");
         }
     }
     fclose(fp);
@@ -74,14 +74,14 @@ const char * file_path_tokenizer = "tests/programs/prog1.asm";
 
 bool test_tokenizer(){
     bool result = true;
-    printf("testing tokenizer from file %s.\n", file_path_tokenizer);
+    log("Testing tokenizer from file %s.\n", file_path_tokenizer);
     FILE* fp;
     char *buffer;
     unsigned int file_size;
 
     fp = fopen(file_path_tokenizer, "rb");
     if (fp == NULL){
-        fprintf(stderr, __FILE__":" TO_STRING(__LINE__)": error: Could not open file.\n");
+        error("Could not open file.\n");
         exit(EXIT_FAILURE);
     }
     fseek(fp, 0, SEEK_END);
@@ -92,8 +92,7 @@ bool test_tokenizer(){
     if (buffer == NULL) exit(EXIT_FAILURE);
     unsigned int read = (unsigned int)fread(buffer, 1, file_size, fp);
     if(read != file_size){
-        fprintf(stderr, __FILE__":" TO_STRING(__LINE__)": error: File was not read completely.\n");
-        fprintf(stderr, "\tread %d bytes out of %d.\n", read, file_size);
+        error("File was not read completely. Read %d bytes out of %d.\n", read, file_size);
         free(buffer);
         exit(EXIT_FAILURE);
     }
@@ -110,15 +109,15 @@ bool test_tokenizer(){
             else if(data[i] == '\r'){ temp[ti++] = '\\'; temp[ti++] = 'r';}
             else temp[ti++] = data[i]; 
         }
-        printf("get_token(\"%-15s\")   -   ", temp);
+        print("get_token(\"%-15s\")   -   ", temp);
         */
 
         token t = get_token(data, bytes_remainging);
         if(t.type != SPACE){
             print_token(t);
-            if(t.type == LABEL) printf(" ('%.*s')", t.number_of_characters-1, data+1);
-            if(t.type == OTHER) printf(" ('%.*s')", t.number_of_characters, data);
-            if(t.type == NEWLINE) printf("\n"); else printf(", ");
+            if(t.type == LABEL) print(" ('%.*s')", t.number_of_characters-1, data+1);
+            if(t.type == OTHER) print(" ('%.*s')", t.number_of_characters, data);
+            if(t.type == NEWLINE) print("\n"); else print(", ");
         }
 
         data += t.number_of_characters;
@@ -129,7 +128,7 @@ bool test_tokenizer(){
             bytes_remainging--;
         }
     }
-    printf("\n-------   end   -------\n");
+    print("\n-------   end   -------\n");
     free(buffer);
     return result;
 }
@@ -172,14 +171,14 @@ void generate_jump_conditional_to_file(){
 }
 
 int main(void){
-    printf("\033[95mRunning tests...\033[0m\n");
+    log("Running tests...\n");
     bool result = true;
     // result &= test_assembler_basic();
     result &= test_tokenizer();
     if(result){
-        printf("\033[92mPassed all tests!\033[0m\n");
+        log(COLOR_GREEN "Passed all tests!\n" COLOR_END);
     }else{
-        printf("\033[91mSome tests failed.\033[0m\n");
+        warning("Some tests failed.\n");
     }
     // generate_jump_conditional_to_file();
     return EXIT_SUCCESS;
