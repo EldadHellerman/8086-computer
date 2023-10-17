@@ -1,18 +1,10 @@
 #include "assembler.h"
 #include "tokenizer.h"
-#include "stdlib.h"
 #include "print.h"
-#include "string.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
-/*
-TODO:
- - add tests for ESC instruction.
- - add tests for instructions above jump on condition instructions.
-*/
-
-// ensuring macros passed in are expanded before stringizing
-#define _TO_STRING(x)   #x
-#define TO_STRING(x)    _TO_STRING(x)
 #define BUFFER_SIZE 255
 
 enum state{
@@ -70,7 +62,7 @@ bool test_assembler_basic(){
 }
 
 
-const char * file_path_tokenizer = "tests/programs/prog1.asm";
+const char *file_path_tokenizer = "tests/programs/prog1.asm";
 
 bool test_tokenizer(){
     bool result = true;
@@ -133,43 +125,6 @@ bool test_tokenizer(){
     return result;
 }
 
-
-
-void generate_jc(FILE *fp, char *mnemonic, unsigned char first_byte){
-    for(int i = 0; i<256; i++){
-        fprintf(fp, "%s 0x%02X\n\t0x%02X 0x%02X\n", mnemonic, i, first_byte, i);
-    }
-    fprintf(fp, "\n");
-}
-
-void generate_jump_conditional_to_file(){
-    FILE *fp = fopen("result.txt", "wb");
-    if(fp == NULL) exit(EXIT_FAILURE);
-    generate_jc(fp, "JE", 0b01110100); generate_jc(fp, "JZ", 0b01110100);
-    generate_jc(fp, "JL", 0b01111100); generate_jc(fp, "JNGE", 0b01111100);
-    generate_jc(fp, "JLE", 0b01111110); generate_jc(fp, "JNG",0b01111110);
-    generate_jc(fp, "JB", 0b01110010); generate_jc(fp, "JNAE",0b01110010);
-    generate_jc(fp, "JBE", 0b01110110); generate_jc(fp, "JNA",0b01110110);
-    generate_jc(fp, "JP", 0b01111010); generate_jc(fp, "JPE",0b01111010);
-    generate_jc(fp, "JO", 0b01110000);
-    generate_jc(fp, "JS", 0b01111000);
-    
-    generate_jc(fp, "JNE", 0b01110101); generate_jc(fp, "JNZ", 0b01110101);
-    generate_jc(fp, "JNL", 0b01111101); generate_jc(fp, "JGE", 0b01111101);
-    generate_jc(fp, "JNLE", 0b01111111); generate_jc(fp, "JG",0b01111111);
-    generate_jc(fp, "JNB", 0b01110011); generate_jc(fp, "JAE",0b01110011);
-    generate_jc(fp, "JNBE", 0b01110111); generate_jc(fp, "JA",0b01110111);
-    generate_jc(fp, "JNP", 0b01111011); generate_jc(fp, "JPO",0b01111011);
-    generate_jc(fp, "JNO", 0b01110001);
-    generate_jc(fp, "JNS", 0b01111001);
-
-    generate_jc(fp, "LOOP", 0b11100010);
-    generate_jc(fp, "LOOPZ", 0b11100001); generate_jc(fp, "LOOPE", 0b11100001);
-    generate_jc(fp, "LOOPNZ", 0b11100000); generate_jc(fp, "LOOPNE", 0b11100000);
-    generate_jc(fp, "JCXZ", 0b11100011);
-    fclose(fp);
-}
-
 int main(void){
     log("Running tests...\n");
     bool result = true;
@@ -180,6 +135,5 @@ int main(void){
     }else{
         warning("Some tests failed.\n");
     }
-    // generate_jump_conditional_to_file();
     return EXIT_SUCCESS;
 }

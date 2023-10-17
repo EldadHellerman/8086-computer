@@ -29,8 +29,6 @@ $main:
     add sp,4
     mov bx, 0x1234
     push bx
-    push 0x1234
-    push 0x12
 
     pop ax
     pop ax

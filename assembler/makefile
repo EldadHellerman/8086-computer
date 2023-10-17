@@ -8,7 +8,8 @@ OUTPUT = build/as.exe
 build:
 	clear
 	gcc $(CFLAGS) src/main.c $(FILES) -o $(OUTPUT)
-	./$(OUTPUT)
+	@timeout 1
+	./$(OUTPUT) tests/programs/prog3.asm
 
 debug:
 	clear
@@ -18,3 +19,8 @@ test:
 	clear
 	gcc $(CFLAGS) tests/test.c $(FILES) -o build/test.exe
 	./build/test.exe
+
+generate_tests:
+	clear
+	gcc $(CFLAGS) tests/generate_tests.c $(FILES) -o build/generate_tests.exe
+	./build/generate_tests.exe
