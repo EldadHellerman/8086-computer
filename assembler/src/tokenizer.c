@@ -184,7 +184,7 @@ static token get_simple_token(const char *data, unsigned int data_length){
     if(data_length >= 2){
         if(data[0] == '/' && data[1] == '/'){
             result.type = COMMENT_SINGLE_LINE;
-            result.number_of_characters = 2;
+            result.number_of_characters = 0;
             while(1){
                 if(is_newline(data, data_length) || data_length == 0) break;
                 result.number_of_characters++;
@@ -331,7 +331,31 @@ token get_token(const char *data, unsigned int data_length){
         }else if(data_length > 3 && data[1] == '\\' && data[3] == '\''){ // escaped char
             result.type = CONSTANT_CHAR_ESCAPED;
             result.number_of_characters = 4;
-            result.index = data[2];
+            switch(data[2]){
+                case 'n':
+                    result.index = '\n';
+                    break;
+                case 'r':
+                    result.index = '\r';
+                    break;
+                case 't':
+                    result.index = '\t';
+                    break;
+                case '\\':
+                    result.index = '\\';
+                    break;
+                case '\'':
+                    result.index = '\'';
+                    break;
+                case '\"':
+                    result.index = '\"';
+                    break;
+                case '0':
+                    result.index = '\0';
+                    break;
+                default: 
+                    result.type = CONSTANT_CHAR_ESCAPED_INVALID;
+            }
             return result;
         }
     }
@@ -423,7 +447,7 @@ void print_token(token t){
     else if(t.type == REGISTER_SEGMENT) print("%s", strings_registers_segment[t.index]);
     else if(t.type == OTHER) print("OTHER");
     else if(t.type == CONSTANT_CHAR) print("char(%c)", t.index);
-    else if(t.type == CONSTANT_CHAR_ESCAPED) print("char(\\%c)", t.index);
+    else if(t.type == CONSTANT_CHAR_ESCAPED) print("char(0x%02X)", t.index);
     else print("'%s'", strings_token_types[t.type]);
     
 }
