@@ -9,16 +9,14 @@ I'm trying to recycle old components I salvaged and not buy anything new (excpet
 
 ## Logic
 
-| IC Name       | Description                               | amount    |
-| ------------- | ----------------------------------------- | --------- |
-| 74AC373       | Octal latch with 3-STATE Outputs          | 20+       |
-| 74HC138D      | 3 to 8 line decoder; inverting            | 6         |
-| 74HC132       | Quad 2-input NAND gate; Schmitt trigger   | 6         |
-| 74AC00        | Quad 2-input NAND gate                    | 2         |
-| 74HC02        | Quad 2-input NOR gate                     | 6         |
-| 74ACT08       | Quad 2-input AND gate                     | 2         |
-| HEF40106      | Hex inverting Schmitt trigger             | 1         |
-| 74HC14        | Hex inverting Schmitt trigger             | 1         |
+| IC Name           | Description                               | amount    |
+| ----------------- | ----------------------------------------- | --------- |
+| 74AC373           | Octal latch with 3-STATE Outputs          | 20+       |
+| 74HC138D          | 3 to 8 line decoder; inverting            | 6         |
+| 74AC00 / 74HC132  | Quad 2-input NAND gate / schmitt trigger  | 2 / 6     |
+| 74HC02            | Quad 2-input NOR gate                     | 6         |
+| 74ACT08           | Quad 2-input AND gate                     | 2         |
+| 74HC14 / HEF40106 | Hex inverting Schmitt trigger             | 1 / 1     |
 
 ## Memory
 
@@ -61,6 +59,8 @@ They form a keyboard, with 'a'-'z', space, enter, backspace, CTRL, ALT, SHIFT.
 
 ### Co-Processor
 - Mircocontroller used to control the 8086 (generating clock and reset signals), programming the memory and generating interrupts.
+- Clock source: if I dont want to generate 33% duty cycle, than maybe a lower frequency 50% duty cycle instead.
+  (make 66% of 8MHz the 50% of frequency - which is 6MHz).
 - Maybe also act as peripherals (with or without interrupts): timers, UART, mouse (input from touch screen), SD card interface, etc...
 - Resistvive touch screen connector.
 - USB to UART convertor (SILABS CP2102).
