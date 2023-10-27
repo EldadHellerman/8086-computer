@@ -1,6 +1,8 @@
-# 8086
+# 8086 board
+This folder is a KiCad project folder.
+It includes the 8086 PC schematics and PCB design, as well as this readme file.
 
-The board has an expansion port for future developments - perhapse an FPGA graphics card with HDMI output.
+## Components
 
 I'm trying to recycle old components I salvaged and not buy anything new (excpet for the 8086 itself which I didn't have).
 
@@ -32,7 +34,6 @@ I'm trying to recycle old components I salvaged and not buy anything new (excpet
 
 ## Board details
 
-
 ### General
 - The 8086 itself.
 - 128kB SRAM + 512kB flash.
@@ -40,10 +41,10 @@ I'm trying to recycle old components I salvaged and not buy anything new (excpet
 - Logic for generating memory segment CS signals.
 - Logic for generating IO device CS signals for first 8 16-bit devices - IO[0-7].
 - Expansion port allowing access to 8086 bus.
+This may be used for future developments - perhapse an FPGA graphics card with HDMI output.
 - LED indicators for: latched adderss, memory access (SRAM 1 and SRAM 2, Flash is A19).
 - Power LED.
 - Reset button.
-- On / off switch.
 - USB-C port for power and communication with coprocessor.
 
 
