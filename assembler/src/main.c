@@ -1,5 +1,7 @@
 #include "assembler.h"
 #include "tokenizer.h"
+#include "isa.h"
+#include "preprocessor.h"
 #include "stdlib.h"
 #include "string.h"
 #include "stdbool.h"
@@ -8,24 +10,25 @@
 
 /* TODO:
     - have instructions data sorted in source file so it is stored sorted in read only memory.
+    
     - also, think of a good data structure for them and implement it.
-        (maybe one for assembly and for for dissasembly will be better).
+    (maybe one for assembly and for for dissasembly will be better).
+    
     - maybe space can be saved by divinding instructions array to types:
         one_byte_instructions - ~30 instructions with one byte only.
         disp_instructions - ~20 all jump on comdition.
         complex_instructions - all instructions left, ~50.
-    after doing that and checking: with all instructions as complex instructions, data size is ~2400 bytes.
-        with the above seperation between instruction types, data size is ~1600 bytes.
+    After doing that and checking: with all instructions as complex instructions, data size is ~2400 bytes.
+    With the above seperation between instruction types, data size is ~1600 bytes.
     I will leave this as a step when optimizing for the 8086 itself to run the assembler.
 
-    -what to do with: "push 0x12"? should it be "push word 0x12" or "pushw 0x12"?
-    
-    label tables can be store as array of chars, with each label having
+    - label tables can be store as array of chars, with each label having
     start index in table (until '\0'), and then it can even be sorted efficiently, and stored
     in a relativly compact form.
 
     - have a few spaces appended to file buffer, that way there is now need to account for last characters in file,
-        using all thoes if(data_length > 2) checks (being careful with the space token itself).
+    using all thoes if(data_length > 2) checks (being careful with the space token itself).
+
 */
 
 void sort_array_in_place(void *array, size_t array_length, size_t element_size, bool (*compare_function)(void *e1, void *e2)){
@@ -170,10 +173,20 @@ void print_memory_usage(){
     log("total memory use: %d\n", mem_instructions + mem_simple_instructions + mem_disp_instructions + mem_formats); 
 }*/
 
-int main(int argv, char **argc){
-    log("Arguments: \n");
-    for(int i=0; i < argv; i++) print("\t#%d - '%s'\n", i+1, argc[i]);
+int main(int argc, char **argv){
+    if(argc == 2){
+        FILE *fp = fopen(argv[1], "rb");
+        if(fp == NULL){
+            error("Could not open file '%s' - %s\n", argv[1], strerror(errno));
+            return EXIT_FAILURE;
+        }
+        assemble(fp);
+        fclose(fp);
+        return EXIT_SUCCESS;
+    }
 
+    log("Arguments: \n");
+    for(int i=0; i < argc; i++) print("\t#%d - '%s'\n", i+1, argv[i]);
     sort_array_in_place(instructions, instructions_length, sizeof(instruction_t), compare_instructions);
     
     print("there are %d intrcutions\n", instructions_length);
