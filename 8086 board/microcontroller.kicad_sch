@@ -6,8 +6,8 @@
 
   (title_block
     (title "8086 computer")
-    (date "2023.10.26")
-    (rev "V1.0.0")
+    (date "2023.10.29")
+    (rev "V1.1.0")
     (company "Eldad Hellerman")
     (comment 1 "Open Source: github.com/EldadHellerman/8086-computer")
   )
@@ -1470,7 +1470,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 4f33e4af-615f-4535-a235-a224c172ee57)
   )
-  (label "~{SEG6}" (at 76.2 55.88 180) (fields_autoplaced)
+  (label "~{MCU}" (at 76.2 55.88 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 4f88a4e4-b39b-438e-8c7e-7fd6e4bcc3b2)
   )

@@ -2,10 +2,6 @@
 This folder is a KiCad project folder.
 It includes the 8086 PC schematics and PCB design, as well as this readme file.
 
-## Components
-
-I'm trying to recycle old components I salvaged and not buy anything new (excpet for the 8086 itself which I didn't have).
-
 <details>
 <summary>Tables of IC's I have lying around:</summary>
 
@@ -94,8 +90,8 @@ Interrupt vector table is at 0x000 - 0x100. That's why the SRAM is at the bottom
 
 | Addresses             | Segments  | Size  | Description                       |
 | --------------------- | --------- | ----- | --------------------------------- |
-| 0x0_0000 - 0x2_0000   | 0 - 1     | 128kB | SRAM                              |
-| 0x2_0000 - 0x6_0000   | 2 - 5     | 256kB | FREE                              |
+| 0x0_0000 - 0x4_0000   | 0 - 3     | 256kB | SRAM                              |
+| 0x2_0000 - 0x6_0000   | 4 - 5     | 128kB | FREE                              |
 | 0x6_0000 - 0x7_0000   | 6         | 64 kB | MMIO - Microcontroller            |
 | 0x7_0000 - 0x7_8000   | 7         | 32 kB | MMIO - RGB LCD - DATA             |
 | 0x7_8000 - 0x8_0000   | 7         | 32 kB | MMIO - RGB LCD  - COMMAND         |
