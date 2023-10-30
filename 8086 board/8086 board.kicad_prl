@@ -2,7 +2,7 @@
   "board": {
     "active_layer": 31,
     "active_layer_preset": "",
-    "auto_track_width": true,
+    "auto_track_width": false,
     "hidden_netclasses": [],
     "hidden_nets": [],
     "high_contrast_mode": 0,
@@ -11,15 +11,15 @@
       "images": 0.6,
       "pads": 0.9800000190734863,
       "tracks": 1.0,
-      "vias": 1.0,
-      "zones": 0.6
+      "vias": 0.5,
+      "zones": 1.0
     },
     "selection_filter": {
       "dimensions": true,
       "footprints": true,
       "graphics": true,
       "keepouts": true,
-      "lockedItems": false,
+      "lockedItems": true,
       "otherItems": true,
       "pads": true,
       "text": true,
@@ -35,7 +35,6 @@
       4,
       5,
       7,
-      8,
       9,
       10,
       13,
@@ -56,15 +55,15 @@
       29,
       30,
       32,
-      33,
       34,
       35,
       36,
       37,
+      39,
       40
     ],
     "visible_layers": "fffffff_ffffffff",
-    "zone_display_mode": 1
+    "zone_display_mode": 0
   },
   "meta": {
     "filename": "8086 board.kicad_prl",
@@ -72,18 +71,6 @@
   },
   "project": {
     "files": [
-      {
-        "name": "8086 board.kicad_pcb",
-        "open": false,
-        "window": {
-          "display": 1,
-          "maximized": true,
-          "pos_x": 1912,
-          "pos_y": -8,
-          "size_x": 1936,
-          "size_y": 1066
-        }
-      },
       {
         "name": "8086 board.kicad_sch",
         "open": false,
@@ -94,6 +81,18 @@
           "pos_y": -9,
           "size_x": 1938,
           "size_y": 1060
+        }
+      },
+      {
+        "name": "8086 board.kicad_pcb",
+        "open": false,
+        "window": {
+          "display": 1,
+          "maximized": true,
+          "pos_x": 1912,
+          "pos_y": -8,
+          "size_x": 1936,
+          "size_y": 1066
         }
       }
     ]

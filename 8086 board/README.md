@@ -2,37 +2,11 @@
 This folder is a KiCad project folder.
 It includes the 8086 PC schematics and PCB design, as well as this readme file.
 
-<details>
-<summary>Tables of IC's I have lying around:</summary>
-
-## Logic
-
-| IC Name           | Description                               | amount    |
-| ----------------- | ----------------------------------------- | --------- |
-| 74AC373           | Octal latch with 3-STATE Outputs          | 20+       |
-| 74HC138D          | 3 to 8 line decoder; inverting            | 6         |
-| 74AC00 / 74HC132  | Quad 2-input NAND gate / schmitt trigger  | 2 / 6     |
-| 74HC02            | Quad 2-input NOR gate                     | 6         |
-| 74ACT08           | Quad 2-input AND gate                     | 2         |
-| 74HC14 / HEF40106 | Hex inverting Schmitt trigger             | 1 / 1     |
-
-## Memory
-
-| IC Name       | Description         | amount    |
-| ------------- | ------------------- | --------- |
-| IS61C256AH    | SRAM 32K x 8        | 5         |
-| CXK58257AM    | SRAM 32K x 8        | 1         |
-| IS61C3216     | SRAM 32K x 16       | 1         |
-| E28F400B5     | Flash 256K x 16     | 1         |
-| AM29F002      | Flash 256K x 8      | 2         |
-
-</details>
-
 ## Board details
 
 ### General
 - The 8086 itself.
-- 128kB SRAM + 512kB flash.
+- 256kB SRAM + 512kB flash.
 - Logic for address latching (including OR gate with bus ALE).
 - Logic for generating memory segment CS signals.
 - Logic for generating IO device CS signals for first 8 16-bit devices - IO[0-7].
@@ -46,12 +20,9 @@ This may be used for future developments - perhapse an FPGA graphics card with H
 
 ### IO
 - RGB LCD socket.
-- Character LCD connector.
 - 32 Push Buttons.  
 They form a keyboard, with 'a'-'z', space, enter, backspace, CTRL, ALT, SHIFT.
-- 16 LEDs.
-- Two 7-segment displays.
-- Logic to latch data to LEDs and from buttons.
+- Logic to latch data from buttons.
 
 
 ### Co-Processor
@@ -91,10 +62,9 @@ Interrupt vector table is at 0x000 - 0x100. That's why the SRAM is at the bottom
 | Addresses             | Segments  | Size  | Description                       |
 | --------------------- | --------- | ----- | --------------------------------- |
 | 0x0_0000 - 0x4_0000   | 0 - 3     | 256kB | SRAM                              |
-| 0x2_0000 - 0x6_0000   | 4 - 5     | 128kB | FREE                              |
-| 0x6_0000 - 0x7_0000   | 6         | 64 kB | MMIO - Microcontroller            |
-| 0x7_0000 - 0x7_8000   | 7         | 32 kB | MMIO - RGB LCD - DATA             |
-| 0x7_8000 - 0x8_0000   | 7         | 32 kB | MMIO - RGB LCD  - COMMAND         |
+| 0x4_0000 - 0x6_0000   | 4 - 5     | 128kB | MMIO - Microcontroller            |
+| 0x6_0000 - 0x7_0000   | 6         | 64 kB | MMIO - RGB LCD - DATA             |
+| 0x7_8000 - 0x8_0000   | 7         | 64 kB | MMIO - RGB LCD  - COMMAND         |
 | 0x8_0000 - 0xF_FFFF   | 8 - 15    | 512kB | Flash                             |
 
 ### IO map
@@ -103,8 +73,8 @@ IO ports are 16-bit wide.
 
 | Number    | Address   | Read description | Write description    |
 | --------- | --------- | ---------------- | -------------------- |
-| 0         | 0x0000    | 16 Push buttons. | 2 7-segment display. |
-| 1         | 0x0002    | 16 Push buttons. | 2 7-segment display. |
+| 0         | 0x0000    | 16 Push buttons. | FREE                 |
+| 1         | 0x0002    | 16 Push buttons. | FREE                 |
 | 2         | 0x0004    | FREE             | FREE                 |
 | 3         | 0x0006    | FREE             | FREE                 |
 | 4         | 0x0008    | FREE             | FREE                 |
