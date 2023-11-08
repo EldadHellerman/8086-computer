@@ -33,15 +33,12 @@
       2,
       3,
       4,
-      5,
       7,
       9,
       10,
       13,
       15,
       16,
-      17,
-      18,
       19,
       20,
       21,
@@ -55,14 +52,14 @@
       29,
       30,
       32,
+      33,
       34,
       35,
       36,
       37,
-      39,
       40
     ],
-    "visible_layers": "fffffff_ffffffff",
+    "visible_layers": "ffffeff_ffffffff",
     "zone_display_mode": 0
   },
   "meta": {
@@ -87,12 +84,12 @@
         "name": "8086 board.kicad_pcb",
         "open": false,
         "window": {
-          "display": 1,
+          "display": 0,
           "maximized": true,
-          "pos_x": 1912,
-          "pos_y": -8,
-          "size_x": 1936,
-          "size_y": 1066
+          "pos_x": -9,
+          "pos_y": -9,
+          "size_x": 1938,
+          "size_y": 1060
         }
       }
     ]
