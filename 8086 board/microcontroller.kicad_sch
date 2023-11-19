@@ -6,8 +6,8 @@
 
   (title_block
     (title "8086 computer")
-    (date "2023.11.15")
-    (rev "V1.2.0")
+    (date "2023.11.19")
+    (rev "V1.3.0")
     (company "Eldad Hellerman")
     (comment 1 "Open Source: github.com/EldadHellerman/8086-computer")
   )
@@ -430,18 +430,21 @@
         )
       )
     )
-    (symbol "8086PC:TestPoint" (pin_numbers hide) (pin_names hide) (in_bom yes) (on_board yes)
+    (symbol "8086PC:TestPoint" (pin_numbers hide) (pin_names hide) (in_bom no) (on_board yes)
       (property "Reference" "TP" (at 0 2.54 0)
         (effects (font (size 1.27 1.27)))
       )
-      (property "Value" "~" (at 0 -2.54 0)
-        (effects (font (size 1.27 1.27)))
+      (property "Value" "~" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
       )
       (property "Footprint" "" (at 0 -2.54 0)
         (effects (font (size 1.27 1.27)) hide)
       )
       (property "Datasheet" "" (at 0 -2.54 0)
         (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Signal" "" (at 0 -2.54 0)
+        (effects (font (size 1.27 1.27)))
       )
       (property "ki_description" "Test point" (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
@@ -2095,8 +2098,8 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 6390d911-654c-4bc6-a654-a96d373aca55)
   )
-  (label "XTAL2" (at 210.82 43.18 0) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
+  (label "XTAL2" (at 210.82 43.18 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 65e74fa9-2161-4146-acc3-cb3cab1c6e0e)
   )
   (label "DP" (at 104.14 45.72 180) (fields_autoplaced)
@@ -2317,19 +2320,22 @@
   )
 
   (symbol (lib_id "8086PC:TestPoint") (at 160.02 63.5 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
+    (in_bom no) (on_board yes) (dnp no)
     (uuid 13a4a9f4-035e-4551-9e1d-828757f767a5)
     (property "Reference" "TP1" (at 160.02 66.04 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "ADC6" (at 160.02 68.58 0)
-      (effects (font (size 1.27 1.27)))
+    (property "Value" "~" (at 160.02 68.58 0)
+      (effects (font (size 1.27 1.27)) hide)
     )
     (property "Footprint" "TestPoint:TestPoint_Pad_1.5x1.5mm" (at 160.02 63.5 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "" (at 160.02 63.5 0)
       (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Signal" "ADC6" (at 160.02 68.58 0)
+      (effects (font (size 1.27 1.27)))
     )
     (pin "1" (uuid 3926a20e-311c-401d-8d64-a1cee1c9bf56))
     (instances
@@ -2338,7 +2344,7 @@
           (reference "TP1") (unit 1)
         )
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "TP7") (unit 1)
+          (reference "TP6") (unit 1)
         )
       )
     )
@@ -2347,7 +2353,7 @@
   (symbol (lib_id "8086PC:R") (at 228.6 66.04 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 148c7c13-de0f-4ab4-98b2-ea8cafed0ad0)
-    (property "Reference" "R8" (at 229.87 59.69 0)
+    (property "Reference" "R4" (at 229.87 59.69 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10k" (at 229.87 62.23 0)
@@ -2364,7 +2370,7 @@
     (instances
       (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "R8") (unit 1)
+          (reference "R4") (unit 1)
         )
       )
     )
@@ -2418,7 +2424,7 @@
           (reference "R3") (unit 1)
         )
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "R3") (unit 1)
+          (reference "R8") (unit 1)
         )
       )
     )
@@ -2530,7 +2536,7 @@
   (symbol (lib_id "8086PC:R") (at 139.7 43.18 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3e975dbc-7052-4b48-bace-bfadd54f8300)
-    (property "Reference" "R10" (at 142.24 40.64 90)
+    (property "Reference" "R7" (at 142.24 40.64 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "1k" (at 142.24 43.18 90)
@@ -2547,7 +2553,7 @@
     (instances
       (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "R10") (unit 1)
+          (reference "R7") (unit 1)
         )
       )
     )
@@ -2576,7 +2582,7 @@
           (reference "C44") (unit 1)
         )
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "C4") (unit 1)
+          (reference "C28") (unit 1)
         )
       )
     )
@@ -2638,7 +2644,7 @@
   (symbol (lib_id "8086PC:74HC595") (at 266.7 101.6 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 50301a16-f277-45c1-9d09-18add7bddd7e)
-    (property "Reference" "U21" (at 269.24 82.55 0)
+    (property "Reference" "U17" (at 269.24 82.55 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "74HC595" (at 269.24 85.09 0)
@@ -2669,7 +2675,7 @@
     (instances
       (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "U21") (unit 1)
+          (reference "U17") (unit 1)
         )
       )
     )
@@ -2702,7 +2708,7 @@
           (reference "J?") (unit 1)
         )
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "J5") (unit 1)
+          (reference "J3") (unit 1)
         )
       )
     )
@@ -2761,7 +2767,7 @@
   (symbol (lib_id "Device:C_Small") (at 233.68 35.56 180) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5a208935-cc3d-4401-b2de-cef0e93d227a)
-    (property "Reference" "C7" (at 236.22 34.2836 0)
+    (property "Reference" "C24" (at 236.22 34.2836 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "22pF" (at 236.22 36.8236 0)
@@ -2778,7 +2784,7 @@
     (instances
       (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "C7") (unit 1)
+          (reference "C24") (unit 1)
         )
       )
     )
@@ -2868,7 +2874,7 @@
   (symbol (lib_id "8086PC:ATmega328P") (at 185.42 45.72 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6cc806b4-e9bf-4117-ad47-09fad1132fc5)
-    (property "Reference" "U20" (at 187.96 19.05 0)
+    (property "Reference" "U18" (at 187.96 19.05 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "ATmega328P" (at 194.31 21.59 0)
@@ -2915,7 +2921,7 @@
     (instances
       (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "U20") (unit 1)
+          (reference "U18") (unit 1)
         )
       )
     )
@@ -2986,7 +2992,7 @@
           (reference "U26") (unit 1)
         )
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "U4") (unit 1)
+          (reference "U19") (unit 1)
         )
       )
     )
@@ -3020,7 +3026,7 @@
   (symbol (lib_id "8086PC:R") (at 154.94 33.02 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7c2582b3-d217-4579-af9e-4593647b7b98)
-    (property "Reference" "R9" (at 157.48 30.48 90)
+    (property "Reference" "R6" (at 157.48 30.48 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "10k" (at 157.48 33.02 90)
@@ -3037,7 +3043,7 @@
     (instances
       (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "R9") (unit 1)
+          (reference "R6") (unit 1)
         )
       )
     )
@@ -3066,7 +3072,7 @@
           (reference "R1") (unit 1)
         )
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "R1") (unit 1)
+          (reference "R10") (unit 1)
         )
       )
     )
@@ -3216,19 +3222,19 @@
           (reference "J2") (unit 1)
         )
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "J2") (unit 1)
+          (reference "J5") (unit 1)
         )
       )
     )
   )
 
   (symbol (lib_id "8086PC:TestPoint") (at 139.7 68.58 90) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom no) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid aea3fc4a-1278-45ce-b06c-1c322874f1c7)
     (property "Reference" "TP1" (at 140.97 67.31 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "~{RTS}" (at 140.97 69.85 90)
+    (property "Value" "~" (at 140.97 69.85 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "TestPoint:TestPoint_Pad_1.0x1.0mm" (at 139.7 68.58 0)
@@ -3237,6 +3243,9 @@
     (property "Datasheet" "" (at 139.7 68.58 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "Signal" "~{RTS}" (at 140.97 69.85 90)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
     (pin "1" (uuid d893ffb5-306c-40ca-a886-97ceb4646a2d))
     (instances
       (project "8086 board"
@@ -3244,7 +3253,7 @@
           (reference "TP1") (unit 1)
         )
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "TP1") (unit 1)
+          (reference "TP8") (unit 1)
         )
       )
     )
@@ -3298,7 +3307,7 @@
           (reference "C5") (unit 1)
         )
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "C5") (unit 1)
+          (reference "C18") (unit 1)
         )
       )
     )
@@ -3375,7 +3384,7 @@
   (symbol (lib_id "8086PC:74HC165") (at 205.74 139.7 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c5e8ef49-3124-48b7-ad5d-68f2a6725751)
-    (property "Reference" "U25" (at 209.55 118.11 0)
+    (property "Reference" "U23" (at 209.55 118.11 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "74HC165" (at 212.09 120.65 0)
@@ -3406,7 +3415,7 @@
     (instances
       (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "U25") (unit 1)
+          (reference "U23") (unit 1)
         )
       )
     )
@@ -3493,7 +3502,7 @@
   (symbol (lib_id "8086PC:74HC595") (at 223.52 101.6 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d07ec054-0cc4-45ba-b356-1096763b3789)
-    (property "Reference" "U22" (at 226.06 82.55 0)
+    (property "Reference" "U16" (at 226.06 82.55 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "74HC595" (at 226.06 85.09 0)
@@ -3524,26 +3533,29 @@
     (instances
       (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "U22") (unit 1)
+          (reference "U16") (unit 1)
         )
       )
     )
   )
 
   (symbol (lib_id "8086PC:TestPoint") (at 167.64 66.04 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
+    (in_bom no) (on_board yes) (dnp no)
     (uuid d10a9376-8e18-4642-8a40-df76a7047770)
     (property "Reference" "TP1" (at 167.64 68.58 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "ADC7" (at 167.64 71.12 0)
-      (effects (font (size 1.27 1.27)))
+    (property "Value" "~" (at 167.64 71.12 0)
+      (effects (font (size 1.27 1.27)) hide)
     )
     (property "Footprint" "TestPoint:TestPoint_Pad_1.5x1.5mm" (at 167.64 66.04 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "" (at 167.64 66.04 0)
       (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Signal" "ADC7" (at 167.64 71.12 0)
+      (effects (font (size 1.27 1.27)))
     )
     (pin "1" (uuid f8eeae44-7bbe-4c6b-92c6-5d551f01a373))
     (instances
@@ -3552,7 +3564,7 @@
           (reference "TP1") (unit 1)
         )
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "TP8") (unit 1)
+          (reference "TP7") (unit 1)
         )
       )
     )
@@ -3561,7 +3573,7 @@
   (symbol (lib_id "Device:C_Small") (at 223.52 35.56 0) (mirror x) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d5c9bbc2-851e-433a-b885-3d21aaa813e4)
-    (property "Reference" "C6" (at 220.98 34.2836 0)
+    (property "Reference" "C25" (at 220.98 34.2836 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Value" "22pF" (at 220.98 36.8236 0)
@@ -3578,7 +3590,7 @@
     (instances
       (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "C6") (unit 1)
+          (reference "C25") (unit 1)
         )
       )
     )
@@ -3743,7 +3755,7 @@
   (symbol (lib_id "8086PC:74HC595") (at 180.34 101.6 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid eb3ae9d3-a541-4a0a-8830-783171b4093a)
-    (property "Reference" "U23" (at 182.88 82.55 0)
+    (property "Reference" "U15" (at 182.88 82.55 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "74HC595" (at 182.88 85.09 0)
@@ -3774,7 +3786,7 @@
     (instances
       (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "U23") (unit 1)
+          (reference "U15") (unit 1)
         )
       )
     )
@@ -3859,7 +3871,7 @@
           (reference "R2") (unit 1)
         )
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "R2") (unit 1)
+          (reference "R9") (unit 1)
         )
       )
     )
@@ -3868,7 +3880,7 @@
   (symbol (lib_id "8086PC:R") (at 215.9 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid fa0f6827-1e65-48dd-bc4b-ed5db127e251)
-    (property "Reference" "R7" (at 217.17 52.07 0)
+    (property "Reference" "R5" (at 217.17 52.07 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "1k" (at 217.17 54.61 0)
@@ -3885,7 +3897,7 @@
     (instances
       (project "8086 board"
         (path "/3749a875-289f-4484-aa3f-51b8984af853/424ba84c-5097-43d2-b6a3-f93a63e78a77"
-          (reference "R7") (unit 1)
+          (reference "R5") (unit 1)
         )
       )
     )
