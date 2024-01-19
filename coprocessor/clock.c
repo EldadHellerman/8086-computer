@@ -2,7 +2,7 @@
 #include "gpio.h"
 
 /** @brief see header file. */
-void clock_setup(uint8_t top, uint8_t threshold, uint8_t clock_source){
+void clock_config(uint8_t top, uint8_t threshold, uint8_t clock_source){
 	/*
 	* For exact data about timer and register description, see AtMega328p datasheet chapter 14 - 8-bit timer/counter0 with PWM.
  	* https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf#page=84
@@ -20,5 +20,5 @@ void clock_setup(uint8_t top, uint8_t threshold, uint8_t clock_source){
 
 /** @brief see header file. */
 void clock_stop(){
-	clock_setup(0, 0, CS_HALT);
+	clock_config(0, 0, CLOCK_SOURCE_HALT);
 }
