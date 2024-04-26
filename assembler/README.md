@@ -1,4 +1,6 @@
-# Assembly syntax and directives
+# Assembler
+
+## Assembly syntax and directives
 
 Comments:
 ```
@@ -70,7 +72,7 @@ inc [0x3456] // Unknowen size. Error.
 mov ax, [ES : 0x04] // Segment override is inside the square brackets.
 ```
 
-# Preprocessor Directives
+## Preprocessor Directives
 
 ```
 #include "file"

@@ -8,4 +8,5 @@ This one focuses mainly on PCB design.
 
 Folders in this repository:
  - 8086 board - KiCad project folder. Schematics and PCB design.
- - assembler - custom 8086 assembler.
+ - assembler - Custom 8086 assembler.
+ - coprocessor - Software for the coprocessor.
