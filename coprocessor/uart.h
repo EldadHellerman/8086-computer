@@ -29,7 +29,7 @@
 #define UART_2M_16MHZ_DOUBLE         true
 
 /**
- * @brief Configure usart 0, and set it up as stdout and stdin.
+ * @brief Configure UART peripheral, and set it up as stdout and stdin.
  * 
  * Baud rate will be determined as follows:
  *     normal mode -        baud_rate = Fosc / (16 * ( @p UBRR_value + 1))
@@ -44,20 +44,26 @@
  * @param double_speed Double speed mode or normal mode.
  */
 void uart_config(uint16_t UBRR_value, bool double_speed);
+
 /**
- * @brief 
+ * @brief Write a char to UART.
  * 
- * @param c 
- * @param stream 
- * @return int 
+ * @param c Data to write.
+ * @param stream Don't care. Not used.
+ * @return int Returns 0.
  */
 int uart_putchar(char c, FILE *stream);
 
 /**
- * @brief 
+ * @brief Read a char from UART.
  * 
- * @return int 
+ * @return int data read. A char casted to an int.
  */
-int uart_getchar();
+int uart_getchar(void);
+
+/**
+ * @brief Enable UART RX interrupt.
+ */
+void uart_enable_rx_interrupt(void);
 
 #endif /* UART_H__H_ */

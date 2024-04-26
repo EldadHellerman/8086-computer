@@ -6,7 +6,7 @@
 // set up uart_stream with put_char and get_char functions
 static FILE uart_stream = FDEV_SETUP_STREAM(uart_putchar, uart_getchar, _FDEV_SETUP_RW);
 
-/** @brief see header file. */
+/** see header file. */
 void uart_config(uint16_t UBRR_value, bool double_speed){
 	/*
 	* For exact data about uart and register description, see AtMega328p datasheet chapter 19 - USART0.
@@ -24,15 +24,20 @@ void uart_config(uint16_t UBRR_value, bool double_speed){
 	
 }
 
-/** @brief see header file. */
+/** see header file. */
 int uart_putchar(char c, FILE *stream){
 	loop_until_bit_is_set(UCSR0A, UDRE0); // check that data register is empty
 	UDR0 = c;
 	return(0);
 }
 
-/** @brief see header file. */
-int uart_getchar(){
+/** see header file. */
+int uart_getchar(void){
 	loop_until_bit_is_set(UCSR0A, RXC0); // wait for data to be received
 	return((int)UDR0);
+}
+
+/** see header file. */
+void uart_enable_rx_interrupt(void){
+	UCSR0B |= (1 << RXCIE0);
 }
