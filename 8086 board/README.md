@@ -57,8 +57,8 @@ Interrupt vector table is at 0x000 - 0x100. That's why the SRAM is at the bottom
 
 | Addresses             | Segments  | Size  | Description                       |
 | --------------------- | --------- | ----- | --------------------------------- |
-| 0x0_0000 - 0x4_0000   | 0 - 1     | 128kB | SRAM                              |
-| 0x0_0000 - 0x2_0000   | 2 - 3     | 128kB | optional additional SRAM          |
+| 0x0_0000 - 0x2_0000   | 0 - 1     | 128kB | SRAM                              |
+| 0x2_0000 - 0x4_0000   | 2 - 3     | 128kB | optional additional SRAM          |
 | 0x4_0000 - 0x6_0000   | 4 - 5     | 128kB | MMIO - Microcontroller            |
 | 0x6_0000 - 0x7_0000   | 6         | 64 kB | MMIO - RGB LCD - DATA             |
 | 0x7_8000 - 0x8_0000   | 7         | 64 kB | MMIO - RGB LCD  - COMMAND         |
