@@ -1,5 +1,5 @@
 # ISP protocol
-Version 2.0  
+Version 2.1  
 
 The ISP protocol is used for communicating with the coprocessor.
 This communication happens over serial, using the coprocessor UART to USB adapter.  
@@ -31,10 +31,11 @@ For preamble, the value 0xAA55 is used.
 | 0x01      | WRITE_REG   | command  | write to a register           | 5           | register number (1), value (4) |
 | 0x02      | READ_BUS    | command  | read from the bus             | 6           | address (4), length (2)        |
 | 0x03      | WRITE_BUS   | command  | write to the bus              | variable    | address (4), data (variable)   |
-| 0x04      | SUCCESS     | response | successful operation          | 0           | none                           |
+| 0x04      | WRITE_FLASH | command  | write to / program flash      | variable    | address (4), data (variable)   |
+| 0x10      | SUCCESS     | response | successful operation          | 0           | none                           |
 |           |             |          | successful READ_REGISTER      | 4           | value of register (4)          |
 |           |             |          | successful READ_BUS           | variable    | data (variable)                |
-| 0x05      | FAILURE     | response | failure                       | 0           | none                           |
+| 0x11      | FAILURE     | response | failure                       | 0           | none                           |
 
 
 
@@ -53,5 +54,13 @@ For preamble, the value 0xAA55 is used.
 | 0x10      | RESET            |               |                               | 1              | Resets the 8086                    |
 |           |                  |               |                               | 2              | Resets 8086 and holds bus          |
 | 0x11      | BUS_HOLD         | 0 - 1         | Bus on hold indicator         | 0 - 1          | Release or hold bus                |
-| 0x12      | INTERRUPTS       |               |                               | 0 - 255        | Generates corresponding interrupts |
+| 0x12      | INTERRUPT        |               |                               | 0 - 255        | Generates corresponding interrupts |
 |           |                  |               |                               | 256            | Generates NMI                      |
+
+
+### Status register:
+| bit index | description         |
+| --------- | ------------------- |
+| 0         | INVALID_PACKET_ID   |
+| 1         | INVALID_REGISTER    |
+| 2         | INVALID_DATA_LENGTH |
