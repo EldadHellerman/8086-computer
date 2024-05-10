@@ -10,3 +10,4 @@ Folders in this repository:
  - 8086 board - KiCad project folder. Schematics and PCB design.
  - assembler - Custom 8086 assembler.
  - coprocessor - Software for the coprocessor.
+ - companion - Utility to communicate with the coprocessor.
